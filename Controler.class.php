@@ -110,6 +110,7 @@ class Controler
 			
 			$bte = new Bouteille();
 			$resultat = $bte->modifierQuantiteBouteilleCellier($body->id, 1);
+			var_dump($resultat);
 			echo json_encode($resultat);
 		}
 		
