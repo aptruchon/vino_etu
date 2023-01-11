@@ -3,14 +3,14 @@
 .menu-actions-container {
     margin-right: 0;
     margin-left: auto;
-    width: 219px;
+    width: 227px;
 }
 
 .bouton-carre {
-    border: 1px solid grey;
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
     border-radius: 5px;
     display: inline-block;
-    padding: 1px 4px;
+    padding: 4px 8px;
 }
 
 .bouton-carre-label {
@@ -45,7 +45,7 @@
 }
 
 .type {
-    color: grey;
+    color: rgb(84, 84, 84);
     background-color: rgb(214, 214, 214);
     border-radius: 10px;
     width: fit-content;

@@ -21,9 +21,8 @@
 	<body >
 		<header class="nav-header">
 			<nav>
-				<div class="logo-container">Vino</div>
-				<div>
-					<a href="?requete=accueil"><i class="fa-solid fa-wine-glass"></i></a>
+				<div class="logo-container">
+					<a class="logo-text" href="?requete=accueil">Vino</a>
 				</div>
 			</nav>
 		</header>

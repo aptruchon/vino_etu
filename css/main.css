@@ -2,6 +2,20 @@
  * Votre CSS
  ********/
 
+ /* Espacements utilisés */
+ /* 
+ 	40px
+ 	20px
+	10px 
+*/
+
+:root {
+	--red: #931818;
+	--orange: #FFC49F;
+	--yellow: #FFF0C3;
+	--pink: #FFECEA;
+}
+
 * {
  	margin: 0;
  	padding: 0;
@@ -28,6 +42,7 @@ h2 {
 
 .fa-plus {
 	font-size: 20px;
+	color: black;
 }
 
 .page-content-header {
@@ -48,6 +63,7 @@ h2 {
 	border: none;
 	font-size: 18px;
 	font-weight: bold;
+	color: white;
 }
 
 .bouton-large:hover {
