@@ -10,11 +10,11 @@
 		<meta name="description" content="Un petit verre de vino">
 		<meta name="author" content="Jonathan Martel (jmartel@cmaisonneuve.qc.ca)">
 
-		<link rel="stylesheet" href="./css/normalize.css" type="text/css" media="screen">
-		<link rel="stylesheet" href="./css/base_h5bp.css" type="text/css" media="screen">
-		<link rel="stylesheet" href="./css/main.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="./css/styles.css" type="text/css" media="screen">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 		<base href="<?php echo BASEURL; ?>">
 		<!--<script src="./js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>-->
+		<script src="https://kit.fontawesome.com/32150d741e.js" crossorigin="anonymous"></script>
 		<script src="./js/plugins.js"></script>
 		<script src="./js/main.js"></script>
 	</head>
@@ -23,7 +23,7 @@
 			<nav>
 				<div class="logo-container">Vino</div>
 				<div>
-					<a href="?requete=accueil">Cellier</a>
+					<a href="?requete=accueil"><i class="fa-solid fa-wine-glass"></i></a>
 				</div>
 			</nav>
 		</header>
