@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<title>Un petit verre de vino</title>
+		<title>Vino</title>
 
 		<meta charset="utf-8">
 		<meta http-equiv="cache-control" content="no-cache">
@@ -20,12 +20,11 @@
 	</head>
 	<body >
 		<header>
-			<h1>Un petit verre de vino ?</h1>
 			<nav>
-				<ul>
-					<li><a href="?requete=accueil">Mon cellier</a></li>
-					<li><a href="?requete=ajouterNouvelleBouteilleCellier">Ajouter une bouteille au cellier</a></li>
-				</ul>
+				<div class="logo-container">Vino</div>
+				<div>
+					<a href="?requete=accueil">Cellier</a>
+				</div>
 			</nav>
 		</header>
 		<main>

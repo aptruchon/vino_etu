@@ -1,4 +1,5 @@
 <div class="cellier">
+    <a href="?requete=ajouterNouvelleBouteilleCellier">Ajouter une bouteille au cellier</a>
 <?php
 foreach ($data as $cle => $bouteille) {
  
