@@ -19,7 +19,7 @@
 		<script src="./js/main.js"></script>
 	</head>
 	<body >
-		<header>
+		<header class="nav-header">
 			<nav>
 				<div class="logo-container">Vino</div>
 				<div>

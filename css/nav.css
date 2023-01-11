@@ -1,3 +1,7 @@
+.nav-header {
+    background-color: grey;
+}
+
 nav {
     display: flex;
     flex-direction: row;
