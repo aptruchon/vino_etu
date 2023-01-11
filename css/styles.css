@@ -1,4 +1,7 @@
 @import "normalize.css";
 @import "base_h5bp.css";
 @import "main.css";
+@import "nav.css";
+@import "footer.css";
+@import "cellier.css";
 @import "mediaqueries.css";

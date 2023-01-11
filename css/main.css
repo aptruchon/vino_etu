@@ -17,6 +17,29 @@ html, body {
 	
 }
 
+main {
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+h2 {
+	font-size: 30px;
+}
+
+.fa-plus {
+	font-size: 20px;
+}
+
+.page-content-header {
+	text-align: center;
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+
+.no-underline {
+	text-decoration: none;
+}
+
 .liste {
 	display: block;
 	border-top: 1px solid #ccc;
@@ -46,19 +69,4 @@ html, body {
 	
 }
 
-footer
-{
-	position: fixed;;
-	bottom:0px;
-	width: 100%;
-	padding-top:3px;
-	text-align: center;
-	background-color:#FFFFFF;
-}
 
-footer p
-{
-	display:inline;
-	padding-right:50px;
-	font-size : 10px;
-}
