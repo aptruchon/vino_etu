@@ -1,20 +1,33 @@
 <div class="ajouter">
-
+    <header class="page-content-header"> 
+        <h2>Ajouter une bouteille</h2>
+    </header> 
     <div class="nouvelleBouteille" vertical layout>
-        Recherche : <input type="text" name="nom_bouteille">
-        <ul class="listeAutoComplete">
 
-        </ul>
-            <div >
-                <p>Nom : <span data-id="" class="nom_bouteille"></span></p>
-                <p>Millesime : <input name="millesime"></p>
-                <p>Quantite : <input name="quantite" value="1"></p>
-                <p>Date achat : <input name="date_achat"></p>
-                <p>Prix : <input name="prix"></p>
-                <p>Garde : <input name="garde_jusqua"></p>
-                <p>Notes <input name="notes"></p>
-            </div>
-            <button name="ajouterBouteilleCellier">Ajouter la bouteille (champs tous obligatoires)</button>
+        <div>
+            <label for="nom">Nom</label>
+            <input type="text" class="nom_bouteille" name="nom_bouteille" data-id="" id="nom">
+            <span class="champ-obligatoire-message"></span>
+            <label for="millesime">Millesime</label>
+            <input type="text" name="millesime" id="millesime">
+            <span class="champ-obligatoire-message"></span>
+            <label for="quantite">Quantite</label>
+            <input type="number" name="quantite" id="quantite" value="1">
+            <span class="champ-obligatoire-message"></span>
+            <label for="date_achat">Date achat</label>
+            <input type="text" name="date_achat" id="date_achat">
+            <span class="champ-obligatoire-message"></span>
+            <label for="prix">Prix</label>
+            <input type="number" name="prix" id="prix">
+            <span class="champ-obligatoire-message"></span>
+            <label for="garde_jusqua">A garder jusqu'au</label>
+            <input type="text" name="garde_jusqua" id="garde_jusqua">
+            <span class="champ-obligatoire-message"></span>
+            <label for="notes">Notes</label>
+            <input type="text" name="notes" id="notes">
+            <span class="champ-obligatoire-message"></span>
         </div>
+        <button class="bouton-large" name="ajouterBouteilleCellier">Ajouter la bouteille</button>
+        
     </div>
 </div>
