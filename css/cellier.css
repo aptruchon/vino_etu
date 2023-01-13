@@ -1,0 +1,74 @@
+/* MENU TOP PAGE CELLIER */
+
+.menu-actions-container {
+    margin-right: 0;
+    margin-left: auto;
+    width: 227px;
+}
+
+.bouton-carre {
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 4px 8px;
+}
+
+.bouton-carre-label {
+    font-size: 20px;
+    color: black;
+    margin-right: 5px;
+}
+
+/* CARTE PRODUIT */
+
+ .bouteilles-container {
+    margin-top: 40px;
+    margin-bottom: 40px;
+ }
+
+.bouteille {
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 20px;
+}
+
+.bouteilles-container .bouteille:last-child {
+    margin-bottom: 0;
+}
+
+.bouteille a {
+    font-size: 18px;
+    color: brown;
+}
+
+.type {
+    color: rgb(84, 84, 84);
+    background-color: rgb(214, 214, 214);
+    border-radius: 10px;
+    width: fit-content;
+    padding: 2px 6px;
+    margin-bottom: 10px;
+}
+
+.nom {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.pays, .millesime {
+    color: grey;
+    font-size: 18px;
+}
+
+.quantite {
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+
