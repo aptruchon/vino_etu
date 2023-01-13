@@ -22,8 +22,11 @@
                 <p class="nom"><?php echo $bouteille['nom'] ?></p>
                 <p class="pays"><?php echo $bouteille['pays'] ?></p>
                 <p class="millesime">Millesime <?php echo $bouteille['millesime'] ?></p>
-                <p class="quantite"><?php echo $bouteille['quantite'] ?></p>
-                <p><a href="<?php echo $bouteille['url_saq'] ?>">Voir SAQ</a></p>
+                <div class="quantity-wrapper">
+                    <div class="bouton-carre btnBoire"><i class="fa-solid fa-minus"></i></div>
+                    <p class="quantite"><?php echo $bouteille['quantite'] ?></p>
+                    <div class="bouton-carre btnAjouter"><i class="fa-solid fa-plus"></i></div>
+                </div>
             </div>
         </div>
     <?php
