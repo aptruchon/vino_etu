@@ -1,3 +1,5 @@
+-- Changez e2195598 pour votre code étudiant (nom de votre DB) partout dans ce fichier
+
 -- MySQL Workbench Forward Engineering
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
