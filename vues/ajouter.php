@@ -3,10 +3,13 @@
         <h2>Ajouter une bouteille</h2>
     </header> 
     <div class="nouvelleBouteille" vertical layout>
+        Recherche : <input type="text" name="nom_bouteille">
+        <ul class="listeAutoComplete">
 
+        </ul>
         <div>
             <label for="nom">Nom</label>
-            <input type="text" class="nom_bouteille" name="nom_bouteille" data-id="" id="nom">
+            <input type="text" class="nom" name="nom" data-id="" id="nom">
             <span class="champ-obligatoire-message"></span>
             <label for="millesime">Millesime</label>
             <input type="text" name="millesime" id="millesime">
