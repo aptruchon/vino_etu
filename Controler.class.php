@@ -13,17 +13,19 @@
 
 class Controler 
 {
-	
 		/**
 		 * Traite la requête
 		 * @return void
 		 */
 		public function gerer()
 		{
-			
+			// ID utilisateur et ID de cellier en attendant de recevoir les vraies informations dynamiquement
+			$userId = 2;
+			$cellierId = 1;
+
 			switch ($_GET['requete']) {
 				case 'listeBouteille':
-					$this->listeBouteille();
+					$this->listeBouteille($userId, $cellierId);
 					break;
 				case 'autocompleteBouteille':
 					$this->autocompleteBouteille();
@@ -38,15 +40,15 @@ class Controler
 					$this->boireBouteilleCellier();
 					break;
 				default:
-					$this->accueil();
+					$this->accueil($userId, $cellierId);
 					break;
 			}
 		}
 
-		private function accueil()
+		private function accueil($userId, $cellierId)
 		{
 			$bte = new Bouteille();
-            $data = $bte->getListeBouteilleCellier();
+            $data = $bte->getListeBouteilleCellier($userId, $cellierId);
 			include("vues/entete.php");
 			include("vues/cellier.php");
 			include("vues/pied.php");
@@ -54,10 +56,10 @@ class Controler
 		}
 		
 
-		private function listeBouteille()
+		private function listeBouteille($userId, $cellierId)
 		{
 			$bte = new Bouteille();
-            $cellier = $bte->getListeBouteilleCellier();
+            $cellier = $bte->getListeBouteilleCellier($userId, $cellierId);
             
             echo json_encode($cellier);
                   

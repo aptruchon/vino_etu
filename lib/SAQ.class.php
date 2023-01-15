@@ -22,7 +22,8 @@ class SAQ extends Modele {
 
 	public function __construct() {
 		parent::__construct();
-		if (!($this -> stmt = $this -> _db -> prepare("INSERT INTO vino__bouteille(nom, type, image, code_saq, pays, description, prix_saq, url_saq, url_img, format) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
+		$mysqli = $this->_db;
+		if (!($this -> stmt = $this -> _db -> prepare("INSERT INTO vino__bouteille(nom, vino__type_id, image, code_saq, pays, description, prix_saq, url_saq, url_img, format, vino__catalogue_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
 			echo "Echec de la préparation : (" . $mysqli -> errno . ") " . $mysqli -> error;
 		}
 	}
@@ -39,24 +40,24 @@ class SAQ extends Modele {
 		//curl_setopt($s, CURLOPT_URL, "https://www.saq.com/webapp/wcs/stores/servlet/SearchDisplay?categoryIdentifier=06&showOnly=product&langId=-2&beginIndex=" . $debut . "&pageSize=" . $nombre . "&catalogId=50000&searchTerm=*&categoryId=39919&storeId=20002");
 		//curl_setopt($s, CURLOPT_URL, $url);
 		//curl_setopt($s, CURLOPT_RETURNTRANSFER, true);
-        //curl_setopt($s, CURLOPT_CUSTOMREQUEST, 'GET');
-        //curl_setopt($s, CURLOPT_NOBODY, false);
+		//curl_setopt($s, CURLOPT_CUSTOMREQUEST, 'GET');
+		//curl_setopt($s, CURLOPT_NOBODY, false);
 		//curl_setopt($s, CURLOPT_FOLLOWLOCATION, 1);
 
-        // Se prendre pour un navigateur pour berner le serveur de la saq...
-        curl_setopt_array($s,array(
-            CURLOPT_URL => $url,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_USERAGENT=>'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0',
-            CURLOPT_ENCODING=>'gzip, deflate',
-            CURLOPT_HTTPHEADER=>array(
-                    'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-                    'Accept-Language: en-US,en;q=0.5',
-                    'Accept-Encoding: gzip, deflate',
-                    'Connection: keep-alive',
-                    'Upgrade-Insecure-Requests: 1',
-            ),
-    ));
+		// Se prendre pour un navigateur pour berner le serveur de la saq...
+		curl_setopt_array($s,array(
+			CURLOPT_URL => $url,
+			CURLOPT_RETURNTRANSFER => true,
+			CURLOPT_USERAGENT=>'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0',
+			CURLOPT_ENCODING=>'gzip, deflate',
+			CURLOPT_HTTPHEADER=>array(
+					'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+					'Accept-Language: en-US,en;q=0.5',
+					'Accept-Encoding: gzip, deflate',
+					'Connection: keep-alive',
+					'Upgrade-Insecure-Requests: 1',
+			)
+		));
 
 		self::$_webpage = curl_exec($s);
 		self::$_status = curl_getinfo($s, CURLINFO_HTTP_CODE);
@@ -107,7 +108,6 @@ class SAQ extends Modele {
 		return preg_replace('/\s+/', ' ',$chaine);
 	}
 	private function recupereInfo($noeud) {
-		
 		$info = new stdClass();
 		$info -> img = $noeud -> getElementsByTagName("img") -> item(0) -> getAttribute('src'); //TODO : Nettoyer le lien
 		;
@@ -178,7 +178,8 @@ class SAQ extends Modele {
 
 			$rows = $this -> _db -> query("select id from vino__bouteille where code_saq = '" . $bte -> desc -> code_SAQ . "'");
 			if ($rows -> num_rows < 1) {
-				$this -> stmt -> bind_param("sissssisss", $bte -> nom, $type, $bte -> img, $bte -> desc -> code_SAQ, $bte -> desc -> pays, $bte -> desc -> texte, $bte -> prix, $bte -> url, $bte -> img, $bte -> desc -> format);
+				$catalogueId = 1;
+				$this -> stmt -> bind_param("sissssisssi", $bte -> nom, $type, $bte -> img, $bte -> desc -> code_SAQ, $bte -> desc -> pays, $bte -> desc -> texte, $bte -> prix, $bte -> url, $bte -> img, $bte -> desc -> format, $catalogueId);
 				$retour -> succes = $this -> stmt -> execute();
 				$retour -> raison = self::INSERE;
 				//var_dump($this->stmt);
