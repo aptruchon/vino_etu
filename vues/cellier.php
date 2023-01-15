@@ -11,7 +11,6 @@
     <section class="bouteilles-container">  
     <?php
     foreach ($data as $cle => $bouteille) {
-
         ?>
         <div class="bouteille" data-quantite="">
             <div class="bouteille-img-container">
@@ -23,9 +22,13 @@
                 <p class="pays"><?php echo $bouteille['pays'] ?></p>
                 <p class="millesime">Millesime <?php echo $bouteille['millesime'] ?></p>
                 <div class="quantity-wrapper">
-                    <div class="bouton-carre btnBoire"><i class="fa-solid fa-minus"></i></div>
+                    <div class="bouton-carre btnBoire" data-id="<?php echo $bouteille['id_bouteille_cellier'] ?>">
+                        <i class="fa-solid fa-minus btnBoire" data-id="<?php echo $bouteille['id_bouteille_cellier'] ?>"></i>
+                    </div>
                     <p class="quantite"><?php echo $bouteille['quantite'] ?></p>
-                    <div class="bouton-carre btnAjouter"><i class="fa-solid fa-plus"></i></div>
+                    <div class="bouton-carre btnAjouter" data-id="<?php echo $bouteille['id_bouteille_cellier'] ?>">
+                        <i class="fa-solid fa-plus btnAjouter" data-id="<?php echo $bouteille['id_bouteille_cellier'] ?>"></i>
+                    </div>
                 </div>
             </div>
         </div>
