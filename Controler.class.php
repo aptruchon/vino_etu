@@ -21,7 +21,7 @@ class Controler
 		{
 			// ID utilisateur et ID de cellier en attendant de recevoir les vraies informations dynamiquement
 			$userId = 2;
-			$cellierId = 3;
+			$cellierId = 1;
 
 			switch ($_GET['requete']) {
 				case 'listeBouteille':
