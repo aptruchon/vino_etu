@@ -29,32 +29,35 @@ class Bouteille extends Modele {
 		return $rows;
 	}
 	
-	public function getListeBouteilleCellier()
+	public function getListeBouteilleCellier($userId, $cellierId)
 	{
 		
 		$rows = Array();
 		$requete ='SELECT 
-						c.id as id_bouteille_cellier,
-						c.id_bouteille, 
-						c.date_achat, 
-						c.garde_jusqua, 
-						c.notes, 
-						c.prix, 
-						c.quantite,
-						c.millesime, 
-						b.id,
+						cc.id AS id_bouteille_cellier,
+						cc.vino__bouteille_id,
+						cc.vino__cellier_id,
+						cc.date_ajout, 
+						cc.garde_jusqua, 
+						cc.notes, 
+						cc.prix, 
+						cc.quantite,
+						cc.millesime, 
 						b.nom, 
-						b.type, 
 						b.image, 
 						b.code_saq, 
 						b.url_saq, 
 						b.pays, 
 						b.description,
-						t.type 
-						from vino__cellier c 
-						INNER JOIN vino__bouteille b ON c.id_bouteille = b.id
-						INNER JOIN vino__type t ON t.id = b.type
-						'; 
+						t.type,
+						ce.vino__utilisateur_id
+						from vino__cellier_contient cc 
+						INNER JOIN vino__bouteille b ON cc.vino__bouteille_id = b.id
+						INNER JOIN vino__type t ON t.id = b.vino__type_id
+						INNER JOIN vino__cellier ce ON ce.id = cc.vino__cellier_id
+						WHERE ce.vino__utilisateur_id ='. $userId .'
+						AND cc.vino__cellier_id =' .$cellierId
+						;
 		if(($res = $this->_db->query($requete)) ==	 true)
 		{
 			if($res->num_rows)
@@ -96,7 +99,7 @@ class Bouteille extends Modele {
 		$nom = preg_replace("/\*/","%" , $nom);
 		 
 		//echo $nom;
-		$requete ='SELECT id, nom FROM vino__bouteille where LOWER(nom) like LOWER("%'. $nom .'%") LIMIT 0,'. $nb_resultat; 
+		$requete ='SELECT id, nom FROM vino__bouteille where vino__catalogue_id = 1 AND LOWER(nom) like LOWER("%'. $nom .'%") LIMIT 0,'. $nb_resultat; 
 		//var_dump($requete);
 		if(($res = $this->_db->query($requete)) ==	 true)
 		{
@@ -162,7 +165,7 @@ class Bouteille extends Modele {
 		//TODO : Valider les données.
 			
 			
-		$requete = "UPDATE vino__cellier SET quantite = GREATEST(quantite + ". $nombre. ", 0) WHERE id = ". $id;
+		$requete = "UPDATE vino__cellier_contient SET quantite = GREATEST(quantite + ". $nombre. ", 0) WHERE id = ". $id;
 		//echo $requete;
         $res = $this->_db->query($requete);
         

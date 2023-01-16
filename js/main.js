@@ -8,15 +8,21 @@
  *
  */
 
-//const BaseURL = "https://jmartel.webdev.cmaisonneuve.qc.ca/n61/vino/";
-const BaseURL = document.baseURI;
+
+const BaseURL = "http://localhost/projetWeb-2/vino_etu/";
+// const BaseURL = document.baseURI;
+
+const BaseURL = "https://e2195598.webdev.cmaisonneuve.qc.ca/vino_etu/";
+
 console.log(BaseURL);
 window.addEventListener('load', function() {
     console.log("load");
     document.querySelectorAll(".btnBoire").forEach(function(element){
         console.log(element);
         element.addEventListener("click", function(evt){
-            let id = evt.target.parentElement.dataset.id;
+            // Empêche la propagation de l'evt sur parent ou enfant
+            evt.stopPropagation();
+            let id = evt.target.dataset.id;
             let requete = new Request(BaseURL+"index.php?requete=boireBouteilleCellier", {method: 'POST', body: '{"id": '+id+'}'});
 
             fetch(requete)
@@ -39,7 +45,9 @@ window.addEventListener('load', function() {
     document.querySelectorAll(".btnAjouter").forEach(function(element){
         console.log(element);
         element.addEventListener("click", function(evt){
-            let id = evt.target.parentElement.dataset.id;
+            // Empêche la propagation de l'evt sur parent ou enfant
+            evt.stopPropagation();
+            let id = evt.target.dataset.id;
             let requete = new Request(BaseURL+"index.php?requete=ajouterBouteilleCellier", {method: 'POST', body: '{"id": '+id+'}'});
 
             fetch(requete)
@@ -94,7 +102,7 @@ window.addEventListener('load', function() {
       });
 
       let bouteille = {
-        nom : document.querySelector(".nom_bouteille"),
+        nom : document.querySelector("[name='nom']"),
         millesime : document.querySelector("[name='millesime']"),
         quantite : document.querySelector("[name='quantite']"),
         date_achat : document.querySelector("[name='date_achat']"),
@@ -105,10 +113,9 @@ window.addEventListener('load', function() {
 
 
       liste.addEventListener("click", function(evt){
-        console.dir(evt.target)
         if(evt.target.tagName == "LI"){
           bouteille.nom.dataset.id = evt.target.dataset.id;
-          bouteille.nom.innerHTML = evt.target.innerHTML;
+          bouteille.nom.value = evt.target.innerHTML;
           
           liste.innerHTML = "";
           inputNomBouteille.value = "";
@@ -147,7 +154,6 @@ window.addEventListener('load', function() {
         });
       } 
   }
-    
 
 });
 
