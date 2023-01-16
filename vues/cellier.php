@@ -1,7 +1,7 @@
 <div class="cellier">
-    <header class="page-content-header"> 
+    <!-- <header class="page-content-header"> 
         <h2>Mon cellier</h2>
-    </header> 
+    </header>  -->
     <div class="menu-actions-container">
         <a class="no-underline" href="?requete=ajouterNouvelleBouteilleCellier">
             <span class="bouton-carre-label">Ajouter une bouteille</span>
