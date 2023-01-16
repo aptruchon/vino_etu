@@ -25,6 +25,9 @@
  .bouteilles-container {
     margin-top: 40px;
     margin-bottom: 40px;
+    display: grid;
+    column-gap: 20px;
+    grid-template-columns: 1fr;
  }
 
 .bouteille {
@@ -43,6 +46,18 @@
 .bouteille a {
     font-size: 18px;
     color: brown;
+}
+
+.bouteille-img-container {
+    flex: 1;
+}
+
+.bouteille-img-container img {
+    width: 100%;
+}
+
+.description {
+    flex: 1;
 }
 
 .type {

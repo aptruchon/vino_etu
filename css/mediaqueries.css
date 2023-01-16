@@ -1,3 +1,21 @@
+@media all and (max-width:640px) {
+
+    footer {
+        display: none;
+    }
+
+}
+
+@media only screen and (min-width:640px) {
+
+    /* PAGE CELLIER */
+
+    .bouteilles-container {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
 @media only screen and (min-width: 768px) {
 
     nav {
@@ -15,10 +33,13 @@
 
 }
 
-@media all and (max-width:640px) {
+@media only screen and (min-width: 1400px) {
 
-    footer {
-        display: none;
+    /* PAGE CELLIER */
+
+    .bouteilles-container {
+        grid-template-columns: 1fr 1fr 1fr;
     }
 
 }
+
