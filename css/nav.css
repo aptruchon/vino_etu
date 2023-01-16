@@ -1,12 +1,11 @@
 .nav-header {
-    background-color: grey;
+    background-color:  var(--red);
+    height: 80px;
 }
 
 nav {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    background-color: grey;
     padding: 20px;
 }
 
@@ -16,6 +15,13 @@ nav {
     text-decoration: none;
     font-size: 30px;
 }
+
+.icones-sign-in{
+    position: absolute;
+    right: 20px;
+    top: 30px;
+}
+
 
 /* .fa-wine-glass {
     font-size: 24px;
