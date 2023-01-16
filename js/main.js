@@ -8,7 +8,8 @@
  *
  */
 
-const BaseURL = "https://e2195598.webdev.cmaisonneuve.qc.ca/vino_etu/";
+//const BaseURL = "https://jmartel.webdev.cmaisonneuve.qc.ca/n61/vino/";
+const BaseURL = document.baseURI;
 console.log(BaseURL);
 window.addEventListener('load', function() {
   console.log('load')
