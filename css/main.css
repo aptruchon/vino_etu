@@ -11,6 +11,7 @@
 
 :root {
 	--red: #931818;
+	--red-focus: #931818e0;
 	--orange: #FFC49F;
 	--yellow: #FFF0C3;
 	--pink: #FFECEA;
@@ -67,7 +68,7 @@ h2 {
 }
 
 .bouton-large:hover {
-	background-color: rgb(168, 168, 168);
+	background-color: var(--red-focus);
 }
 
 
