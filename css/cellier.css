@@ -60,10 +60,36 @@
 .type {
     color: rgb(84, 84, 84);
     background-color: rgb(214, 214, 214);
-    border-radius: 10px;
+    border-radius: 12px;
     width: fit-content;
-    padding: 2px 6px;
+    padding: 2px 8px;
     margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.rouge {
+    color: var(--red-light);
+    background-color: var(--red);
+}
+
+.blanc {
+    color: var(--yellow-dark);
+    background-color: var(--yellow);
+}
+
+.rosé {
+    color: var(--pink-dark);
+    background-color: var(--pink);
+}
+
+.orange {
+    color: var(--orange-dark);
+    background-color: var(--orange);
+}
+
+.mousseux, .champagne {
+    color: var(--beige-dark);
+    background-color: var(--beige);
 }
 
 .nom {
@@ -88,3 +114,4 @@
     flex-direction: row;
     align-items: center;
 }
+

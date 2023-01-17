@@ -21,7 +21,7 @@
                 <?php endif; ?>
             </div>
             <div class="description">
-                <p class="type"><?php echo $bouteille['type'] ?></p>          
+                <p class="type <?php echo strtolower($bouteille['type']) ?>"><?php echo $bouteille['type'] ?></p>          
                 <p class="nom"><?php echo $bouteille['nom'] ?></p>
                 <p class="pays"><?php echo $bouteille['pays'] ?></p>
                 <?php if ($bouteille['millesime'] != 0) : ?>
