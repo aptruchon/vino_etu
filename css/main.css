@@ -11,7 +11,7 @@
 
 :root {
 	--red: #931818;
-	--red-focus: #931818e0;
+	--red-focus: #931818f0;
 	--orange: #FFC49F;
 	--yellow: #FFF0C3;
 	--pink: #FFECEA;
@@ -29,7 +29,6 @@ html, body {
 	background-color: white;
 	font-family: 'Roboto', 'RobotoDraft', sans-serif;
 	font-size: 95%;
-	
 }
 
 main {
