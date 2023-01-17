@@ -9,7 +9,8 @@
  */
 
 //const BaseURL = "https://jmartel.webdev.cmaisonneuve.qc.ca/n61/vino/";
-const BaseURL = document.baseURI;
+//const BaseURL = document.baseURI;
+const BaseURL = window.location.href.split('?')[0];
 console.log(BaseURL);
 window.addEventListener('load', function() {
   console.log('load')
@@ -26,7 +27,7 @@ window.addEventListener('load', function() {
       evt.stopPropagation()
       let id = evt.target.dataset.id
       let requete = new Request(
-        BaseURL + 'index.php?requete=boireBouteilleCellier',
+        BaseURL + '?requete=boireBouteilleCellier',
         { method: 'POST', body: '{"id": ' + id + '}' }
       )
 
@@ -40,6 +41,13 @@ window.addEventListener('load', function() {
         })
         .then((response) => {
           console.debug(response)
+
+          if(response){
+            // Recupere la div bouteille ou se trouvent les infos du vin
+
+            let div = evt.target.parentElement.parentElement;
+            updateQuantiteApresBoire(div);
+          }
         })
         .catch((error) => {
           console.error(error)
@@ -59,7 +67,7 @@ window.addEventListener('load', function() {
       evt.stopPropagation()
       let id = evt.target.dataset.id
       let requete = new Request(
-        BaseURL + 'index.php?requete=ajouterBouteilleCellier',
+        BaseURL + '?requete=ajouterBouteilleCellier',
         { method: 'POST', body: '{"id": ' + id + '}' }
       )
 
@@ -96,7 +104,7 @@ window.addEventListener('load', function() {
       liste.innerHTML = ''
       if (nom) {
         let requete = new Request(
-          BaseURL + 'index.php?requete=autocompleteBouteille',
+          BaseURL + '?requete=autocompleteBouteille',
           { method: 'POST', body: '{"nom": "' + nom + '"}' }
         )
         fetch(requete)
@@ -170,7 +178,7 @@ window.addEventListener('load', function() {
           millesime: bouteille.millesime.value,
         }
         let requete = new Request(
-          BaseURL + 'index.php?requete=ajouterNouvelleBouteilleCellier',
+          BaseURL + '?requete=ajouterNouvelleBouteilleCellier',
           { method: 'POST', body: JSON.stringify(param) }
         )
         fetch(requete)
