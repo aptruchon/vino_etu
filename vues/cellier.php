@@ -8,7 +8,6 @@
             <div class="bouton-carre"><i class="fa-solid fa-plus"></i></div>    
         </a>
     </div>
-    <a href="?requete=modifierBouteilleCellier">Modifier</a>
     <section class="bouteilles-container">  
     <?php
     foreach ($data as $cle => $bouteille) {
@@ -31,6 +30,7 @@
                         <i class="fa-solid fa-plus btnAjouter" data-id="<?php echo $bouteille['id_bouteille_cellier'] ?>"></i>
                     </div>
                 </div>
+                <a href="?requete=modifierBouteilleCellier">Modifier</a>
             </div>
         </div>
     <?php

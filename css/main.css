@@ -59,7 +59,7 @@ h2 {
 	width: 100%;
 	padding: 10px;
 	border-radius: 10px;
-	background-color: grey;
+	background-color: var(--red);
 	border: none;
 	font-size: 18px;
 	font-weight: bold;
