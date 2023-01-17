@@ -1,4 +1,3 @@
-
 <div class="modifier">
     <div class="modifieBouteille" vertical layout>
         <div>
