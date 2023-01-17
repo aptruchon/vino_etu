@@ -40,10 +40,6 @@
     padding: 20px;
 }
 
-.bouteilles-container .bouteille:last-child {
-    margin-bottom: 0;
-}
-
 .bouteille a {
     font-size: 18px;
     color: brown;

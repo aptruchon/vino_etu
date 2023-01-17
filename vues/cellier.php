@@ -14,7 +14,11 @@
         ?>
         <div class="bouteille" data-quantite="">
             <div class="bouteille-img-container">
-                <img src="https:<?php echo $bouteille['image'] ?>">
+                <?php if ($bouteille['image']) : ?>
+                    <img src="https:<?php echo $bouteille['image'] ?>">
+                <?php else: ?>
+                    <img src="./images/vin-fallback.png">
+                <?php endif; ?>
             </div>
             <div class="description">
                 <p class="type"><?php echo $bouteille['type'] ?></p>          
