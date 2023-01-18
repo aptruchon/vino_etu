@@ -135,8 +135,8 @@ class Bouteille extends Modele {
 	public function ajouterBouteilleCellier($data)
 	{
 		//TODO : Valider les données.
-		//var_dump($data);	
-		
+		//var_dump($data);
+			
 		$requete = "INSERT INTO vino__cellier(id_bouteille,date_achat,garde_jusqua,notes,prix,quantite,millesime) VALUES (".
 		"'".$data->id_bouteille."',".
 		"'".$data->date_achat."',".
@@ -188,8 +188,13 @@ class Bouteille extends Modele {
 	 */
 	public function modifierQuantiteBouteilleCellier($id, $nombre)
 	{
-		//TODO : Valider les données.
-			
+		// Validation des paramètres.
+		if (!is_numeric($id)) {
+			throw new Exception("Erreur de paramètre: integer attendu", 1);
+		}
+		if (!in_array($nombre, [-1, 1])) {
+			throw new Exception("Erreur de paramètre: -1 ou 1 attendu", 1);
+		}
 			
 		$requete = "UPDATE vino__cellier_contient SET quantite = GREATEST(quantite + ". $nombre. ", 0) WHERE id = ". $id;
 		//echo $requete;

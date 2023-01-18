@@ -12,7 +12,7 @@
     <?php
     foreach ($data as $cle => $bouteille) {
         ?>
-        <div class="bouteille" data-quantite="">
+        <div class="bouteille" data-quantite="<?php echo $bouteille['quantite'] ?>">
             <div class="bouteille-img-container">
                 <?php if ($bouteille['image']) : ?>
                     <img src="https:<?php echo $bouteille['image'] ?>">

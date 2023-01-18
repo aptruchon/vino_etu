@@ -9,7 +9,8 @@
  */
 
 //const BaseURL = "https://jmartel.webdev.cmaisonneuve.qc.ca/n61/vino/";
-const BaseURL = document.baseURI;
+//const BaseURL = document.baseURI;
+const BaseURL = window.location.href.split('?')[0];
 console.log(BaseURL);
 window.addEventListener('load', function() {
   console.log('load')
@@ -24,9 +25,9 @@ window.addEventListener('load', function() {
     element.addEventListener('click', function (evt) {
       // Empêche la propagation de l'evt sur parent ou enfant
       evt.stopPropagation()
-      let id = evt.target.dataset.id
+      let id = evt.target.parentElement.dataset.id
       let requete = new Request(
-        BaseURL + 'index.php?requete=boireBouteilleCellier',
+        BaseURL + '?requete=boireBouteilleCellier',
         { method: 'POST', body: '{"id": ' + id + '}' }
       )
 
@@ -40,6 +41,12 @@ window.addEventListener('load', function() {
         })
         .then((response) => {
           console.debug(response)
+
+          if(response){
+            // Recupere la div bouteille ou se trouvent les infos du vin
+            let div = evt.target.closest('.bouteille');
+            updateQuantiteApresBoire(div);
+          }
         })
         .catch((error) => {
           console.error(error)
@@ -57,9 +64,9 @@ window.addEventListener('load', function() {
     element.addEventListener('click', function (evt) {
       // Empêche la propagation de l'evt sur parent ou enfant
       evt.stopPropagation()
-      let id = evt.target.dataset.id
+      let id = evt.target.parentElement.dataset.id;
       let requete = new Request(
-        BaseURL + 'index.php?requete=ajouterBouteilleCellier',
+        BaseURL + '?requete=ajouterBouteilleCellier',
         { method: 'POST', body: '{"id": ' + id + '}' }
       )
 
@@ -73,6 +80,12 @@ window.addEventListener('load', function() {
         })
         .then((response) => {
           console.debug(response)
+
+          if(response) {
+            // Recupère la div bouteille où se trouvent les infos du vin.
+            let div = evt.target.closest('.bouteille');
+            updateQuantiteApresAjouter(div);
+          }
         })
         .catch((error) => {
           console.error(error)
@@ -96,7 +109,7 @@ window.addEventListener('load', function() {
       liste.innerHTML = ''
       if (nom) {
         let requete = new Request(
-          BaseURL + 'index.php?requete=autocompleteBouteille',
+          BaseURL + '?requete=autocompleteBouteille',
           { method: 'POST', body: '{"nom": "' + nom + '"}' }
         )
         fetch(requete)
@@ -170,7 +183,7 @@ window.addEventListener('load', function() {
           millesime: bouteille.millesime.value,
         }
         let requete = new Request(
-          BaseURL + 'index.php?requete=ajouterNouvelleBouteilleCellier',
+          BaseURL + '?requete=ajouterNouvelleBouteilleCellier',
           { method: 'POST', body: JSON.stringify(param) }
         )
         fetch(requete)
@@ -192,3 +205,38 @@ window.addEventListener('load', function() {
   }
 });
 
+/**
+ * Actualise la quantité du dataset du vin
+ * ainsi que la quantité affiché après le clic du bouton (-).
+ * 
+ * @param divBouteille - div où se trouvent les infos du vin.
+ */
+function updateQuantiteApresBoire(divBouteille) {
+  // Quantité qui est au dataset de la div.
+  let quantiteAvantBoire = parseInt(divBouteille.dataset.quantite);
+  // On calcule la nouvelle quantité.
+  let quantiteApresBoire = (quantiteAvantBoire == 0) ? 0 : (quantiteAvantBoire - 1);
+  // On actualise le dataset.
+  divBouteille.dataset.quantite = quantiteApresBoire;
+  // Et on actualise aussi l'élément <p> qui affiche la quantité.
+  let elemQuantite = divBouteille.getElementsByClassName('quantite')[0];
+  elemQuantite.innerText = quantiteApresBoire;
+}
+
+/**
+ * Actualise la quantité du dataset du vin
+ * ainsi que la quantité affiché après le clic du bouton (+).
+ * 
+ * @param divBouteille - div où se trouvent les infos du vin.
+ */
+function updateQuantiteApresAjouter(divBouteille) {
+  // Quantité qui est au dataset de la div.
+  let quantiteAvantAjouter = parseInt(divBouteille.dataset.quantite);
+  // On calcule la nouvelle quantité.
+  let quantiteApresAjouter = quantiteAvantAjouter + 1;
+  // On actualise le dataset.
+  divBouteille.dataset.quantite = quantiteApresAjouter;
+  // Et on actualise aussi l'élément <p> qui affiche la quantité.
+  let elemQuantite = divBouteille.getElementsByClassName('quantite')[0];
+  elemQuantite.innerText = quantiteApresAjouter;
+}

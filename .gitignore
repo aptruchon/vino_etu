@@ -10,10 +10,12 @@ Session.vim
 tmtags
 Thumbs.db
 Desktop.ini
+*.sql
 
 # ignore Composer downloads
 /vendor/*
 /bower_components/*
+
 
 # keep some hiddens
 !.htaccess
