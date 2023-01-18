@@ -11,10 +11,16 @@
 
 :root {
 	--red: #931818;
+	--red-light:#FFECEA;
 	--red-focus: #931818f0;
 	--orange: #FFC49F;
-	--yellow: #FFF0C3;
-	--pink: #FFECEA;
+	--orange-dark: #752e02;
+	--beige:rgb(233 220 207);
+	--beig-dark:rgb(104 62 46);
+	--yellow: #ffe8c3;
+	--yellow-dark: #7d5e00;
+	--pink: #ffeaf3;
+	--pink-dark: #7f0037;
 }
 
 * {
