@@ -11,9 +11,9 @@
 //const BaseURL = "https://jmartel.webdev.cmaisonneuve.qc.ca/n61/vino/";
 //const BaseURL = document.baseURI;
 const BaseURL = window.location.href.split('?')[0];
-console.log(BaseURL);
+// console.log(BaseURL);
 window.addEventListener('load', function() {
-  console.log('load')
+  // console.log('load')
 
   /**
    * Fonctionnalité page Cellier
@@ -99,7 +99,7 @@ window.addEventListener('load', function() {
    */
 
   let inputNomBouteille = document.querySelector("[name='nom_bouteille']")
-  console.log(inputNomBouteille)
+  // console.log(inputNomBouteille)
   let liste = document.querySelector('.listeAutoComplete')
 
   if (inputNomBouteille) {
@@ -203,7 +203,31 @@ window.addEventListener('load', function() {
       })
     }
   }
+
+  /**
+   * Fonctionnalité pour ouvrir la boite modale
+   */
+    let popupForm = document.getElementById("popupForm");
+    let btnSupprimerBouteille = document.querySelector('[name="btnSupprimer"]');
+    let modalContainer = document.getElementById("modal-container");
+    btnSupprimerBouteille.addEventListener('click', function(evt){
+      popupForm.style.display = "block";
+      modalContainer.style.display = "block";
+    })
+
+  /**
+   * Fonctionnalité pour fermer la boite modale
+   */
+  let btnCloseModale = document.getElementById("closeForm");
+  btnCloseModale.addEventListener('click', function(evt){
+    popupForm.style.display = "none";
+    modalContainer.style.display = "none";
+
+  })
+  
 });
+
+
 
 /**
  * Actualise la quantité du dataset du vin
@@ -241,19 +265,3 @@ function updateQuantiteApresAjouter(divBouteille) {
   elemQuantite.innerText = quantiteApresAjouter;
 }
 
-/**
- * Function pour ouvrir la boite modale
- */
-function openForm() {
-  document.getElementById("popupForm").style.display = "block";
-  document.getElementById("modal-container").style.display = "block";
-}
-
-/**
- * Function pour fermer la boite modale
- */
-function closeForm() {
-  document.getElementById("popupForm").style.display = "none";
-  document.getElementById("modal-container").style.display = "none";
-
-}

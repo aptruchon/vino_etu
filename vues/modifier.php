@@ -37,7 +37,7 @@
             <span class="champ-obligatoire-message"></span>
         </div>
         <button class="bouton-large" name="modifierBouteilleCellier">Enregistrer</button>
-        <button class="bouton-large" onclick="openForm()">Supprimer la bouteille</button>
+        <button class="bouton-large" name="btnSupprimer">Supprimer la bouteille</button>
     </div>
     <div class="modal-container" id="modal-container">
         <div class="pop-up">
@@ -45,7 +45,7 @@
             <form action="/action_page.php" class="form-container">
             <h2>Voulez-vous supprimer cette bouteille?</h2>
             <button type="submit" class="bouton-large btn-oui">Oui</button>
-            <button type="button" class="bouton-large btn-non" onclick="closeForm()">Non</button>
+            <button type="button" class="bouton-large btn-non" id="closeForm">Non</button>
             </form>
         </div>
         </div>
