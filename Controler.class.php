@@ -33,6 +33,9 @@ class Controler
 				case 'ajouterNouvelleBouteilleCellier':
 					$this->ajouterNouvelleBouteilleCellier();
 					break;
+				case 'modifierBouteilleCellier':
+					$this->modifierBouteilleCellier();
+					break;
 				case 'ajouterBouteilleCellier':
 					$this->ajouterBouteilleCellier();
 					break;
@@ -91,6 +94,27 @@ class Controler
 			else{
 				include("vues/entete.php");
 				include("vues/ajouter.php");
+				include("vues/pied.php");
+			}
+			
+            
+		}
+
+		private function modifierBouteilleCellier()
+		{
+			$body = json_decode(file_get_contents('php://input'));
+			//var_dump($body);
+			if(!empty($body)){
+				$bte = new Bouteille();
+				//var_dump($_POST['data']);
+				
+				//var_dump($data);
+				$resultat = $bte->modifierBouteilleCellier($body);
+				echo json_encode($resultat);
+			}
+			else{
+				include("vues/entete.php");
+				include("vues/modifier.php");
 				include("vues/pied.php");
 			}
 			

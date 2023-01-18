@@ -12,6 +12,7 @@
 :root {
 	--red: #931818;
 	--red-light:#FFECEA;
+	--red-focus: #931818f0;
 	--orange: #FFC49F;
 	--orange-dark: #752e02;
 	--beige:rgb(233 220 207);
@@ -34,7 +35,6 @@ html, body {
 	background-color: white;
 	font-family: 'Roboto', 'RobotoDraft', sans-serif;
 	font-size: 95%;
-	
 }
 
 main {
@@ -65,7 +65,7 @@ h2 {
 	width: 100%;
 	padding: 10px;
 	border-radius: 10px;
-	background-color: grey;
+	background-color: var(--red);
 	border: none;
 	font-size: 18px;
 	font-weight: bold;
@@ -73,7 +73,7 @@ h2 {
 }
 
 .bouton-large:hover {
-	background-color: rgb(168, 168, 168);
+	background-color: var(--red-focus);
 }
 
 
