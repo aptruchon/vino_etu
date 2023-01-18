@@ -220,7 +220,7 @@ function updateQuantiteApresBoire(divBouteille) {
   divBouteille.dataset.quantite = quantiteApresBoire;
   // Et on actualise aussi l'élément <p> qui affiche la quantité.
   let elemQuantite = divBouteille.getElementsByClassName('quantite')[0];
-  elemQuantite.innerText = `Quantité : ${quantiteApresBoire}`;
+  elemQuantite.innerText = quantiteApresBoire;
 }
 
 /**
@@ -238,5 +238,5 @@ function updateQuantiteApresAjouter(divBouteille) {
   divBouteille.dataset.quantite = quantiteApresAjouter;
   // Et on actualise aussi l'élément <p> qui affiche la quantité.
   let elemQuantite = divBouteille.getElementsByClassName('quantite')[0];
-  elemQuantite.innerText = `Quantité : ${quantiteApresAjouter}`;
+  elemQuantite.innerText = quantiteApresAjouter;
 }
