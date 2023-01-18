@@ -37,7 +37,7 @@ VALUES
     (10, 'Tenuta Il Falchetto Bricco Paradiso -... 2015', '//s7d9.scene7.com/is/image/SAQ/13637422_is?$saq-rech-prod-gril$', '13637422', 'Italie', 'Vin rouge\r\n         \r\n      \r\n      \r\n      Italie, 750 ml\r\n      \r\n      \r\n      Code SAQ : 13637422', 34, 'https://www.saq.com/page/fr/saqcom/vin-rouge/tenuta-il-falchetto-bricco-paradiso---barbera-dasti-superiore-docg-2015/13637422', '//s7d9.scene7.com/is/image/SAQ/13637422_is?$saq-rech-prod-gril$', ' 750 ml', 1, 1);
 -- Insertion dans les champs obligatoires seulement (test)
 INSERT INTO `vino__bouteille` (id, nom, pays, vino__type_id, vino__catalogue_id)
-VALUES (2, 'Vin blanc du paradis', "Canada", 2, 2);
+VALUES (11, 'Vin blanc du paradis', "Canada", 2, 2);
 
 
 --
@@ -85,4 +85,4 @@ VALUES
 -- Insertion dans les champs obligatoires seulement (test)
 INSERT INTO `vino__cellier_contient` (id, vino__cellier_id, vino__bouteille_id, date_ajout, quantite)
 VALUES
-    (7, 4, 2, now(), 2);
+    (7, 1, 11, now(), 2);
