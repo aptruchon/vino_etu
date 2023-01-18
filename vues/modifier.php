@@ -7,18 +7,9 @@
             <label for="pays">Pays</label>
             <input type="text" class="pays" name="pays" data-id="" id="pays">
             <span class="champ-obligatoire-message"></span>
-            <form class="form-radio">
-                <label for="format">250ml</label>
-                <input type="radio" class="radio-button" name="format" data-id="" id="format">
-                <label for="format">500ml</label>
-                <input type="radio" class="radio-button" name="format" data-id="" id="format">
-                <label for="format">750ml</label>
-                <input type="radio" class="radio-button" name="format" data-id="" id="format">
-                <label for="format">1L</label>
-                <input type="radio" class="radio-button" name="format" data-id="" id="format">
-                <label for="format">1.5L</label>
-                <input type="radio" class="radio-button" name="format" data-id="" id="format">
-            </form>
+            <label for="format">Format</label>
+            <input type="text" class="format" name="format" data-id="" id="format">
+            <span class="champ-obligatoire-message"></span>
             <label for="millesime">Millesime</label>
             <input type="text" name="millesime" id="millesime">
             <span class="champ-obligatoire-message"></span>
