@@ -3,19 +3,19 @@
         <h2>Ajouter une bouteille</h2>
     </header> 
     <div class="nouvelleBouteille" vertical layout>
-        Recherche : <input type="text" name="nom_bouteille">
+        <input type="text" name="nom_bouteille" placeholder="Recherche...">
         <ul class="listeAutoComplete">
 
         </ul>
         <div>
             <label for="nom">Nom</label>
-            <input type="text" class="nom" name="nom" data-id="" id="nom">
+            <input type="text" name="nom" data-id="" id="nom">
             <span class="champ-obligatoire-message"></span>
             <label for="pays">Pays</label>
-            <input type="text" class="pays" name="pays" data-id="" id="pays">
+            <input type="text" name="pays" data-id="" id="pays">
             <span class="champ-obligatoire-message"></span>
             <label for="format">Format</label>
-            <input type="text" class="format" name="format" data-id="" id="format">
+            <input type="text" name="format" data-id="" id="format">
             <span class="champ-obligatoire-message"></span>
             <label for="millesime">Millesime</label>
             <input type="text" name="millesime" id="millesime">

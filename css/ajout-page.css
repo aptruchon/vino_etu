@@ -1,3 +1,26 @@
+.listeAutoComplete {
+    list-style-type: none;
+    margin-bottom: 40px;
+}
+
+.listeAutoComplete li {
+    margin-bottom: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 10px;
+    align-self: baseline;
+    padding: 10px;
+}
+
+.listeAutoComplete li:last-child {
+    margin-bottom: 0;
+}
+
+.listeAutoComplete li:hover {
+    color: var(--red);
+    background-color: var(--red-light);
+}
+
 .nouvelleBouteille {
     margin-bottom: 40px;
 }
@@ -18,6 +41,10 @@
     border-radius: 10px;
     border: 1px solid rgb(234, 234, 234);
     width: 100%;
+}
+
+.nouvelleBouteille input:first-child {
+    margin-bottom: 20px;
 }
 
 .nouvelleBouteille .bouton-large {
