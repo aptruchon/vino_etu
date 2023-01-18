@@ -5,6 +5,8 @@ footer {
     text-align: center;
     background-color: var(--red);
     color: white;
+    bottom: 0;
+    height: 42px;
 }
 
 footer p {
