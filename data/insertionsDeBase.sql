@@ -6,7 +6,8 @@
 INSERT INTO `vino__type` (id, type)
 VALUES
     (1, 'Rouge'),
-    (2, 'Blanc');
+    (2, 'Blanc'),
+    (3, 'Rosé');
 
 
 --
