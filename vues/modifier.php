@@ -7,18 +7,9 @@
             <label for="pays">Pays</label>
             <input type="text" class="pays" name="pays" data-id="" id="pays">
             <span class="champ-obligatoire-message"></span>
-            <form class="form-radio">
-                <label for="format">250ml</label>
-                <input type="radio" class="radio-button" name="format" data-id="" id="format">
-                <label for="format">500ml</label>
-                <input type="radio" class="radio-button" name="format" data-id="" id="format">
-                <label for="format">750ml</label>
-                <input type="radio" class="radio-button" name="format" data-id="" id="format">
-                <label for="format">1L</label>
-                <input type="radio" class="radio-button" name="format" data-id="" id="format">
-                <label for="format">1.5L</label>
-                <input type="radio" class="radio-button" name="format" data-id="" id="format">
-            </form>
+            <label for="format">Format</label>
+            <input type="text" class="format" name="format" data-id="" id="format">
+            <span class="champ-obligatoire-message"></span>
             <label for="millesime">Millesime</label>
             <input type="text" name="millesime" id="millesime">
             <span class="champ-obligatoire-message"></span>
@@ -46,7 +37,7 @@
             <span class="champ-obligatoire-message"></span>
         </div>
         <button class="bouton-large" name="modifierBouteilleCellier">Enregistrer</button>
-        <button class="bouton-large" onclick="openForm()">Supprimer la bouteille</button>
+        <button class="bouton-large" name="btnSupprimer">Supprimer la bouteille</button>
     </div>
     <div class="modal-container" id="modal-container">
         <div class="pop-up">
@@ -54,7 +45,7 @@
             <form action="/action_page.php" class="form-container">
             <h2>Voulez-vous supprimer cette bouteille?</h2>
             <button type="submit" class="bouton-large btn-oui">Oui</button>
-            <button type="button" class="bouton-large btn-non" onclick="closeForm()">Non</button>
+            <button type="button" class="bouton-large btn-non" id="closeForm">Non</button>
             </form>
         </div>
         </div>
