@@ -10,7 +10,6 @@ Session.vim
 tmtags
 Thumbs.db
 Desktop.ini
-*.sql
 
 # ignore Composer downloads
 /vendor/*
@@ -24,3 +23,4 @@ Desktop.ini
 !/.project
 dataconf.php
 .push.settings.jsonc
+data/creationTables.sql

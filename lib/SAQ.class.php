@@ -172,6 +172,7 @@ class SAQ extends Modele
 
         //var_dump($bte);
         // Récupère le type
+        $bte->desc->type = ucfirst(explode("Vin ", $bte->desc->type)[1]);
         $rows = $this->_db->query("select id from vino__type where type = '" . $bte->desc->type . "'");
 
         if ($rows->num_rows == 1) {
@@ -182,7 +183,8 @@ class SAQ extends Modele
             $rows = $this->_db->query("select id from vino__bouteille where code_saq = '" . $bte->desc->code_SAQ . "'");
             if ($rows->num_rows < 1) {
                 $catalogueId = 1;
-                $this->stmt->bind_param("sissssdsssi", $bte->nom, $type, $bte->img, $bte->desc->code_SAQ, $bte->desc->pays, $bte->desc->texte, str_replace(",", ".", strval($bte->prix)), $bte->url, $bte->img, $bte->desc->format, $catalogueId);
+                $bte->prix = floatval(str_replace(",", ".", strval($bte->prix)));
+                $this->stmt->bind_param("sissssdsssi", $bte->nom, $type, $bte->img, $bte->desc->code_SAQ, $bte->desc->pays, $bte->desc->texte, $bte->prix, $bte->url, $bte->img, $bte->desc->format, $catalogueId);
                 $retour->succes = $this->stmt->execute();
                 $retour->raison = self::INSERE;
                 //var_dump($this->stmt);
