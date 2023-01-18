@@ -30,11 +30,15 @@
  }
 
 html, body {
-	height: 100%;
 	margin: 0;
 	background-color: white;
 	font-family: 'Roboto', 'RobotoDraft', sans-serif;
 	font-size: 95%;
+}
+
+body {
+	position: relative;
+	min-height: 100vh;
 }
 
 main {
@@ -76,7 +80,10 @@ h2 {
 	background-color: var(--red-focus);
 }
 
-
+.retour {
+	margin-bottom: 40px;
+	display: block;
+}
 
 
 
