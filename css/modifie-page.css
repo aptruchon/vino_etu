@@ -1,0 +1,27 @@
+.modifieBouteille {
+    margin-bottom: 40px;
+    margin-top: 40px;
+}
+
+.modifieBouteille label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.modifieBouteille input {
+    display: block;
+    margin-bottom: 40px;
+    font-size: 18px;
+    padding: 8px 8px;
+    background-color: rgb(234, 234, 234);
+    border-radius: 10px;
+    border: 1px solid rgb(234, 234, 234);
+    width: 100%;
+}
+
+.modifieBouteille .bouton-large {
+    margin-bottom: 40px;
+}
+

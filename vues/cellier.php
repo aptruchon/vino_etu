@@ -30,6 +30,7 @@
                         <i class="fa-solid fa-plus btnAjouter" data-id="<?php echo $bouteille['id_bouteille_cellier'] ?>"></i>
                     </div>
                 </div>
+                <a href="?requete=modifierBouteilleCellier">Modifier</a>
             </div>
         </div>
     <?php
