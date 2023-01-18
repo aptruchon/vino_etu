@@ -44,8 +44,7 @@ window.addEventListener('load', function() {
 
           if(response){
             // Recupere la div bouteille ou se trouvent les infos du vin
-
-            let div = evt.target.parentElement.parentElement;
+            let div = evt.target.closest('.bouteille');
             updateQuantiteApresBoire(div);
           }
         })
@@ -84,7 +83,7 @@ window.addEventListener('load', function() {
 
           if(response) {
             // Recupère la div bouteille où se trouvent les infos du vin.
-            let div = evt.target.parentElement;
+            let div = evt.target.closest('.bouteille');
             updateQuantiteApresAjouter(div);
           }
         })
