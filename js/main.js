@@ -240,3 +240,20 @@ function updateQuantiteApresAjouter(divBouteille) {
   let elemQuantite = divBouteille.getElementsByClassName('quantite')[0];
   elemQuantite.innerText = quantiteApresAjouter;
 }
+
+/**
+ * Function pour ouvrir la boite modale
+ */
+function openForm() {
+  document.getElementById("popupForm").style.display = "block";
+  document.getElementById("modal-container").style.display = "block";
+}
+
+/**
+ * Function pour fermer la boite modale
+ */
+function closeForm() {
+  document.getElementById("popupForm").style.display = "none";
+  document.getElementById("modal-container").style.display = "none";
+
+}

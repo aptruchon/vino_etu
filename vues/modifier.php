@@ -45,7 +45,7 @@
             <input type="text" name="notes" id="notes">
             <span class="champ-obligatoire-message"></span>
         </div>
-        <button class="bouton-large" name="modifierBouteilleCellier">Modifier la bouteille</button>
+        <button class="bouton-large" name="modifierBouteilleCellier">Enregistrer</button>
         <button class="bouton-large" onclick="openForm()">Supprimer la bouteille</button>
     </div>
     <div class="modal-container" id="modal-container">
@@ -60,15 +60,4 @@
         </div>
     </div>
 </div>
-<script>
-    function openForm() {
-        document.getElementById("popupForm").style.display = "block";
-        document.getElementById("modal-container").style.display = "block";
-    }
 
-    function closeForm() {
-        document.getElementById("popupForm").style.display = "none";
-        document.getElementById("modal-container").style.display = "none";
-
-    }
-</script>
