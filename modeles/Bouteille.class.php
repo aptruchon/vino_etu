@@ -150,6 +150,32 @@ class Bouteille extends Modele {
         
 		return $res;
 	}
+
+	/**
+	 * Cette méthode modifie une bouteille au cellier
+	 * 
+	 * @param Array $data Tableau des données représentants la bouteille.
+	 * 
+	 * @return Boolean Succès ou échec de la modification.
+	 */
+	public function modifierBouteilleCellier($data)
+	{
+		//TODO : Valider les données.
+		//var_dump($data);	
+		
+		$requete = "UPDATE INTO vino__cellier(id_bouteille,date_achat,garde_jusqua,notes,prix,quantite,millesime) VALUES (".
+		"'".$data->id_bouteille."',".
+		"'".$data->date_achat."',".
+		"'".$data->garde_jusqua."',".
+		"'".$data->notes."',".
+		"'".$data->prix."',".
+		"'".$data->quantite."',".
+		"'".$data->millesime."')";
+
+        $res = $this->_db->query($requete);
+        
+		return $res;
+	}
 	
 	
 	/**

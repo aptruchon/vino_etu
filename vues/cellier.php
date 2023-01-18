@@ -14,13 +14,19 @@
         ?>
         <div class="bouteille" data-quantite="<?php echo $bouteille['quantite'] ?>">
             <div class="bouteille-img-container">
-                <img src="https:<?php echo $bouteille['image'] ?>">
+                <?php if ($bouteille['image']) : ?>
+                    <img src="https:<?php echo $bouteille['image'] ?>">
+                <?php else: ?>
+                    <img src="./images/vin-fallback.png">
+                <?php endif; ?>
             </div>
             <div class="description">
-                <p class="type"><?php echo $bouteille['type'] ?></p>          
+                <p class="type <?php echo strtolower($bouteille['type']) ?>"><?php echo $bouteille['type'] ?></p>          
                 <p class="nom"><?php echo $bouteille['nom'] ?></p>
                 <p class="pays"><?php echo $bouteille['pays'] ?></p>
-                <p class="millesime">Millesime <?php echo $bouteille['millesime'] ?></p>
+                <?php if ($bouteille['millesime'] != 0) : ?>
+                    <p class="millesime">Millesime <?php echo $bouteille['millesime'] ?></p>
+                <?php endif; ?>
                 <div class="quantity-wrapper">
                     <div class="bouton-carre btnBoire" data-id="<?php echo $bouteille['id_bouteille_cellier'] ?>">
                         <i class="fa-solid fa-minus btnBoire" data-id="<?php echo $bouteille['id_bouteille_cellier'] ?>"></i>
@@ -30,6 +36,7 @@
                         <i class="fa-solid fa-plus btnAjouter" data-id="<?php echo $bouteille['id_bouteille_cellier'] ?>"></i>
                     </div>
                 </div>
+                <a href="?requete=modifierBouteilleCellier">Modifier</a>
             </div>
         </div>
     <?php
