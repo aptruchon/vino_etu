@@ -1,7 +1,4 @@
 <div class="cellier">
-    <!-- <header class="page-content-header"> 
-        <h2>Mon cellier</h2>
-    </header>  -->
     <div class="menu-actions-container">
         <a class="no-underline" href="?requete=ajouterNouvelleBouteilleCellier">
             <span class="bouton-carre-label">Ajouter une bouteille</span>
@@ -39,7 +36,6 @@
                         <i class="fa-solid fa-plus btnAjouter" data-id="<?php echo $bouteille['id_bouteille_cellier'] ?>"></i>
                     </div>
                 </div>
-                <!-- <a href="?requete=modifierBouteilleCellier">Modifier</a> -->
                 </a>
             </div>
         </div>
