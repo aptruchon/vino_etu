@@ -171,18 +171,20 @@ class SAQ extends Modele
         $retour->raison = '';
 
         //var_dump($bte);
-        // Récupère le type
+        // Récupère le type et le formate pour qu'il corresponde aux types de la DB
         $bte->desc->type = ucfirst(explode("Vin ", $bte->desc->type)[1]);
         $rows = $this->_db->query("select id from vino__type where type = '" . $bte->desc->type . "'");
 
         if ($rows->num_rows == 1) {
             $type = $rows->fetch_assoc();
-            //var_dump($type);
             $type = $type['id'];
-
+            
             $rows = $this->_db->query("select id from vino__bouteille where code_saq = '" . $bte->desc->code_SAQ . "'");
+            var_dump($bte, $rows);
+            die();
             if ($rows->num_rows < 1) {
                 $catalogueId = 1;
+                // Change la string pour un float avec une virgule au lieu d'un point
                 $bte->prix = floatval(str_replace(",", ".", strval($bte->prix)));
                 $this->stmt->bind_param("sissssdsssi", $bte->nom, $type, $bte->img, $bte->desc->code_SAQ, $bte->desc->pays, $bte->desc->texte, $bte->prix, $bte->url, $bte->img, $bte->desc->format, $catalogueId);
                 $retour->succes = $this->stmt->execute();
