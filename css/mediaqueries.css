@@ -1,3 +1,18 @@
+@media only screen and (min-width:460px) {
+
+    /* PAGE CONNEXION/INSCRIPTION */
+
+    .login-container {
+        width: 450px;
+        margin-left: auto;
+        margin-right: auto;
+        box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+        border-radius: 5px;
+        padding: 20px;
+    }
+
+}
+
 @media all and (max-width:640px) {
 
     footer {
@@ -32,6 +47,12 @@
         width: 80%;
     }
 
+    .bouton-large {
+        width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
 
 }
 

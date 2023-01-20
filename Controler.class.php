@@ -42,6 +42,12 @@ class Controler
 				case 'boireBouteilleCellier':
 					$this->boireBouteilleCellier();
 					break;
+				case 'inscription':
+					$this->inscription();
+					break;
+				case 'connexion':
+					$this->connexion();
+          break;
 				case 'cellier':
 					$this->cellier($userId, $cellierId);
 					break;
@@ -150,6 +156,30 @@ class Controler
 			$resultat = $bte->modifierQuantiteBouteilleCellier($body->id, 1);
 			//var_dump($resultat);
 			echo json_encode($resultat);
+		}
+
+		/**
+		 * Affiche la vue de la page inscription
+		 */
+		private function inscription()
+		{
+			
+			include("vues/entete.php");
+			include("vues/inscription.php");
+			include("vues/pied.php");
+
+		}
+
+		/**
+		 * Affiche la vue de la page connexion
+		 */
+		private function connexion()
+		{
+			
+			include("vues/entete.php");
+			include("vues/connexion.php");
+			include("vues/pied.php");
+
 		}
 		
 }
