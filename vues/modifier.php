@@ -56,8 +56,8 @@
         <div class="form-popup" id="popupForm">
             <form action="/action_page.php" class="form-container">
             <h2>Voulez-vous supprimer cette bouteille?</h2>
-            <button type="submit" class="bouton-large btn-oui">Oui</button>
-            <button type="button" class="bouton-large btn-non" id="closeForm">Non</button>
+            <button type="submit" class="btn-boite-modale btn-oui">Oui</button>
+            <button type="button" class="btn-boite-modale btn-non" id="closeForm">Non</button>
             </form>
         </div>
         </div>
