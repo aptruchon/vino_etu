@@ -54,7 +54,7 @@ class Controler
 		private function accueil()
 		{
 			include("vues/entete.php");
-			include("vues/homePage.php");      
+			include("vues/accueil.php");      
 		}
 
 		private function cellier($userId, $cellierId)
