@@ -1,12 +1,20 @@
 .login-container {
     width: 100%;
+    
+    
+    margin-top: 40px;
+    
+}
+
+.login-container header {
+    margin-top: 20px;
 }
 
 .login-container label {
     display: block;
     margin-bottom: 10px;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .login-container input {
@@ -35,7 +43,7 @@
 }
 
 .mdp-infos span {
-    padding: 8px 8px;
+    padding: 4px 8px;
     background-color: rgb(246, 246, 246);
     border-radius: 10px;
     margin-bottom: 10px;
@@ -47,6 +55,7 @@
 .login-link {
     margin-top: 10px;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 .link-bold {
