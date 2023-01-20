@@ -88,7 +88,7 @@ class Controler
 				//var_dump($_POST['data']);
 				
 				//var_dump($data);
-				$resultat = $bte->ajouterBouteilleCellier($body);
+				$ajouter = $bte->ajouterBouteilleCellier($body);
 				echo json_encode($resultat);
 			}
 			else{
@@ -109,8 +109,8 @@ class Controler
 				//var_dump($_POST['data']);
 				
 				//var_dump($data);
-				$resultat = $bte->modifierBouteilleCellier($body);
-				echo json_encode($resultat);
+				$modifier = $bte->modifierBouteilleCellier($body);
+				echo json_encode($modifier);
 			}
 			else{
 				include("vues/entete.php");

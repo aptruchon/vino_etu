@@ -43,6 +43,7 @@
 .bouteille a {
     font-size: 18px;
     color: brown;
+    text-decoration: none;
 }
 
 .bouteille-img-container {

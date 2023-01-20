@@ -160,8 +160,7 @@ class Bouteille extends Modele {
 	 */
 	public function modifierBouteilleCellier($data)
 	{
-		//TODO : Valider les données.
-		//var_dump($data);	
+	
 		
 		$requete = "UPDATE INTO vino__cellier(id_bouteille,date_achat,garde_jusqua,notes,prix,quantite,millesime) VALUES (".
 		"'".$data->id_bouteille."',".
