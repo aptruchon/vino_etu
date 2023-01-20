@@ -1,0 +1,56 @@
+.login-container {
+    width: 100%;
+}
+
+.login-container label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.login-container input {
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 18px;
+    padding: 8px 8px;
+    background-color: rgb(246, 246, 246);
+    border-radius: 10px;
+    border: 1px solid rgb(234, 234, 234);
+    width: 100%;
+}
+
+#uti_mdp {
+    margin-bottom: 20px;
+}
+
+.mdp-infos {
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+.mdp-infos p {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.mdp-infos span {
+    padding: 8px 8px;
+    background-color: rgb(246, 246, 246);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    display: inline-block;
+    color: rgb(87, 87, 87);
+}
+
+.login-link {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.link-bold {
+    font-weight: bold;
+    color: var(--red);
+    text-decoration: none;
+}
