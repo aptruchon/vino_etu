@@ -47,18 +47,28 @@ class Controler
 					break;
 				case 'connexion':
 					$this->connexion();
+          break;
+				case 'cellier':
+					$this->cellier($userId, $cellierId);
 					break;
 				default:
-					$this->accueil($userId, $cellierId);
+					$this->accueil();
 					break;
 			}
 		}
 
-		private function accueil($userId, $cellierId)
+		private function accueil()
+		{
+			include("vues/entete.php");
+			include("vues/accueil.php");      
+		}
+
+		private function cellier($userId, $cellierId)
 		{
 			$bte = new Bouteille();
             $data = $bte->getListeBouteilleCellier($userId, $cellierId);
 			include("vues/entete.php");
+			include("vues/navigation.php");
 			include("vues/cellier.php");
 			include("vues/pied.php");
                   
@@ -99,6 +109,7 @@ class Controler
 			}
 			else{
 				include("vues/entete.php");
+				include("vues/navigation.php");
 				include("vues/ajouter.php");
 				include("vues/pied.php");
 			}
@@ -120,6 +131,7 @@ class Controler
 			}
 			else{
 				include("vues/entete.php");
+				include("vues/navigation.php");
 				include("vues/modifier.php");
 				include("vues/pied.php");
 			}
