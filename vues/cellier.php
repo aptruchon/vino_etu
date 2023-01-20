@@ -11,7 +11,7 @@
         ?>
         <div class="bouteille" data-quantite="<?php echo $bouteille['quantite'] ?>">
             <div class="bouteille-img-container">
-                <a href="?requete=afficherDetailsBouteilleCellier">
+                <a href="?requete=ficheDetailsBouteille">
                 <?php if ($bouteille['image']) : ?>
                    <img src="https:<?php echo $bouteille['image'] ?>"> 
                 <?php else: ?>
@@ -20,7 +20,7 @@
                 </a>
             </div>
             <div class="description">
-                <a href="?requete=afficherDetailsBouteilleCellier">
+                <a href="?requete=ficheDetailsBouteille">
                 <p class="type <?php echo strtolower($bouteille['type']) ?>"><?php echo $bouteille['type'] ?></p>          
                 <p class="nom"><?php echo $bouteille['nom'] ?></p>
                 <p class="pays"><?php echo $bouteille['pays'] ?></p>

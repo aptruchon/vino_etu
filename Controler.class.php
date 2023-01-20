@@ -47,9 +47,12 @@ class Controler
 					break;
 				case 'connexion':
 					$this->connexion();
-          break;
+					break;
 				case 'cellier':
 					$this->cellier($userId, $cellierId);
+					break;
+				case 'ficheDetailsBouteille':
+					$this->ficheDetailsBouteille($userId, $cellierId);
 					break;
 				default:
 					$this->accueil();
@@ -72,6 +75,14 @@ class Controler
 			include("vues/cellier.php");
 			include("vues/pied.php");
                   
+		}
+
+		private function ficheDetailsBouteille()
+		{
+			include("vues/entete.php");
+			include("vues/navigation.php");
+			include("vues/fiche.php");     
+			include("vues/pied.php"); 
 		}
 		
 
