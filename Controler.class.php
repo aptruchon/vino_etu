@@ -42,20 +42,47 @@ class Controler
 				case 'boireBouteilleCellier':
 					$this->boireBouteilleCellier();
 					break;
+				case 'inscription':
+					$this->inscription();
+					break;
+				case 'connexion':
+					$this->connexion();
+					break;
+				case 'cellier':
+					$this->cellier($userId, $cellierId);
+					break;
+				case 'ficheDetailsBouteille':
+					$this->ficheDetailsBouteille($userId, $cellierId);
+					break;
 				default:
-					$this->accueil($userId, $cellierId);
+					$this->accueil();
 					break;
 			}
 		}
 
-		private function accueil($userId, $cellierId)
+		private function accueil()
+		{
+			include("vues/entete.php");
+			include("vues/accueil.php");      
+		}
+
+		private function cellier($userId, $cellierId)
 		{
 			$bte = new Bouteille();
             $data = $bte->getListeBouteilleCellier($userId, $cellierId);
 			include("vues/entete.php");
+			include("vues/navigation.php");
 			include("vues/cellier.php");
 			include("vues/pied.php");
                   
+		}
+
+		private function ficheDetailsBouteille()
+		{
+			include("vues/entete.php");
+			include("vues/navigation.php");
+			include("vues/fiche.php");     
+			include("vues/pied.php"); 
 		}
 		
 
@@ -88,11 +115,12 @@ class Controler
 				//var_dump($_POST['data']);
 				
 				//var_dump($data);
-				$resultat = $bte->ajouterBouteilleCellier($body);
+				$ajouter = $bte->ajouterBouteilleCellier($body);
 				echo json_encode($resultat);
 			}
 			else{
 				include("vues/entete.php");
+				include("vues/navigation.php");
 				include("vues/ajouter.php");
 				include("vues/pied.php");
 			}
@@ -109,11 +137,12 @@ class Controler
 				//var_dump($_POST['data']);
 				
 				//var_dump($data);
-				$resultat = $bte->modifierBouteilleCellier($body);
-				echo json_encode($resultat);
+				$modifier = $bte->modifierBouteilleCellier($body);
+				echo json_encode($modifier);
 			}
 			else{
 				include("vues/entete.php");
+				include("vues/navigation.php");
 				include("vues/modifier.php");
 				include("vues/pied.php");
 			}
@@ -138,6 +167,30 @@ class Controler
 			$resultat = $bte->modifierQuantiteBouteilleCellier($body->id, 1);
 			//var_dump($resultat);
 			echo json_encode($resultat);
+		}
+
+		/**
+		 * Affiche la vue de la page inscription
+		 */
+		private function inscription()
+		{
+			
+			include("vues/entete.php");
+			include("vues/inscription.php");
+			include("vues/pied.php");
+
+		}
+
+		/**
+		 * Affiche la vue de la page connexion
+		 */
+		private function connexion()
+		{
+			
+			include("vues/entete.php");
+			include("vues/connexion.php");
+			include("vues/pied.php");
+
 		}
 		
 }

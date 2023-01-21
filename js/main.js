@@ -21,7 +21,7 @@ window.addEventListener('load', function() {
    */
 
   document.querySelectorAll('.btnBoire').forEach(function (element) {
-    console.log(element)
+    // console.log(element)
     element.addEventListener('click', function (evt) {
       // Empêche la propagation de l'evt sur parent ou enfant
       evt.stopPropagation()
@@ -60,7 +60,7 @@ window.addEventListener('load', function() {
    */
 
   document.querySelectorAll('.btnAjouter').forEach(function (element) {
-    console.log(element)
+    // console.log(element)
     element.addEventListener('click', function (evt) {
       // Empêche la propagation de l'evt sur parent ou enfant
       evt.stopPropagation()
@@ -104,7 +104,7 @@ window.addEventListener('load', function() {
 
   if (inputNomBouteille) {
     inputNomBouteille.addEventListener('keyup', function (evt) {
-      console.log(evt)
+      // console.log(evt)
       let nom = inputNomBouteille.value
       liste.innerHTML = ''
       if (nom) {
