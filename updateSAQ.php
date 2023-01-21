@@ -8,8 +8,8 @@
 <?php
 	require("dataconf.php");
 	require("config.php");
-	$page = 1;
-	$nombreProduit = 24; //48 ou 96	
+	$page = 8;
+	$nombreProduit = 48; //48 ou 96	
 	
 	$saq = new SAQ();
 	for($i=0; $i < $page; $i++)	//permet d'importer séquentiellement plusieurs pages.

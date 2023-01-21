@@ -25,7 +25,7 @@ window.addEventListener('load', function() {
     element.addEventListener('click', function (evt) {
       // Empêche la propagation de l'evt sur parent ou enfant
       evt.stopPropagation()
-      let id = evt.target.parentElement.dataset.id
+      let id = evt.target.dataset.id
       let requete = new Request(
         BaseURL + '?requete=boireBouteilleCellier',
         { method: 'POST', body: '{"id": ' + id + '}' }
@@ -64,7 +64,7 @@ window.addEventListener('load', function() {
     element.addEventListener('click', function (evt) {
       // Empêche la propagation de l'evt sur parent ou enfant
       evt.stopPropagation()
-      let id = evt.target.parentElement.dataset.id;
+      let id = evt.target.dataset.id;
       let requete = new Request(
         BaseURL + '?requete=ajouterBouteilleCellier',
         { method: 'POST', body: '{"id": ' + id + '}' }
