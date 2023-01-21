@@ -20,26 +20,29 @@ class SAQ extends Modele
 
     private static $_webpage;
     private static $_status;
-    private $stmt;
+    private $stmtBouteille;
+    private $stmtType;
 
     public function __construct()
     {
         parent::__construct();
         $mysqli = $this->_db;
-        if (!($this->stmt = $this->_db->prepare("INSERT INTO vino__bouteille(nom, vino__type_id, image, code_saq, pays, description, prix_saq, url_saq, url_img, format, vino__catalogue_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
+        if (!($this->stmtBouteille = $this->_db->prepare("INSERT INTO vino__bouteille(nom, vino__type_id, image, code_saq, pays, description, prix_saq, url_saq, url_img, format, vino__catalogue_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")) || !($this->stmtType = $this->_db->prepare("INSERT INTO vino__type(id, type) VALUES (?, ?)"))) {
             echo "Echec de la préparation : (" . $mysqli->errno . ") " . $mysqli->error;
         }
     }
 
     /**
-     * getProduits
+     * Va chercher les produits sur le site de la SAQ
      * @param int $nombre
      * @param int $debut
      */
     public function getProduits($nombre = 24, $page = 1)
     {
         $s = curl_init();
-        $url = "https://www.saq.com/fr/produits/vin/vin-rouge?p=" . $page . "&product_list_limit=" . $nombre . "&product_list_order=name_asc";
+        // $url = "https://www.saq.com/fr/produits/vin/vin-rouge?p=" . $page . "&product_list_limit=" . $nombre . "&product_list_order=name_asc";
+        // $url = "https://www.saq.com/fr/produits/vin?p=" . $page . "&product_list_limit=" . $nombre . "&product_list_order=name_asc";
+        $url = "https://www.saq.com/fr/produits?p=" . $page . "&product_list_limit=" . $nombre . "&product_list_order=name_asc";
         //curl_setopt($s, CURLOPT_URL, "http://www.saq.com/webapp/wcs/stores/servlet/SearchDisplay?searchType=&orderBy=&categoryIdentifier=06&showOnly=product&langId=-2&beginIndex=".$debut."&tri=&metaData=YWRpX2YxOjA8TVRAU1A%2BYWRpX2Y5OjE%3D&pageSize=". $nombre ."&catalogId=50000&searchTerm=*&sensTri=&pageView=&facet=&categoryId=39919&storeId=20002");
         //curl_setopt($s, CURLOPT_URL, "https://www.saq.com/webapp/wcs/stores/servlet/SearchDisplay?categoryIdentifier=06&showOnly=product&langId=-2&beginIndex=" . $debut . "&pageSize=" . $nombre . "&catalogId=50000&searchTerm=*&categoryId=39919&storeId=20002");
         //curl_setopt($s, CURLOPT_URL, $url);
@@ -80,24 +83,43 @@ class SAQ extends Modele
 
                 //echo $this->get_inner_html($noeud);
                 $info = self::recupereInfo($noeud);
-                echo "<p>" . $info->nom . " (" . $info->prix . ")";
-                $retour = $this->ajouteProduit($info);
-                echo "<br>Code de retour : " . $retour->raison . "<br>";
-                if ($retour->succes == false) {
-                    echo "<pre>";
-                    var_dump($info);
-                    echo "</pre>";
-                    echo "<br>";
-                } else {
-                    $i++;
+
+                // Certains des articles comme les tires-bouchons n'ont pas de type et causaient une erreur
+                if(isset($info->desc->type)){
+                    $espaces = strpos($info->desc->type, " ", 0);
+
+                    if($espaces != false){
+                        $premierMotType = explode(" ", $info->desc->type)[0];
+                    } else {
+                        $premierMotType = $info->desc->type;
+                    }
+
+                    if($premierMotType == "Vin" || $premierMotType == "Champagne"){
+                        echo "<p>" . $info->nom . " (" . $info->prix . ")";
+                        $retour = $this->ajouteProduit($info);
+                        echo "<br>Code de retour : " . $retour->raison . "<br>";
+                        if ($retour->succes == false) {
+                            echo "<pre>";
+                            var_dump($info);
+                            echo "</pre>";
+                            echo "<br>";
+                        } else {
+                            $i++;
+                        }
+                        echo "</p>";
+                    }
                 }
-                echo "</p>";
             }
         }
 
         return $i;
     }
 
+
+    /**
+     * Retourne l'inner html d'un noeud
+     * @param object $node
+     */
     private function get_inner_html($node)
     {
         $innerHTML = '';
@@ -108,10 +130,22 @@ class SAQ extends Modele
 
         return $innerHTML;
     }
+
+    
+    /**
+     * Enlève les espaces vides d'une chaine
+     * @param string $chaine
+     */
     private function nettoyerEspace($chaine)
     {
         return preg_replace('/\s+/', ' ', $chaine);
     }
+
+
+    /**
+     * Récupère les informations de chaques vins
+     * @param object $noeud
+     */
     private function recupereInfo($noeud)
     {
         $info = new stdClass();
@@ -120,11 +154,10 @@ class SAQ extends Modele
         $a_titre = $noeud->getElementsByTagName("a")->item(0);
         $info->url = $a_titre->getAttribute('href');
 
-        //var_dump($noeud -> getElementsByTagName("a")->item(1)->textContent);
         $nom = $noeud->getElementsByTagName("a")->item(1)->textContent;
-        //var_dump($a_titre);
+
         $info->nom = self::nettoyerEspace(trim($nom));
-        //var_dump($info -> nom);
+
         // Type, format et pays
         $aElements = $noeud->getElementsByTagName("strong");
         foreach ($aElements as $node) {
@@ -160,36 +193,78 @@ class SAQ extends Modele
                 $info->prix = trim($node->textContent);
             }
         }
-        //var_dump($info);
+
         return $info;
     }
 
+
+    /**
+     * Ajoute un type non-existant à la BD
+     * @param string $dernierId
+     * @param string $typeManquant
+     */
+    private function ajoutTypeDB($dernierId, $typeManquant)
+    {
+        $nouveauId = intval($dernierId) + 1;
+        $this->stmtType->bind_param("is", $nouveauId, $typeManquant);
+        return $this->stmtType->execute();
+
+    }
+
+
+    /**
+     * Ajoute une bouteille à la BD
+     * @param object $bte
+     */
     private function ajouteProduit($bte)
     {
         $retour = new stdClass();
         $retour->succes = false;
         $retour->raison = '';
 
-        //var_dump($bte);
-        // Récupère le type et le formate pour qu'il corresponde aux types de la DB
-        $bte->desc->type = ucfirst(explode("Vin ", $bte->desc->type)[1]);
-        $rows = $this->_db->query("select id from vino__type where type = '" . $bte->desc->type . "'");
+        // Vérifie si le type commence par "vin" avant de formater (Par exemple, si c'est un champagne, on ignore le formatage)
+        if(substr($bte->desc->type, 0 , 3) == "Vin"){
+            // Récupère le type et le formate pour qu'il corresponde aux types de la DB ("Rouge, Blanc..." au lieu de "Vin rouge, Vin blanc..." )
+            $bte->desc->type = ucfirst(explode("Vin ", $bte->desc->type)[1]);
+        }
 
+        // Rassembler tous les types déjà présent dans la DB
+        $rowsType = $this->_db->query("select * from vino__type");
+
+        if ($rowsType->num_rows > 0) {
+            $typePresent = false;
+            
+            // Déterminer si le type de la nouvelle bouteille est manquant ou non
+            while($rowType = $rowsType->fetch_assoc()) {
+                if($rowType["type"] == $bte->desc->type) {
+                    $typePresent = true;
+                } else {
+                    $typeManquant = $bte->desc->type;
+                    $dernierId = $rowType["id"];
+                }
+            }
+        }
+        
+        // Si le type de la bouteille provenant de la SAQ n'existe pas dans vino__type, on l'insère avant de procéder à aller chercher son ID
+        if($typePresent == false) {
+            $reussite = $this->ajoutTypeDB($dernierId, $typeManquant);
+        }
+
+        // Aller chercher l'id dans du type de la nouvelle bouteille
+        $rows = $this->_db->query("select id from vino__type where type = '" . $bte->desc->type . "'");
         if ($rows->num_rows == 1) {
             $type = $rows->fetch_assoc();
             $type = $type['id'];
             
+            // Vérifier si la bouteille est déjà dans la DB
             $rows = $this->_db->query("select id from vino__bouteille where code_saq = '" . $bte->desc->code_SAQ . "'");
-            var_dump($bte, $rows);
-            die();
             if ($rows->num_rows < 1) {
                 $catalogueId = 1;
                 // Change la string pour un float avec une virgule au lieu d'un point
                 $bte->prix = floatval(str_replace(",", ".", strval($bte->prix)));
-                $this->stmt->bind_param("sissssdsssi", $bte->nom, $type, $bte->img, $bte->desc->code_SAQ, $bte->desc->pays, $bte->desc->texte, $bte->prix, $bte->url, $bte->img, $bte->desc->format, $catalogueId);
-                $retour->succes = $this->stmt->execute();
+                $this->stmtBouteille->bind_param("sissssdsssi", $bte->nom, $type, $bte->img, $bte->desc->code_SAQ, $bte->desc->pays, $bte->desc->texte, $bte->prix, $bte->url, $bte->img, $bte->desc->format, $catalogueId);
+                $retour->succes = $this->stmtBouteille->execute();
                 $retour->raison = self::INSERE;
-                //var_dump($this->stmt);
             } else {
                 $retour->succes = false;
                 $retour->raison = self::DUPLICATION;
