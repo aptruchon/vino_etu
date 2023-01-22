@@ -135,3 +135,14 @@
     overflow: auto; 
     background-color: rgba(36, 36, 36, 0.832); 
 }
+
+.btn-boite-modale{
+    width: 100%;
+	padding: 10px;
+	border-radius: 10px;
+	background-color: var(--red);
+	border: none;
+	font-size: 18px;
+	font-weight: bold;
+	color: white;
+}

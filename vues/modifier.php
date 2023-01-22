@@ -2,7 +2,7 @@
     <header class="page-content-header"> 
         <h2>Modifier une bouteille</h2>
     </header> 
-    <a href="?requete=accueil" class="retour">
+    <a href="?requete=ficheDetailsBouteille" class="retour">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"><path fill="#931818" d="M228 128a12 12 0 0 1-12 12H69l51.5 51.5a12 12 0 0 1 0 17a12.1 12.1 0 0 1-17 0l-72-72a12 12 0 0 1 0-17l72-72a12 12 0 0 1 17 17L69 116h147a12 12 0 0 1 12 12Z"/></svg>
     </a>
     <div class="modifieBouteille" vertical layout>
@@ -56,8 +56,8 @@
         <div class="form-popup" id="popupForm">
             <form action="/action_page.php" class="form-container">
             <h2>Voulez-vous supprimer cette bouteille?</h2>
-            <button type="submit" class="bouton-large btn-oui">Oui</button>
-            <button type="button" class="bouton-large btn-non" id="closeForm">Non</button>
+            <button type="submit" class="btn-boite-modale btn-oui">Oui</button>
+            <button type="button" class="btn-boite-modale btn-non" id="closeForm">Non</button>
             </form>
         </div>
         </div>
