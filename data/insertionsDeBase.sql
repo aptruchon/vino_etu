@@ -74,15 +74,15 @@ VALUES
 -- Contenu de la table `vino__cellier_contient`
 --
 -- Insertion dans tous les champs
-INSERT INTO `vino__cellier_contient` (id, vino__cellier_id, vino__bouteille_id, date_ajout, garde_jusqua, notes, prix, quantite, millesime)
+INSERT INTO `vino__cellier_contient` (id, vino__cellier_id, vino__bouteille_id, vino__type_id, nom, pays, description, date_ajout, garde_jusqua, notes, prix, format, quantite, millesime)
 VALUES
-    (1, 1, 1, now(), "Noël 2024", "Oublis pas de boire toutes les bouteilles avant Noël!", 30.99, 3, 2015),
-    (2, 1, 2, now(), "Septembre 2022", "Miam!", 22.99, 3, 2021),
-    (3, 1, 3, now(), "Jusqu'à ma prochaine promotion", "Tu le mérites", 59.99, 1, 2005),
-    (4, 2, 4, now(), "Été 2023", "Rafraichissant", 25.99, 3, 2005),
-    (5, 2, 5, now(), "Janvier 2029", "Patience", 49.99, 1, 2012),
-    (6, 4, 7, now(), "4ieme pleine lune de 2023", "Vin meilleur quand la marée est basse", 44.99, 1, 2014);
+    (1, 1, 1, 1, 'Borsao Seleccion', 'Espagne',  'Vin rouge\r\n         \r\n      \r\n      \r\n      Espagne, 750 ml\r\n      \r\n      \r\n      Code SAQ : 10324623', now(), "Noël 2024", "Oublis pas de boire toutes les bouteilles avant Noël!", 30.99, ' 750 ml', 3, 2015),
+    (2, 1, 2, 1, 'Monasterio de Las Vinas Gran Reserva', 'Espagne', 'Vin rouge\r\n         \r\n      \r\n      \r\n      Espagne, 750 ml\r\n      \r\n      \r\n      Code SAQ : 10359156', now(), "Septembre 2022", "Miam!", 22.99, ' 750 ml', 3, 2021),
+    (3, 1, 3, 1, 'Castano Hecula', 'Espagne', 'Vin rouge\r\n         \r\n      \r\n      \r\n      Espagne, 750 ml\r\n      \r\n      \r\n      Code SAQ : 11676671', now(), "Jusqu'à ma prochaine promotion", "Tu le mérites", 59.99, ' 750 ml', 1, 2005),
+    (4, 2, 4, 1, 'Campo Viejo Tempranillo Rioja', 'Espagne', 'Vin rouge\r\n         \r\n      \r\n      \r\n      Espagne, 750 ml\r\n      \r\n      \r\n      Code SAQ : 11462446', now(), "Été 2023", "Rafraichissant", 25.99, ' 750 ml', 3, 2005),
+    (5, 2, 5, 1, 'Bodegas Atalaya Laya 2017', 'Espagne', 'Vin rouge\r\n         \r\n      \r\n      \r\n      Espagne, 750 ml\r\n      \r\n      \r\n      Code SAQ : 12375942', now(), "Janvier 2029", "Patience", 49.99, ' 750 ml', 1, 2012),
+    (6, 4, 7, 2, 'Huber Riesling Engelsberg 2017', 'Autriche', 'Vin blanc\r\n         \r\n      \r\n      \r\n      Autriche, 750 ml\r\n      \r\n      \r\n      Code SAQ : 13675841', now(), "4ieme pleine lune de 2023", "Vin meilleur quand la marée est basse", 44.99, ' 750 ml', 1, 2014);
 -- Insertion dans les champs obligatoires seulement (test)
-INSERT INTO `vino__cellier_contient` (id, vino__cellier_id, vino__bouteille_id, date_ajout, quantite)
+INSERT INTO `vino__cellier_contient` (id, vino__cellier_id, vino__bouteille_id, vino__type_id, nom, date_ajout, quantite)
 VALUES
-    (7, 1, 11, now(), 2);
+    (7, 1, 11, 2, 'Vin blanc du paradis', now(), 2);
