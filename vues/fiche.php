@@ -39,8 +39,12 @@
                 <p class="format"></p>
             <?php endif; ?>
             <!--  -->
+            <?php if ($bouteille['millesime']) : ?>
                 <p class="millesime">Millesime : <?php echo $bouteille['millesime'] ?></p>
-
+            <?php else : ?>
+                <p class="millesime"></p>
+            <?php endif; ?>
+            <!--  -->
             <?php if ($bouteille['description']) : ?>
                 <p class="description">Description : <?php echo $bouteille['description'] ?></p>
             <?php else : ?>
