@@ -121,7 +121,6 @@ class Controler
 			include("vues/entete.php");
 			include("vues/navigation.php");
 			include("vues/ajouter.php");
-			include("vues/pied.php");
 		}
 	}
 
