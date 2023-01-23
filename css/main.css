@@ -21,6 +21,7 @@
 	--yellow-dark: #7d5e00;
 	--pink: #ffeaf3;
 	--pink-dark: #7f0037;
+	--black-light: #222;
 }
 
 * {
@@ -39,6 +40,7 @@ html, body {
 body {
 	position: relative;
 	min-height: 100vh;
+	overflow: hidden;
 }
 
 main {

@@ -1,9 +1,32 @@
+.tache-couleur {
+    position: absolute;
+    right: -92px;
+    top: -139px;
+    display: block;
+}
+
+.logo-complet-login {
+    display: none;
+    width: 170px;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    z-index: 3;
+    position: relative;
+}
+
 .login-container {
     width: 100%;
-    
-    
-    margin-top: 40px;
-    
+    margin-top: 60px;
+    padding: 10px;
+    z-index: 2;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
 .login-container header {
@@ -21,11 +44,19 @@
     width: 100%;
     margin-bottom: 20px;
     font-size: 18px;
-    padding: 8px 8px;
-    background-color: rgb(246, 246, 246);
+    padding: 12px 8px;
+    background-color: white;
     border-radius: 10px;
-    border: 1px solid rgb(234, 234, 234);
+    border: 1px solid var(--black-light);
     width: 100%;
+}
+
+.login-container button {
+    background-color: var(--black-light);
+}
+
+.login-container button:hover {
+    background-color: var(--red);
 }
 
 #uti_mdp {
@@ -34,7 +65,6 @@
 
 .mdp-infos {
     margin-bottom: 20px;
-    margin-left: 20px;
 }
 
 .mdp-infos p {
@@ -53,9 +83,7 @@
 }
 
 .login-link {
-    margin-top: 10px;
     text-align: center;
-    margin-bottom: 20px;
 }
 
 .link-bold {
