@@ -81,7 +81,6 @@ class Controler
 	{
 		$bte = new Bouteille();
 		$data = $bte->getListeBouteilleCellier($userId, $cellierId, $idBouteille);
-
 		include("vues/entete.php");
 		include("vues/navigation.php");
 		include("vues/fiche.php");
@@ -130,7 +129,7 @@ class Controler
 	{
 		$body = json_decode(file_get_contents('php://input'));
 
-		var_dump($body);
+		// var_dump($body);
 
 		if (!empty($body)) {
 			$bte = new Bouteille();
