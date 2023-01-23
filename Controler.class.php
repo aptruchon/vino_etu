@@ -145,7 +145,6 @@ class Controler
 			include("vues/entete.php");
 			include("vues/navigation.php");
 			include("vues/modifier.php");
-			include("vues/pied.php");
 		}
 	}
 
