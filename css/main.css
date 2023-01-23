@@ -50,6 +50,10 @@ h2 {
 	font-size: 30px;
 }
 
+a{
+	cursor: pointer;
+}
+
 .fa-plus, .fa-minus {
 	font-size: 20px;
 	color: black;
