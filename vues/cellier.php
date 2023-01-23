@@ -13,7 +13,7 @@
                 <div class="bouteille-img-container">
                     <a href="?requete=ficheDetailsBouteille&bte=<?php echo $bouteille['vino__bouteille_id'] ?>">
                         <?php if ($bouteille['image']) : ?>
-                            <img src="https:<?php echo $bouteille['image'] ?>">
+                            <img src="https:<?php echo $bouteille['image'] ?>" onerror="this.onerror=null; this.src='./images/vin-fallback.png'">
                         <?php else : ?>
                             <img src="./images/vin-fallback.png">
                         <?php endif; ?>
