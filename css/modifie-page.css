@@ -146,3 +146,11 @@
 	font-weight: bold;
 	color: white;
 }
+
+.form-container>.btn-oui:hover {
+	background-color: #567a20ac; ;
+}
+
+.form-container>.btn-non:hover {
+	background-color: var(--red-focus);
+}
