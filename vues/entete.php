@@ -7,7 +7,7 @@
 		<meta http-equiv="cache-control" content="no-cache">
 		<meta name="viewport" content="width=device-width, minimum-scale=0.5, initial-scale=1.0, user-scalable=yes">
 
-		<meta name="description" content="Un petit verre de vino">
+		<meta name="descriptionApp" content="Un petit verre de vino">
 		<meta name="author" content="Jonathan Martel (jmartel@cmaisonneuve.qc.ca)">
 
 		<link rel="stylesheet" href="./css/styles.css" type="text/css" media="screen">

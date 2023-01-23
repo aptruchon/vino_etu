@@ -143,10 +143,14 @@ window.addEventListener('load', function() {
       nom: document.querySelector("[name='nom']"),
       millesime: document.querySelector("[name='millesime']"),
       quantite: document.querySelector("[name='quantite']"),
-      date_achat: document.querySelector("[name='date_achat']"),
+      /* date_achat: document.querySelector("[name='date_achat']"), */
+      description: document.querySelector("[name='description']"),
+      format: document.querySelector("[name='format']"),
+      pays: document.querySelector("[name='pays']"),
       prix: document.querySelector("[name='prix']"),
       garde_jusqua: document.querySelector("[name='garde_jusqua']"),
       notes: document.querySelector("[name='notes']"),
+      type: document.querySelectorAll("[name='type']"),
     }
 
     /**
@@ -157,8 +161,40 @@ window.addEventListener('load', function() {
 
     liste.addEventListener('click', function (evt) {
       if (evt.target.tagName == 'LI') {
-        bouteille.nom.dataset.id = evt.target.dataset.id
-        bouteille.nom.value = evt.target.innerHTML
+        bouteille.nom.dataset.id = evt.target.dataset.id;
+        bouteille.nom.value = evt.target.innerHTML;
+        
+        let requete = new Request(
+          BaseURL + "?requete=informationBouteilleParId&id=" + bouteille.nom.dataset.id ,
+          { method: 'GET' }
+        )
+        fetch(requete)
+        .then((response) => {
+          if (response.status === 200) {
+            return response.json()
+          } else {
+            throw new Error('Erreur')
+          }
+        })
+        .then((response) => {
+          console.log(response)
+          bouteilleChoisi = response;
+          console.log(bouteille.type);
+
+          bouteille.pays.value = bouteilleChoisi.pays;
+          bouteille.format.value = bouteilleChoisi.format;
+          bouteille.description.value = bouteilleChoisi.description;
+          bouteille.prix.value = bouteilleChoisi.prix_saq;
+
+          for (let i = 0, l = bouteille.type.length; i < l; i++) {
+            if(bouteille.type[i].dataset.id == bouteilleChoisi.vino__type_id) {
+              bouteille.type[i].checked = true;
+            }
+          }
+        })
+        .catch((error) => {
+          console.error(error)
+        })
 
         liste.innerHTML = ''
         inputNomBouteille.value = ''
@@ -173,15 +209,20 @@ window.addEventListener('load', function() {
     let btnAjouter = document.querySelector("[name='ajouterBouteilleCellier']")
     if (btnAjouter) {
       btnAjouter.addEventListener('click', function (evt) {
+        console.log("btnAJouter");
+        
         var param = {
           id_bouteille: bouteille.nom.dataset.id,
-          date_achat: bouteille.date_achat.value,
+          /* date_achat: bouteille.date_achat.value, */
           garde_jusqua: bouteille.garde_jusqua.value,
-          notes: bouteille.date_achat.value,
+          notes: bouteille.notes.value,
           prix: bouteille.prix.value,
           quantite: bouteille.quantite.value,
           millesime: bouteille.millesime.value,
         }
+
+        console.log(param);
+        
         let requete = new Request(
           BaseURL + '?requete=ajouterNouvelleBouteilleCellier',
           { method: 'POST', body: JSON.stringify(param) }

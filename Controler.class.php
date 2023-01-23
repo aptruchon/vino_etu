@@ -27,6 +27,9 @@ class Controler
 				case 'listeBouteille':
 					$this->listeBouteille($userId, $cellierId);
 					break;
+				case 'informationBouteilleParId':
+					$this->informationBouteilleParId();
+					break;
 				case 'autocompleteBouteille':
 					$this->autocompleteBouteille();
 					break;
@@ -77,6 +80,13 @@ class Controler
                   
 		}
 
+		private function informationBouteilleParId(){
+			$bte = new Bouteille();
+			$id = $_GET["id"];
+			$bouteille = $bte->getBouteilleParId($id);
+			echo json_encode($bouteille);
+		}
+
 		private function ficheDetailsBouteille()
 		{
 			include("vues/entete.php");
@@ -108,17 +118,19 @@ class Controler
 		}
 		private function ajouterNouvelleBouteilleCellier()
 		{
-			$body = json_decode(file_get_contents('php://input'));
-			//var_dump($body);
+			$type = new Type();
+			$types = $type->getTypes();
+
+			$body = json_decode(file_get_contents('php://input'), true);
 			if(!empty($body)){
+				var_dump($body);
 				$bte = new Bouteille();
-				//var_dump($_POST['data']);
-				
-				//var_dump($data);
-				$ajouter = $bte->ajouterBouteilleCellier($body);
-				echo json_encode($resultat);
+
+				$resultat = $bte->ajouterBouteilleCellier($body);
+				echo json_encode($resultat); 
 			}
 			else{
+				$data["types"] = $types;
 				include("vues/entete.php");
 				include("vues/navigation.php");
 				include("vues/ajouter.php");

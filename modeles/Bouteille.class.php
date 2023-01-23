@@ -28,6 +28,25 @@ class Bouteille extends Modele {
 		
 		return $rows;
 	}
+
+	public function getBouteilleParId($id){
+		$requete = "SELECT * FROM vino__bouteille WHERE id =" .$id;
+
+		if(($res = $this->_db->query($requete)) ==	 true)
+		{
+			if($res->num_rows)
+			{
+				$res = $res->fetch_assoc();
+			}
+		}
+		else 
+		{
+			throw new Exception("Erreur de requête sur la base de donnée", 1);
+			 //$this->_db->error;
+		}
+		
+		return $res;
+	}
 	
 	public function getListeBouteilleCellier($userId, $cellierId)
 	{
@@ -135,18 +154,32 @@ class Bouteille extends Modele {
 	public function ajouterBouteilleCellier($data)
 	{
 		//TODO : Valider les données.
-		//var_dump($data);
-			
-		$requete = "INSERT INTO vino__cellier(id_bouteille,date_achat,garde_jusqua,notes,prix,quantite,millesime) VALUES (".
-		"'".$data->id_bouteille."',".
-		"'".$data->date_achat."',".
-		"'".$data->garde_jusqua."',".
-		"'".$data->notes."',".
-		"'".$data->prix."',".
-		"'".$data->quantite."',".
-		"'".$data->millesime."')";
+		var_dump($data);
+		$cellierId = 1;
+		$stmtBouteille = $this->_db->prepare("INSERT INTO vino__cellier_contient (vino__cellier_id, vino__bouteille_id, vino__type_id, nom, pays, description, date_ajout, garde_jusqua , notes, prix, format quantite, millesime) VALUES (?,?, now(),?,?,?,?,?)");
 
-        $res = $this->_db->query($requete);
+		$data["nom"] = htmlspecialchars($data["nom"]);
+		$data["pays"] = htmlspecialchars($data["pays"]);
+		$data["description"] = htmlspecialchars($data["description"]);
+		$data["format"] = htmlspecialchars($data["format"]);
+		$data["garde_jusqua"] = htmlspecialchars($data["garde_jusqua"]);
+		$data["notes"] = htmlspecialchars($data["notes"]);
+
+		$stmtBouteille->bind_param("iissdii", 
+									$cellierId, 
+									$data["id_bouteille"], 
+									$data["nom"], 
+									$data["pays"], 
+									$data["description"], 
+									$data["garde_jusqua"], 
+									$data["notes"], 
+									$data["prix"], 
+									$data["format"], 
+									$data["quantite"], 
+									$data["millesime"]);
+
+
+        $res = $stmtBouteille->execute();
         
 		return $res;
 	}
