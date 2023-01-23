@@ -12,7 +12,7 @@
     </div>
     <section class="bouteille_container">  
         <?php if ($bouteille['image']) : ?>
-            <img src="https:<?php echo $bouteille['image'] ?>">
+            <img src="https:<?php echo $bouteille['image'] ?>" onerror="this.onerror=null; this.src='./images/vin-fallback.png'">
             <?php else : ?>
                 <img src="./images/vin-fallback.png">
                 <?php endif; ?>
