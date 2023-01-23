@@ -25,15 +25,25 @@
 
 }
 
+@media only screen and (min-width:510px) and (max-width:640px)  {
+
+    .svg-superieur, .svg-inferieur, .svg-logo {
+        height: 300px;
+    }
+
+
+}
+
 @media all and (max-width:640px) {
 
     footer {
         display: none;
     }
 
+
 }
 
-@media only screen and (min-width:640px) {
+@media only screen and (min-width:640px) and (max-width: 768px) {
 
     main {
         padding-bottom: 42px;
@@ -44,9 +54,12 @@
     .bouteilles-container {
         grid-template-columns: 1fr 1fr;
     }
-    
 
-    /* PAGE FICHE */
+    /* ACCUEIL */
+
+    .svg-superieur, .svg-inferieur, .svg-logo {
+            height: 350px;
+        }
 
 
     /* PAGE INSCRIPTION / CONNEXION */
@@ -54,6 +67,7 @@
     .login-container {
         top: 48%;
     }
+
 
 }
 
@@ -69,19 +83,31 @@
         width: 80%;
     }
 
+    /* PAGE CELLIER */
+
+    .bouteilles-container {
+        grid-template-columns: 1fr 1fr;
+    }
+
     .bouton-large {
         width: 400px;
         margin-left: auto;
         margin-right: auto;
         display: block;
     }
+    
+    /* ACCUEIL */
+
+    .svg-superieur, .svg-inferieur, .svg-logo {
+        height: 400px;
+     }
+
 
     /* PAGE CONNEXION/INSCRIPTION */
 
         .tache-couleur {
             right: -61px;
         }
-
 
 }
 
@@ -90,10 +116,9 @@
     /* PAGE CONNEXION/INSCRIPTION */
 
     .tache-couleur {
-            right: 0px;
-             
-        }
-
+            right: 0px;    
+     }
+    
 }
 
 @media only screen and (min-width: 1280px) {
@@ -128,8 +153,11 @@
         top: -42px;
     }
 
-    
+    /* ACCUEIL */
 
-  
+    .svg-superieur, .svg-inferieur, .svg-logo {
+        height: 400px;
+    }
+
 }
 
