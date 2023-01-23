@@ -22,7 +22,7 @@
             </header> 
             <!--  -->
             <?php if ($bouteille['type']) : ?>
-                <p class="type">Type : <?php echo $bouteille['type'] ?></p>
+                <p class="type <?php echo strtolower($bouteille['type']) ?>">Type: <?php echo $bouteille['type'] ?></p>
             <?php else : ?>
                 <p class="type"></p>
             <?php endif; ?>
