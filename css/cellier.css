@@ -40,6 +40,10 @@
     padding: 20px;
 }
 
+.bouteille:hover {
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.2) 0px 0px 8px;
+}
+
 .bouteille a {
     font-size: 18px;
     color: brown;
@@ -52,6 +56,7 @@
 
 .bouteille-img-container img {
     width: 100%;
+    margin-top: 15px;
 }
 
 .description {

@@ -251,20 +251,23 @@ window.addEventListener('load', function() {
     let popupForm = document.getElementById("popupForm");
     let btnSupprimerBouteille = document.querySelector('[name="btnSupprimer"]');
     let modalContainer = document.getElementById("modal-container");
-    btnSupprimerBouteille.addEventListener('click', function(evt){
-      popupForm.style.display = "block";
-      modalContainer.style.display = "block";
-    })
+    if(btnSupprimerBouteille){
+      btnSupprimerBouteille.addEventListener('click', function(evt){
+        popupForm.style.display = "block";
+        modalContainer.style.display = "block";
+      })
+    }
 
   /**
    * Fonctionnalité pour fermer la boite modale
    */
   let btnCloseModale = document.getElementById("closeForm");
-  btnCloseModale.addEventListener('click', function(evt){
-    popupForm.style.display = "none";
-    modalContainer.style.display = "none";
-
-  })
+  if(btnCloseModale){
+    btnCloseModale.addEventListener('click', function(evt){
+      popupForm.style.display = "none";
+      modalContainer.style.display = "none";
+    })
+  }
   
 });
 
