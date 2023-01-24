@@ -253,6 +253,7 @@ window.addEventListener('load', function() {
     let modalContainer = document.getElementById("modal-container");
     if(btnSupprimerBouteille){
       btnSupprimerBouteille.addEventListener('click', function(evt){
+        
         popupForm.style.display = "block";
         modalContainer.style.display = "block";
       })
