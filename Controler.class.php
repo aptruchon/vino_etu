@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class Controler
  * Gère les requêtes HTTP
@@ -11,74 +12,132 @@
  * 
  */
 
-class Controler 
+class Controler
 {
-		/**
-		 * Traite la requête
-		 * @return void
-		 */
-		public function gerer()
-		{
-			// ID utilisateur et ID de cellier en attendant de recevoir les vraies informations dynamiquement
-			$userId = 2;
-			$cellierId = 1;
+	/**
+	 * Traite la requête
+	 * @return void
+	 */
+	public function gerer()
+	{
+		// ID utilisateur et ID de cellier en attendant de recevoir les vraies informations dynamiquement
+		$userId = 2;
+		$cellierId = 1;
 
-			switch ($_GET['requete']) {
-				case 'listeBouteille':
-					$this->listeBouteille($userId, $cellierId);
-					break;
-				case 'informationBouteilleParId':
-					$this->informationBouteilleParId();
-					break;
-				case 'autocompleteBouteille':
-					$this->autocompleteBouteille();
-					break;
-				case 'ajouterNouvelleBouteilleCellier':
-					$this->ajouterNouvelleBouteilleCellier();
-					break;
-				case 'modifierBouteilleCellier':
-					$this->modifierBouteilleCellier();
-					break;
-				case 'ajouterBouteilleCellier':
-					$this->ajouterBouteilleCellier();
-					break;
-				case 'boireBouteilleCellier':
-					$this->boireBouteilleCellier();
-					break;
-				case 'inscription':
-					$this->inscription();
-					break;
-				case 'connexion':
-					$this->connexion();
-					break;
-				case 'cellier':
-					$this->cellier($userId, $cellierId);
-					break;
-				case 'ficheDetailsBouteille':
-					$this->ficheDetailsBouteille($userId, $cellierId);
-					break;
-				default:
-					$this->accueil();
-					break;
-			}
+		switch ($_GET['requete']) {
+			case 'listeBouteille':
+				$this->listeBouteille($userId, $cellierId);
+				break;
+			case 'informationBouteilleParId':
+				$this->informationBouteilleParId();
+				break;
+			case 'autocompleteBouteille':
+				$this->autocompleteBouteille();
+				break;
+			case 'ajouterNouvelleBouteilleCellier':
+				$this->ajouterNouvelleBouteilleCellier();
+				break;
+			case 'modifierBouteilleCellier':
+				$this->modifierBouteilleCellier($userId, $cellierId, $_GET['bte']);
+				break;
+			case 'ajouterBouteilleCellier':
+				$this->ajouterBouteilleCellier();
+				break;
+			case 'boireBouteilleCellier':
+				$this->boireBouteilleCellier();
+				break;
+			case 'inscription':
+				$this->inscription();
+				break;
+			case 'connexion':
+				$this->connexion();
+				break;
+			case 'cellier':
+				$this->cellier($userId, $cellierId);
+				break;
+			case 'ficheDetailsBouteille':
+				$this->ficheDetailsBouteille($userId, $cellierId, $_GET['bte']);
+				break;
+			default:
+				$this->accueil();
+				break;
 		}
+	}
 
-		private function accueil()
-		{
-			include("vues/entete.php");
-			include("vues/accueil.php");      
-		}
 
-		private function cellier($userId, $cellierId)
-		{
+	private function accueil()
+	{
+		include("vues/entete.php");
+		include("vues/accueil.php");
+	}
+
+
+	private function cellier($userId, $cellierId)
+	{
+		$bte = new Bouteille();
+		$data = $bte->getListeBouteilleCellier($userId, $cellierId);
+		include("vues/entete.php");
+		include("vues/navigation.php");
+		include("vues/cellier.php");
+		include("vues/pied.php");
+	}
+
+
+	private function ficheDetailsBouteille($userId, $cellierId, $idBouteille)
+	{
+		$bte = new Bouteille();
+		$data = $bte->getListeBouteilleCellier($userId, $cellierId, $idBouteille);
+
+		include("vues/entete.php");
+		include("vues/navigation.php");
+		include("vues/fiche.php");
+		include("vues/pied.php");
+	}
+
+
+	private function listeBouteille($userId, $cellierId)
+	{
+		$bte = new Bouteille();
+		$cellier = $bte->getListeBouteilleCellier($userId, $cellierId);
+
+		echo json_encode($cellier);
+	}
+
+
+	private function autocompleteBouteille()
+	{
+		$bte = new Bouteille();
+		//var_dump(file_get_contents('php://input'));
+		$body = json_decode(file_get_contents('php://input'));
+		//var_dump($body);
+		$listeBouteille = $bte->autocomplete($body->nom);
+
+		echo json_encode($listeBouteille);
+	}
+
+
+	private function modifierBouteilleCellier($userId, $cellierId, $idBouteille)
+	{
+		$body = json_decode(file_get_contents('php://input'));
+
+		var_dump($body);
+
+		if (!empty($body)) {
 			$bte = new Bouteille();
-            $data = $bte->getListeBouteilleCellier($userId, $cellierId);
+			//var_dump($_POST['data']);
+
+			//var_dump($data);
+			$modifier = $bte->modifierBouteilleCellier($body);
+			echo json_encode($modifier);
+		} else {
+			$bte = new Bouteille();
+			$data = $bte->getListeBouteilleCellier($userId, $cellierId, $idBouteille);
+
 			include("vues/entete.php");
 			include("vues/navigation.php");
-			include("vues/cellier.php");
-			include("vues/pied.php");
-                  
+			include("vues/modifier.php");
 		}
+	}
 
 		private function informationBouteilleParId(){
 			$bte = new Bouteille();
@@ -87,35 +146,6 @@ class Controler
 			echo json_encode($bouteille);
 		}
 
-		private function ficheDetailsBouteille()
-		{
-			include("vues/entete.php");
-			include("vues/navigation.php");
-			include("vues/fiche.php");     
-			include("vues/pied.php"); 
-		}
-		
-
-		private function listeBouteille($userId, $cellierId)
-		{
-			$bte = new Bouteille();
-            $cellier = $bte->getListeBouteilleCellier($userId, $cellierId);
-            
-            echo json_encode($cellier);
-                  
-		}
-		
-		private function autocompleteBouteille()
-		{
-			$bte = new Bouteille();
-			//var_dump(file_get_contents('php://input'));
-			$body = json_decode(file_get_contents('php://input'));
-			//var_dump($body);
-            $listeBouteille = $bte->autocomplete($body->nom);
-            
-            echo json_encode($listeBouteille);
-                  
-		}
 		private function ajouterNouvelleBouteilleCellier()
 		{
 			$type = new Type();
@@ -136,89 +166,47 @@ class Controler
 				include("vues/ajouter.php");
 				include("vues/pied.php");
 			}
-			
-            
 		}
+	
 
-		private function modifierBouteilleCellier()
-		{
-			$body = json_decode(file_get_contents('php://input'));
-			//var_dump($body);
-			if(!empty($body)){
-				$bte = new Bouteille();
-				//var_dump($_POST['data']);
-				
-				//var_dump($data);
-				$modifier = $bte->modifierBouteilleCellier($body);
-				echo json_encode($modifier);
-			}
-			else{
-				include("vues/entete.php");
-				include("vues/navigation.php");
-				include("vues/modifier.php");
-				include("vues/pied.php");
-			}
-			
-            
-		}
-		
-		private function boireBouteilleCellier()
-		{
-			$body = json_decode(file_get_contents('php://input'));
-			
-			$bte = new Bouteille();
-			$resultat = $bte->modifierQuantiteBouteilleCellier($body->id, -1);
-			echo json_encode($resultat);
-		}
+	private function boireBouteilleCellier()
+	{
+		$body = json_decode(file_get_contents('php://input'));
 
-		private function ajouterBouteilleCellier()
-		{
-			$body = json_decode(file_get_contents('php://input'));
-			
-			$bte = new Bouteille();
-			$resultat = $bte->modifierQuantiteBouteilleCellier($body->id, 1);
-			//var_dump($resultat);
-			echo json_encode($resultat);
-		}
+		$bte = new Bouteille();
+		$resultat = $bte->modifierQuantiteBouteilleCellier($body->id, -1);
+		echo json_encode($resultat);
+	}
 
-		/**
-		 * Affiche la vue de la page inscription
-		 */
-		private function inscription()
-		{
-			
-			include("vues/entete.php");
-			include("vues/inscription.php");
-			include("vues/pied.php");
+	private function ajouterBouteilleCellier()
+	{
+		$body = json_decode(file_get_contents('php://input'));
 
-		}
+		$bte = new Bouteille();
+		$resultat = $bte->modifierQuantiteBouteilleCellier($body->id, 1);
+		//var_dump($resultat);
+		echo json_encode($resultat);
+	}
 
-		/**
-		 * Affiche la vue de la page connexion
-		 */
-		private function connexion()
-		{
-			
-			include("vues/entete.php");
-			include("vues/connexion.php");
-			include("vues/pied.php");
+	/**
+	 * Affiche la vue de la page inscription
+	 */
+	private function inscription()
+	{
 
-		}
-		
+		include("vues/entete.php");
+		include("vues/inscription.php");
+		include("vues/pied.php");
+	}
+
+	/**
+	 * Affiche la vue de la page connexion
+	 */
+	private function connexion()
+	{
+
+		include("vues/entete.php");
+		include("vues/connexion.php");
+		include("vues/pied.php");
+	}
 }
-?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
