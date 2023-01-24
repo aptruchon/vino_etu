@@ -118,16 +118,17 @@ class Controler
 	private function modifierBouteilleCellier($userId, $cellierId, $idBouteille)
 	{
 		$body = json_decode(file_get_contents('php://input'));
+		$body = $_POST;
 
 		// var_dump($body);
 
 		if (!empty($body)) {
 			$bte = new Bouteille();
-			//var_dump($_POST['data']);
+			// var_dump($body);
 
-			//var_dump($data);
 			$modifier = $bte->modifierBouteilleCellier($body);
-			echo json_encode($modifier);
+
+			$this->ficheDetailsBouteille($userId, $cellierId, $idBouteille);
 		} else {
 			$bte = new Bouteille();
 			$data = $bte->getListeBouteilleCellier($userId, $cellierId, $idBouteille);
@@ -138,35 +139,35 @@ class Controler
 		}
 	}
 
-		private function informationBouteilleParId(){
+	private function informationBouteilleParId()
+	{
+		$bte = new Bouteille();
+		$id = $_GET["id"];
+		$bouteille = $bte->getBouteilleParId($id);
+		echo json_encode($bouteille);
+	}
+
+	private function ajouterNouvelleBouteilleCellier()
+	{
+		$type = new Type();
+		$types = $type->getTypes();
+
+		$body = json_decode(file_get_contents('php://input'), true);
+		if (!empty($body)) {
+			var_dump($body);
 			$bte = new Bouteille();
-			$id = $_GET["id"];
-			$bouteille = $bte->getBouteilleParId($id);
-			echo json_encode($bouteille);
+
+			$resultat = $bte->ajouterBouteilleCellier($body);
+			echo json_encode($resultat);
+		} else {
+			$data["types"] = $types;
+			include("vues/entete.php");
+			include("vues/navigation.php");
+			include("vues/ajouter.php");
+			include("vues/pied.php");
 		}
+	}
 
-		private function ajouterNouvelleBouteilleCellier()
-		{
-			$type = new Type();
-			$types = $type->getTypes();
-
-			$body = json_decode(file_get_contents('php://input'), true);
-			if(!empty($body)){
-				var_dump($body);
-				$bte = new Bouteille();
-
-				$resultat = $bte->ajouterBouteilleCellier($body);
-				echo json_encode($resultat); 
-			}
-			else{
-				$data["types"] = $types;
-				include("vues/entete.php");
-				include("vues/navigation.php");
-				include("vues/ajouter.php");
-				include("vues/pied.php");
-			}
-		}
-	
 
 	private function boireBouteilleCellier()
 	{

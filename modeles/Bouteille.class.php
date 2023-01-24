@@ -30,25 +30,22 @@ class Bouteille extends Modele
 	}
 
 
-	public function getBouteilleParId($id){
-		$requete = "SELECT * FROM vino__bouteille WHERE id =" .$id;
+	public function getBouteilleParId($id)
+	{
+		$requete = "SELECT * FROM vino__bouteille WHERE id =" . $id;
 
-		if(($res = $this->_db->query($requete)) ==	 true)
-		{
-			if($res->num_rows)
-			{
+		if (($res = $this->_db->query($requete)) ==	 true) {
+			if ($res->num_rows) {
 				$res = $res->fetch_assoc();
 			}
-		}
-		else 
-		{
+		} else {
 			throw new Exception("Erreur de requête sur la base de donnée", 1);
-			 //$this->_db->error;
+			//$this->_db->error;
 		}
-		
+
 		return $res;
 	}
-	
+
 
 	public function getListeBouteilleCellier($userId, $cellierId, $idBouteille = -1)
 	{
@@ -162,26 +159,28 @@ class Bouteille extends Modele
 		$data["garde_jusqua"] = htmlspecialchars($data["garde_jusqua"]);
 		$data["notes"] = htmlspecialchars($data["notes"]);
 
-		$stmtBouteille->bind_param("iissdii", 
-									$cellierId, 
-									$data["id_bouteille"], 
-									$data["nom"], 
-									$data["pays"], 
-									$data["description"], 
-									$data["garde_jusqua"], 
-									$data["notes"], 
-									$data["prix"], 
-									$data["format"], 
-									$data["quantite"], 
-									$data["millesime"]);
+		$stmtBouteille->bind_param(
+			"iissdii",
+			$cellierId,
+			$data["id_bouteille"],
+			$data["nom"],
+			$data["pays"],
+			$data["description"],
+			$data["garde_jusqua"],
+			$data["notes"],
+			$data["prix"],
+			$data["format"],
+			$data["quantite"],
+			$data["millesime"]
+		);
 
 
-        $res = $stmtBouteille->execute();
+		$res = $stmtBouteille->execute();
 
 		return $res;
 	}
 
-	
+
 	/**
 	 * Cette méthode modifie une bouteille au cellier
 	 * 
@@ -191,18 +190,32 @@ class Bouteille extends Modele
 	 */
 	public function modifierBouteilleCellier($data)
 	{
+		$stmt = $this->_db->prepare("UPDATE vino__cellier_contient " .
+			"SET nom = ?, pays = ?, description = ?, date_ajout = ?, garde_jusqua = ?, notes = ?, prix = ?, format = ?, quantite = ?, millesime = ? WHERE id = ?");
 
+		$data["nom"] = substr(htmlspecialchars($data["nom"]), 0, 200);
+		$data["pays"] = substr(htmlspecialchars($data["pays"]), 0, 50);
+		$data["description"] = substr(htmlspecialchars($data["description"]), 0, 200);
+		$data["garde_jusqua"] = substr(htmlspecialchars($data["garde_jusqua"]), 0, 200);
+		$data["notes"] = substr(htmlspecialchars($data["notes"]), 0, 200);
+		$data["format"] = substr(htmlspecialchars($data["format"]), 0, 20);
 
-		$requete = "UPDATE INTO vino__cellier(id_bouteille,date_achat,garde_jusqua,notes,prix,quantite,millesime) VALUES (" .
-			"'" . $data->id_bouteille . "'," .
-			"'" . $data->date_achat . "'," .
-			"'" . $data->garde_jusqua . "'," .
-			"'" . $data->notes . "'," .
-			"'" . $data->prix . "'," .
-			"'" . $data->quantite . "'," .
-			"'" . $data->millesime . "')";
+		$stmt->bind_param(
+			"ssssssdsiii",
+			$data["nom"],
+			$data["pays"],
+			$data["description"],
+			$data["date_achat"],
+			$data["garde_jusqua"],
+			$data["notes"],
+			$data["prix"],
+			$data["format"],
+			$data["quantite"],
+			$data["millesime"],
+			$data["id_bouteille_cellier"]
+		);
 
-		$res = $this->_db->query($requete);
+		$res = $stmt->execute();
 
 		return $res;
 	}
