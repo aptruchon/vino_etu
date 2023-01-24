@@ -91,3 +91,7 @@
     color: var(--red);
     text-decoration: none;
 }
+
+.body-container {
+    overflow: hidden;
+}
