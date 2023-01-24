@@ -24,8 +24,6 @@
 <!-- FIN LOGO ENTIER -->
 <section class="login-container">
     <div class="infos-wrapper">
-        <input type="text" name="uti_prenom" id="uti_prenom" placeholder="Prénom">
-        <input type="text" name="uti_nom" id="uti_nom" placeholder="Nom">
         <input type="text" name="uti_courriel" id="uti_courriel" placeholder="Courriel">
         <input type="text" name="uti_mdp" id="uti_mdp" placeholder="Mot de passe">
     </div>
@@ -36,6 +34,6 @@
         <span>1 majuscule</span>
         <span>1 chiffre</span>
     </div>
-    <button class="bouton-large">S'inscrire</button>
-    <div class="login-link">Déjà inscrit.e ? <a href="?requete=connexion" class="link-bold">Connectez-vous !</a></div>
+    <button class="bouton-large">Se connecter</button>
+    <div class="login-link">Pas de compte ? <a href="?requete=inscription" class="link-bold">Inscrivez-vous !</a></div>
 </section>

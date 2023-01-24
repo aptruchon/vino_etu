@@ -1,7 +1,4 @@
 <div class="modifier">
-    <header class="page-content-header">
-        <h2>Modifier une bouteille</h2>
-    </header>
     <?php
     foreach ($data as $cle => $bouteille) {
     ?>
@@ -10,6 +7,9 @@
                 <path fill="#931818" d="M228 128a12 12 0 0 1-12 12H69l51.5 51.5a12 12 0 0 1 0 17a12.1 12.1 0 0 1-17 0l-72-72a12 12 0 0 1 0-17l72-72a12 12 0 0 1 17 17L69 116h147a12 12 0 0 1 12 12Z" />
             </svg>
         </a>
+    <header class="page-content-header">
+        <h2>Modifier une bouteille</h2>
+    </header>
         <form method="POST" action="index.php?requete=modifierBouteilleCellier&bte=<?php echo $bouteille['vino__bouteille_id'] ?>" class="form-container">
             <div class="modifieBouteille" vertical layout>
                 <div>
@@ -34,12 +34,12 @@
                     <span class="champ-obligatoire-message"></span>
                     <label>Type</label>
                     <div class="options-container">
+                        <label for="rouge" class="radio-label">Rouge</label>
                         <input type="radio" id="rouge" name="type" value="rouge" class="radio-input" <?php echo ((strtolower($bouteille['type']) == 'rouge') ? 'checked' : '') ?>>
-                        <label for="rouge" class="radio-label">Rouge</label><br>
+                        <label for="blanc" class="radio-label">Blanc</label>
                         <input type="radio" id="blanc" name="type" value="blanc" class="radio-input" <?php echo ((strtolower($bouteille['type']) == 'blanc') ? 'checked' : '') ?>>
-                        <label for="blanc" class="radio-label">Blanc</label><br>
+                        <label for="rose" class="radio-label">Rosé</label>
                         <input type="radio" id="rose" name="type" value="rosé" class="radio-input" <?php echo ((strtolower($bouteille['type']) == 'rosé') ? 'checked' : '') ?>>
-                        <label for="rose" class="radio-label">Rosé</label><br>
                     </div>
                     <span class="champ-obligatoire-message"></span>
                     <label for="date_achat">Date achat</label>
@@ -55,19 +55,21 @@
                     <input type="text" name="notes" id="notes" value="<?php echo $bouteille['notes'] ?>">
                     <span class="champ-obligatoire-message"></span>
                 </div>
-                <button class="bouton-large" name="modifierBouteilleCellier">Enregistrer</button>
-                <button class="bouton-large" name="btnSupprimer">Supprimer la bouteille</button>
+                <button type="submit" class="bouton-large" name="modifierBouteilleCellier">Enregistrer</button>
+                <button type="button" class="bouton-large" name="btnSupprimer">Supprimer la bouteille</button>
             </div>
+        </form>
             <div class="modal-container" id="modal-container">
                 <div class="pop-up">
                     <div class="form-popup" id="popupForm">
+                    <form action="/action_page.php" class="form-container">
                         <h2>Voulez-vous supprimer cette bouteille?</h2>
                         <button type="submit" class="btn-boite-modale btn-oui">Oui</button>
                         <button type="button" class="btn-boite-modale btn-non" id="closeForm">Non</button>
+                    </form>
                     </div>
                 </div>
             </div>
-        </form>
     <?php
     }
     ?>

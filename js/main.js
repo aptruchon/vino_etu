@@ -11,9 +11,18 @@
 //const BaseURL = "https://jmartel.webdev.cmaisonneuve.qc.ca/n61/vino/";
 //const BaseURL = document.baseURI;
 const BaseURL = window.location.href.split('?')[0];
-// console.log(BaseURL);
+console.log(BaseURL);
 window.addEventListener('load', function() {
   // console.log('load')
+
+
+  /***
+   * Ajout d'une classe sur le body des pages inscription et connexion pour que le background colore ne deborde pas du body en mobile.
+   */  
+const nomPage = window.location.href.split('=')[1];
+if (nomPage == 'inscription' || nomPage == 'connexion') {
+  document.querySelector('body').classList.add('body-container');
+}
 
   /**
    * Fonctionnalité page Cellier
@@ -263,6 +272,7 @@ window.addEventListener('load', function() {
     let popupForm = document.getElementById("popupForm");
     let btnSupprimerBouteille = document.querySelector('[name="btnSupprimer"]');
     let modalContainer = document.getElementById("modal-container");
+    console.log(btnSupprimerBouteille);
     if(btnSupprimerBouteille){
       btnSupprimerBouteille.addEventListener('click', function(evt){
         popupForm.style.display = "block";
