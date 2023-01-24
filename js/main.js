@@ -150,7 +150,8 @@ window.addEventListener('load', function() {
       prix: document.querySelector("[name='prix']"),
       garde_jusqua: document.querySelector("[name='garde_jusqua']"),
       notes: document.querySelector("[name='notes']"),
-      type: document.querySelectorAll("[name='type']"),
+      typesPossibles: document.querySelectorAll("[name='type']"),
+      type: {}
     }
 
     /**
@@ -158,7 +159,6 @@ window.addEventListener('load', function() {
      * Si élément de liste dans les résultats de recherche cliqué,
      * complète le nom de la bouteille dans l'input du form.
      */
-
     liste.addEventListener('click', function (evt) {
       if (evt.target.tagName == 'LI') {
         bouteille.nom.dataset.id = evt.target.dataset.id;
@@ -186,9 +186,10 @@ window.addEventListener('load', function() {
           bouteille.description.value = bouteilleChoisi.description;
           bouteille.prix.value = bouteilleChoisi.prix_saq;
 
-          for (let i = 0, l = bouteille.type.length; i < l; i++) {
-            if(bouteille.type[i].dataset.id == bouteilleChoisi.vino__type_id) {
-              bouteille.type[i].checked = true;
+          for (let i = 0, l = bouteille.typesPossibles.length; i < l; i++) {
+            if(bouteille.typesPossibles[i].dataset.id == bouteilleChoisi.vino__type_id) {
+              bouteille.typesPossibles[i].checked = true;
+              bouteille.type = bouteille.typesPossibles[i];  
             }
           }
         })
@@ -209,11 +210,21 @@ window.addEventListener('load', function() {
     let btnAjouter = document.querySelector("[name='ajouterBouteilleCellier']")
     if (btnAjouter) {
       btnAjouter.addEventListener('click', function (evt) {
-        console.log("btnAJouter");
+
         
+        for (let i = 0, l = bouteille.typesPossibles.length; i < l; i++) {
+          if(bouteille.typesPossibles[i].checked == true) {
+            bouteille.type = bouteille.typesPossibles[i];  
+          }
+        }
+
         var param = {
           id_bouteille: bouteille.nom.dataset.id,
-          /* date_achat: bouteille.date_achat.value, */
+          id_type: bouteille.type.dataset.id,
+          nom: bouteille.nom.value,
+          pays: bouteille.pays.value,
+          description: bouteille.description.value,
+          format: bouteille.format.value,
           garde_jusqua: bouteille.garde_jusqua.value,
           notes: bouteille.notes.value,
           prix: bouteille.prix.value,
@@ -237,6 +248,7 @@ window.addEventListener('load', function() {
           })
           .then((response) => {
             console.log(response)
+            
           })
           .catch((error) => {
             console.error(error)
