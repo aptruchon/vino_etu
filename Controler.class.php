@@ -155,11 +155,10 @@ class Controler
 
 		$body = json_decode(file_get_contents('php://input'), true);
 		if (!empty($body)) {
-			var_dump($body);
 			$bte = new Bouteille();
-
 			$resultat = $bte->ajouterBouteilleCellier($body);
-			echo json_encode($resultat);
+
+			
 		} else {
 			$data["types"] = $types;
 			include("vues/entete.php");

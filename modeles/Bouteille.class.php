@@ -148,9 +148,6 @@ class Bouteille extends Modele
 	public function ajouterBouteilleCellier($data)
 	{
 		//TODO : Valider les données.
-		var_dump($data);
-		$cellierId = 1;
-		$stmtBouteille = $this->_db->prepare("INSERT INTO vino__cellier_contient (vino__cellier_id, vino__bouteille_id, vino__type_id, nom, pays, description, date_ajout, garde_jusqua , notes, prix, format quantite, millesime) VALUES (?,?, now(),?,?,?,?,?)");
 
 		$data["nom"] = htmlspecialchars($data["nom"]);
 		$data["pays"] = htmlspecialchars($data["pays"]);
@@ -159,10 +156,35 @@ class Bouteille extends Modele
 		$data["garde_jusqua"] = htmlspecialchars($data["garde_jusqua"]);
 		$data["notes"] = htmlspecialchars($data["notes"]);
 
-		$stmtBouteille->bind_param(
-			"iissdii",
+		$data["id_type"] = intval($data["id_type"]);
+		$data["prix"] = floatval($data["prix"]);
+		$data["quantite"] = intval($data["quantite"]);
+		$data["millesime"] = intval($data["millesime"]);
+
+		
+		if($data["id_bouteille"] == ""){
+			$stmtAjoutVinoBouteille = $this->_db->prepare("INSERT INTO vino__bouteille(vino__type_id, nom, pays, description, format, vino__catalogue_id) VALUES (?, ?, ?, ?, ?, ?)");
+			
+			$catalogueId = 2;
+			
+			$stmtAjoutVinoBouteille->bind_param("issssi", $data["id_type"], $data["nom"], $data["pays"], $data["description"], $data["format"], $catalogueId);
+
+			$resultat = $stmtAjoutVinoBouteille->execute();
+
+			$lastInsertedId = $stmtAjoutVinoBouteille->insert_id;
+			$data["id_bouteille"] = $lastInsertedId;
+			
+		}
+		
+		$cellierId = 1;
+
+		$stmtAjoutCellier = $this->_db->prepare("INSERT INTO vino__cellier_contient (vino__cellier_id, vino__bouteille_id, vino__type_id, nom, pays, description, date_ajout, garde_jusqua , notes, prix, format, quantite, millesime) VALUES (?,?,?,?,?,?,now(),?,?,?,?,?,?)");
+
+		$stmtAjoutCellier->bind_param(
+			"iiisssssdsii",
 			$cellierId,
 			$data["id_bouteille"],
+			$data["id_type"],
 			$data["nom"],
 			$data["pays"],
 			$data["description"],
@@ -173,10 +195,10 @@ class Bouteille extends Modele
 			$data["quantite"],
 			$data["millesime"]
 		);
-
-
-		$res = $stmtBouteille->execute();
-
+		
+		$res = $stmtAjoutCellier->execute();
+		
+		var_dump($stmtAjoutCellier->errno, $stmtAjoutCellier->error);
 		return $res;
 	}
 
