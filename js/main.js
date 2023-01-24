@@ -251,9 +251,9 @@ window.addEventListener('load', function() {
     let popupForm = document.getElementById("popupForm");
     let btnSupprimerBouteille = document.querySelector('[name="btnSupprimer"]');
     let modalContainer = document.getElementById("modal-container");
+    console.log(btnSupprimerBouteille);
     if(btnSupprimerBouteille){
       btnSupprimerBouteille.addEventListener('click', function(evt){
-        
         popupForm.style.display = "block";
         modalContainer.style.display = "block";
       })
