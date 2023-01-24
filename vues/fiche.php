@@ -17,69 +17,83 @@
                 <img src="./images/vin-fallback.png">
                 <?php endif; ?>
         <div class="description-container">
-            <header class="page-content-header"> 
+            <header class="page-content-header header-fiche"> 
                 <h2><?php echo $bouteille['nom'] ?></h2>
             </header> 
             <!--  -->
             <?php if ($bouteille['type']) : ?>
-                <p class="type <?php echo strtolower($bouteille['type']) ?>">Type: <?php echo $bouteille['type'] ?></p>
+                <p class="type <?php echo strtolower($bouteille['type']) ?>"><?php echo $bouteille['type'] ?></p>
             <?php else : ?>
                 <p class="type"></p>
             <?php endif; ?>
             <!--  -->
-            <?php if ($bouteille['pays']) : ?>
-                <p class="pays">Pays : <?php echo $bouteille['pays'] ?></p>
-            <?php else : ?>
-                <p class="pays"></p>
-            <?php endif; ?>
-            <!--  -->
-            <?php if ($bouteille['format']) : ?>
-                <p class="format">Format : <?php echo $bouteille['format'] ?></p>
-            <?php else : ?>
-                <p class="format"></p>
-            <?php endif; ?>
-            <!--  -->
-            <?php if ($bouteille['millesime']) : ?>
-                <p class="millesime">Millesime : <?php echo $bouteille['millesime'] ?></p>
-            <?php else : ?>
-                <p class="millesime"></p>
-            <?php endif; ?>
+            <div class="bloc-description">
+                <?php if ($bouteille['pays']) : ?>
+                    <p><?php echo $bouteille['pays'] ?></p>
+                <?php else : ?>
+                    <p></p>
+                <?php endif; ?>
+                <!--  -->
+                <?php if ($bouteille['format']) : ?>
+                    <p><?php echo $bouteille['format'] ?></p>
+                <?php else : ?>
+                    <p></p>
+                <?php endif; ?>
+                <!--  -->
+                <?php if ($bouteille['millesime']) : ?>
+                    <p >Millesime <?php echo $bouteille['millesime'] ?></p>
+                <?php else : ?>
+                    <p ></p>
+                <?php endif; ?>
+            </div>
             <!--  -->
             <?php if ($bouteille['description']) : ?>
-                <p class="description">Description : <?php echo $bouteille['description'] ?></p>
+                <h4>Description</h4>
+                <p><?php echo $bouteille['description'] ?></p>
             <?php else : ?>
-                <p class="description"></p>
+                <p></p>
             <?php endif; ?>
             <!--  -->
             <?php if ($bouteille['date_ajout']) : ?>
-                <p class="date_ajout">Date d'achat : <?php echo $bouteille['date_ajout'] ?></p>
+                <h4>Date d'achat</h4>
+                <p class="date_ajout"><?php echo $bouteille['date_ajout'] ?></p>
             <?php else : ?>
                 <p class="date_ajout"></p>
             <?php endif; ?>
             <!--  -->
             <?php if ($bouteille['garde_jusqua']) : ?>
-                <p class="garde_jusqua">Gardé jusqu'a : <?php echo $bouteille['garde_jusqua'] ?></p>
+                <h4>A garder jusqu'au</h4>
+                <p class="garde_jusqua"><?php echo $bouteille['garde_jusqua'] ?></p>
             <?php else : ?>
                 <p class="garde_jusqua"></p>
             <?php endif; ?>
             <!--  -->
             <?php if ($bouteille['notes']) : ?>
-                <p class="notes">Notes : <?php echo $bouteille['notes'] ?></p>
+                <h4>Notes</h4>
+                <p class="notes"><?php echo $bouteille['notes'] ?></p>
             <?php else : ?>
                 <p class="notes"></p>
             <?php endif; ?>
             <!--  -->
-            <?php if ($bouteille['prix_paye']) : ?>
-            <p class="prix">Prix payé : <?php echo '$ ' . $bouteille['prix_paye'] ?></p>
-            <?php else : ?>
-                <p class="prix_paye"></p>
-            <?php endif; ?>
-            <!--  -->
-            <?php if ($bouteille['prix_saq']) : ?>
-            <p class="prix_saq">Prix SAQ : <?php echo '$ ' . $bouteille['prix_saq'] ?></p>
-            <?php else : ?>
-                <p class="prix_saq"></p>
-            <?php endif; ?>
+            <div class="prix-container">
+                <div>
+                    <?php if ($bouteille['prix_paye']) : ?>
+                    <h4>Prix payé</h4>
+                    <span class="prix"><?php echo '$ ' . $bouteille['prix_paye'] ?></span>
+                    <?php else : ?>
+                        <p class="prix_paye"></p>
+                    <?php endif; ?>
+                </div>
+                <!--  -->
+                <div>
+                    <?php if ($bouteille['prix_saq']) : ?>
+                    <h4>Prix SAQ</h4>
+                    <span class="prix"><?php echo '$ ' . $bouteille['prix_saq'] ?></span>
+                    <?php else : ?>
+                        <p class="prix_saq"></p>
+                    <?php endif; ?>
+                </div>
+            </div>
             <!--  -->
         </div>
     </section> 

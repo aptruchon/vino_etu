@@ -1,19 +1,21 @@
+.fiche .page-content-header {
+    margin-bottom: 20px;
+}
+
 .bouteille_container{
     display: flex;
     flex-direction:column;
+    margin-bottom: 60px;
+    align-items: center;
 }
 
 .bouteille_container img{
     width: 300px;
     height: 300px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .description-container{
-    padding: 15px 45px;
     font-size: 18px;
-    color: grey;
 }
 
 .type{
@@ -36,4 +38,47 @@
     justify-content: space-between;
     margin: 20px 50px;
     padding: 0;
+}
+
+.description-title {
+    font-weight: bold;
+}
+
+.header-fiche {
+    text-align: left;
+}
+
+.header-fiche h2 {
+    font-size: 34px;
+}
+
+.bloc-description {
+    display: flex;
+    flex-direction: row;
+}
+
+.bloc-description p {
+    display: block;
+    margin-right: 20px;
+    color: gray;
+}
+
+.bouteille_container h4 {
+    margin-top: 10px;
+}
+
+.prix-container {
+    display: flex;
+    gap: 20px;
+}
+
+.prix {
+    padding: 4px 8px;
+    background-color: rgb(246, 246, 246);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    margin-top: 2px;
+    display: inline-block;
+    color: rgb(87, 87, 87);
 }

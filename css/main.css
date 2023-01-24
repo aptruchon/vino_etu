@@ -42,6 +42,14 @@ body {
 	min-height: 100vh;
 }
 
+/* Pour garder le maudit footer en bas */
+body::after {
+	content: '';
+	display: block;
+	height: 42px;
+	/* Set same as footer's height */
+}
+
 main {
 	margin-left: 20px;
 	margin-right: 20px;
