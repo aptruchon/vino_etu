@@ -1,6 +1,5 @@
 .modifieBouteille {
-    margin-bottom: 40px;
-    margin-top: 40px;
+    padding-bottom: 40px;
 }
 
 .modifieBouteille label {
@@ -66,8 +65,20 @@
     border-radius: 5px;
 }
 
-.retour{
-    margin-top: 30px ;
+
+
+.options-container {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.options-container .radio-label {
+    font-weight: normal;
+    margin-bottom: 40px;
+}
+
+.radio-label{
+    margin-right: 0;
 }
 
 /* ----------POP_UP-------------------- */
@@ -95,9 +106,8 @@
 /*  Container */
 .form-container {
     min-width: 300px;
-    padding: 20px;
+    padding: 0 20px;
     background-color: #fff;
-    width: 300px;
     height: 320px;
     border-radius: 10px;
 }
