@@ -161,10 +161,18 @@
         height: 400px;
      }
 
-     .logo{
+     /* Navigation */
+    .nav-header {
+        height: 70px;
+    }
+    .logo{
         width: 58px;
         height: 58px;
-     }
+    }
+    .titre{
+        font-size: 40px;
+    }
+
 
 }
 
@@ -202,9 +210,16 @@
         height: 400px;
     }
 
+    /* Navigation */
+    .nav-header {
+        height: 70px;
+    }
     .logo{
         width: 58px;
         height: 58px;
-     }
+    }
+    .titre{
+        font-size: 40px;
+    }
 }
 
