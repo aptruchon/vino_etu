@@ -33,17 +33,6 @@
 
             <label>Type</label>
 
-            <!-- ANCIEN RADIO BUTTON TYPE VIN -->
-            <!--<div class="options-container">
-                <?php for($i = 0; $i < count($data["types"]); $i++){ ?>
-                    <input type="radio" name="type" data-id="<?= $data["types"][$i]["id"]; ?>" id="<?= $data["types"][$i]["type"]; ?>" value="<?= $data["types"][$i]["type"]; ?>" class="radio-input">
-                    <label for="<?= $data["types"][$i]["type"]; ?>" class="radio-label"><?= $data["types"][$i]["type"]; ?></label><br>
-
-           
-                <?php } ?>
-            </div>-->
-
-            <!-- NOUVEAU SELECT OPTIONS TYPE VIN -->
             <select>
                     <?php for($i = 0; $i < count($dataTypes); $i++){ ?>
                         <option name="type" value="<?= $dataTypes[$i]["type"]; ?>" id="<?= $dataTypes[$i]["id"]; ?>"><?= $dataTypes[$i]["type"]; ?></option>
