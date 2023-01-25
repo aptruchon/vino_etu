@@ -1,15 +1,15 @@
 <div class="modifier">
     <?php
-    foreach ($data as $cle => $bouteille) {
+    foreach ($dataModifie as $cle => $bouteille) {
     ?>
         <a href="?requete=ficheDetailsBouteille&bte=<?php echo $bouteille['vino__bouteille_id'] ?>" class="retour">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256">
                 <path fill="#931818" d="M228 128a12 12 0 0 1-12 12H69l51.5 51.5a12 12 0 0 1 0 17a12.1 12.1 0 0 1-17 0l-72-72a12 12 0 0 1 0-17l72-72a12 12 0 0 1 17 17L69 116h147a12 12 0 0 1 12 12Z" />
             </svg>
         </a>
-        <header class="page-content-header">
+        <!-- <header class="page-content-header">
             <h2>Modifier une bouteille</h2>
-        </header>
+        </header> -->
         <form method="POST" action="index.php?requete=modifierBouteilleCellier&bte=<?php echo $bouteille['vino__bouteille_id'] ?>" class="form-container">
             <div class="modifieBouteille" vertical layout>
                 <div>

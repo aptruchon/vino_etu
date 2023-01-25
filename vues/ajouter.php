@@ -1,7 +1,7 @@
 <div class="ajouter">
-    <header class="page-content-header"> 
+    <!-- <header class="page-content-header"> 
         <h2>Ajouter une bouteille</h2>
-    </header> 
+    </header>  -->
     <a href="?requete=cellier" class="retour">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"><path fill="#931818" d="M228 128a12 12 0 0 1-12 12H69l51.5 51.5a12 12 0 0 1 0 17a12.1 12.1 0 0 1-17 0l-72-72a12 12 0 0 1 0-17l72-72a12 12 0 0 1 17 17L69 116h147a12 12 0 0 1 12 12Z"/></svg>
     </a>
@@ -36,9 +36,9 @@
 
             <label>Type</label>
             <div class="options-container">
-                <?php for($i = 0; $i < count($data["types"]); $i++){ ?>
-                    <input type="radio" name="type" data-id="<?= $data["types"][$i]["id"]; ?>" id="<?= $data["types"][$i]["type"]; ?>" value="<?= $data["types"][$i]["type"]; ?>" class="radio-input">
-                    <label for="<?= $data["types"][$i]["type"]; ?>" class="radio-label"><?= $data["types"][$i]["type"]; ?></label><br>
+                <?php for($i = 0; $i < count($dataTypes["types"]); $i++){ ?>
+                    <input type="radio" name="type" data-id="<?= $dataTypes["types"][$i]["id"]; ?>" id="<?= $dataTypes["types"][$i]["type"]; ?>" value="<?= $dataTypes["types"][$i]["type"]; ?>" class="radio-input">
+                    <label for="<?= $dataTypes["types"][$i]["type"]; ?>" class="radio-label"><?= $dataTypes["types"][$i]["type"]; ?></label><br>
                 <?php } ?>
             </div>
             <span class="champ-obligatoire-message"></span>

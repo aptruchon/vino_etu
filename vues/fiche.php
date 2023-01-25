@@ -1,6 +1,6 @@
 <div class="fiche">
     <?php
-    foreach ($data as $cle => $bouteille) {
+    foreach ($dataFiche as $cle => $bouteille) {
     ?>
     <div class="icons-container">
         <a href="?requete=cellier" class="retour">
