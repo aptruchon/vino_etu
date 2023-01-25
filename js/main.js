@@ -188,7 +188,7 @@ if (nomPage == 'inscription' || nomPage == 'connexion') {
         .then((response) => {
           console.log(response)
           bouteilleChoisi = response;
-          console.log(bouteille.type);
+          console.log(bouteille.typesPossibles);
 
           bouteille.pays.value = bouteilleChoisi.pays;
           bouteille.format.value = bouteilleChoisi.format;
@@ -196,9 +196,14 @@ if (nomPage == 'inscription' || nomPage == 'connexion') {
           bouteille.prix.value = bouteilleChoisi.prix_saq;
 
           for (let i = 0, l = bouteille.typesPossibles.length; i < l; i++) {
-            if(bouteille.typesPossibles[i].dataset.id == bouteilleChoisi.vino__type_id) {
-              bouteille.typesPossibles[i].checked = true;
+            if(bouteille.typesPossibles[i].id == bouteilleChoisi.vino__type_id) {
+              console.log(bouteille.typesPossibles[i].id);
+              
+              bouteille.typesPossibles[i].setAttribute("selected", "");
               bouteille.type = bouteille.typesPossibles[i];  
+            }
+            else {
+              bouteille.typesPossibles[i].removeAttribute("selected");
             }
           }
         })
