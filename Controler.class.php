@@ -46,6 +46,9 @@ class Controler
 			case 'boireBouteilleCellier':
 				$this->boireBouteilleCellier();
 				break;
+			case 'effacerBouteilleCellier':
+				$this->effacerBouteilleCellier($_GET['bteCellier']);
+				break;
 			case 'inscription':
 				$this->inscription();
 				break;
@@ -117,7 +120,6 @@ class Controler
 
 	private function modifierBouteilleCellier($userId, $cellierId, $idBouteille)
 	{
-		$body = json_decode(file_get_contents('php://input'));
 		$body = $_POST;
 
 		// var_dump($body);
@@ -140,6 +142,15 @@ class Controler
 		}
 	}
 
+	private function effacerBouteilleCellier($idBouteilleCellier)
+	{
+		$bte = new Bouteille();
+
+		$effacer = $bte->effacerBouteilleCellier($idBouteilleCellier);
+
+		Utilitaires::nouvelleRoute('index.php?requete=cellier');
+	}
+
 	private function informationBouteilleParId()
 	{
 		$bte = new Bouteille();
@@ -157,8 +168,6 @@ class Controler
 		if (!empty($body)) {
 			$bte = new Bouteille();
 			$resultat = $bte->ajouterBouteilleCellier($body);
-
-			
 		} else {
 			$data["types"] = $types;
 			include("vues/entete.php");
@@ -193,7 +202,6 @@ class Controler
 	 */
 	private function inscription()
 	{
-
 		include("vues/entete.php");
 		include("vues/inscription.php");
 		include("vues/pied.php");
@@ -204,7 +212,6 @@ class Controler
 	 */
 	private function connexion()
 	{
-
 		include("vues/entete.php");
 		include("vues/connexion.php");
 		include("vues/pied.php");
