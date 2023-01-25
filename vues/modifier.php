@@ -1,6 +1,6 @@
 <div class="modifier">
     <?php
-    foreach ($data as $cle => $bouteille) {
+    foreach ($dataModifie as $cle => $bouteille) {
     ?>
         <a href="?requete=ficheDetailsBouteille&bte=<?php echo $bouteille['vino__bouteille_id'] ?>" class="retour">
             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256">

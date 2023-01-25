@@ -89,7 +89,7 @@ class Controler
 	private function ficheDetailsBouteille($userId, $cellierId, $idBouteille)
 	{
 		$bte = new Bouteille();
-		$data = $bte->getListeBouteilleCellier($userId, $cellierId, $idBouteille);
+		$dataFiche = $bte->getListeBouteilleCellier($userId, $cellierId, $idBouteille);
 		include("vues/entete.php");
 		include("vues/navigation.php");
 		include("vues/fiche.php");
@@ -133,7 +133,7 @@ class Controler
 			$this->ficheDetailsBouteille($userId, $cellierId, $idBouteille);
 		} else {
 			$bte = new Bouteille();
-			$data = $bte->getListeBouteilleCellier($userId, $cellierId, $idBouteille);
+			$dataModifie = $bte->getListeBouteilleCellier($userId, $cellierId, $idBouteille);
 
 			include("vues/entete.php");
 			include("vues/navigation.php");
@@ -168,8 +168,10 @@ class Controler
 		if (!empty($body)) {
 			$bte = new Bouteille();
 			$resultat = $bte->ajouterBouteilleCellier($body);
+			var_dump($resultat);
 		} else {
-			$data["types"] = $types;
+			$dataTypes["types"] = $types;
+			// var_dump($data);
 			include("vues/entete.php");
 			include("vues/navigation.php");
 			include("vues/ajouter.php");
