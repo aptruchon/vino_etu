@@ -59,7 +59,7 @@ h2 {
 	font-size: 30px;
 }
 
-a{
+a {
 	cursor: pointer;
 }
 
@@ -97,6 +97,7 @@ a{
 	margin-top: 20px;
 	margin-bottom: 40px;
 	display: block;
+	width: fit-content;
 }
 
 
