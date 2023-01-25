@@ -169,7 +169,7 @@ class Controler
 			$bte = new Bouteille();
 			$resultat = $bte->ajouterBouteilleCellier($body);
 		} else {
-			$dataTypes["types"] = $types;
+			$dataTypes = $types;
 			// var_dump($data);
 			include("vues/entete.php");
 			include("vues/navigation.php");
