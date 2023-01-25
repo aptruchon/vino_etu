@@ -32,7 +32,7 @@
     font-size: 18px;
 }
 
-.nouvelleBouteille input,  .nouvelleBouteille textarea {
+.nouvelleBouteille input,  .nouvelleBouteille textarea,  .nouvelleBouteille select {
     display: block;
     margin-bottom: 40px;
     font-size: 18px;

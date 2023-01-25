@@ -40,14 +40,29 @@
         display: none;
     }
 
+    /* PAGE AJOUT */
+
+    .nouvelleBouteille {
+        margin-bottom: 0px;
+    }
+
+    .nouvelleBouteille .bouton-large {
+        margin-bottom: 0px;
+    }
+
+    /* PAGE INSCRIPTION / CONNEXION */
+
+    .login-container {
+        top: 48%;
+    }
 
 }
 
 @media only screen and (min-width:640px) and (max-width: 768px) {
 
-    main {
+    /* main {
         padding-bottom: 42px;
-    }
+    } */
 
     /* PAGE CELLIER */
 
@@ -62,16 +77,31 @@
         }
 
 
-    /* PAGE INSCRIPTION / CONNEXION */
+}
 
-    .login-container {
-        top: 48%;
-    }
+@media only screen and (min-width:640px) {
 
+    
 
 }
 
 @media only screen and (min-width: 768px) {
+
+    nav {
+            margin: auto;
+        }
+    
+    main {
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+    }
+
+    .form-page {
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+    }
 
     /* PAGE FICHE */
     
@@ -89,21 +119,6 @@
         height: 400px;
     }
 
-}
-
-
-@media only screen and (min-width: 768px) and (max-width: 1280px) {
-
-    nav {
-        margin: auto;
-    }
-
-    main {
-        margin-left: auto;
-        margin-right: auto;
-        width: 80%;
-    }
-
     /* PAGE CELLIER */
 
     .bouteilles-container {
@@ -116,19 +131,23 @@
         margin-right: auto;
         display: block;
     }
-    
+
+    /* PAGE CONNEXION/INSCRIPTION */
+
+    .tache-couleur {
+        right: -61px;
+    }
+
+}
+
+
+@media only screen and (min-width: 768px) and (max-width: 1280px) {
+
     /* ACCUEIL */
 
     .svg-superieur, .svg-inferieur, .svg-logo {
         height: 400px;
      }
-
-
-    /* PAGE CONNEXION/INSCRIPTION */
-
-        .tache-couleur {
-            right: -61px;
-        }
 
 }
 

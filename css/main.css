@@ -59,7 +59,7 @@ h2 {
 	font-size: 30px;
 }
 
-a{
+a {
 	cursor: pointer;
 }
 
@@ -96,6 +96,7 @@ a{
 .retour {
 	margin-bottom: 40px;
 	display: block;
+	width: fit-content;
 }
 
 
