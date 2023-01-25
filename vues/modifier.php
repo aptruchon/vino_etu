@@ -1,6 +1,6 @@
 <div class="modifier form-page">
     <?php
-    foreach ($data as $cle => $bouteille) {
+    foreach ($dataModifie as $cle => $bouteille) {
     ?>
         <header class="page-content-header">
             <h2>Modifier une bouteille</h2>

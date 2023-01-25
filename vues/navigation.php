@@ -14,10 +14,12 @@
             </a>
             <?php if (isset($data)) : ?>
                 <h2 class="titre" name="titre">Mon cellier</h2>
-            <?php elseif (isset($ajouter)) : ?>
+            <?php elseif (isset($resultat) | isset($dataTypes)) : ?>
                 <h2 class="titre" name="titre">Ajouter vin</h2>
-            <?php elseif (isset($modifier)) : ?>
+            <?php elseif (isset($dataModifie)) : ?>
                 <h2 class="titre" name="titre">Modifier vin</h2>
+                <?php elseif (isset($dataFiche)) : ?>
+                <h2 class="titre" name="titre">Fiche du vin</h2>
             <?php else : ?>
                 <h2 class="titre" name="titre"></h2>
             <?php endif ; ?>
