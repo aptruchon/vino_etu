@@ -240,7 +240,7 @@ if (nomPage == 'inscription' || nomPage == 'connexion') {
 
         var param = {
           id_bouteille: bouteille.nom.dataset.id,
-          id_type: bouteille.type.dataset.id,
+          id_type: bouteille.type.id,
           nom: bouteille.nom.value,
           pays: bouteille.pays.value,
           description: bouteille.description.value,
@@ -251,8 +251,8 @@ if (nomPage == 'inscription' || nomPage == 'connexion') {
           quantite: bouteille.quantite.value,
           millesime: bouteille.millesime.value,
         }
-
-        console.log(param);
+        console.log(JSON.stringify(param));
+        
         
         let requete = new Request(
           BaseURL + '?requete=ajouterNouvelleBouteilleCellier',
@@ -261,6 +261,8 @@ if (nomPage == 'inscription' || nomPage == 'connexion') {
         fetch(requete)
           .then((response) => {
             if (response.status === 200) {
+              console.log(response);
+              
               return response.json()
             } else {
               throw new Error('Erreur')
@@ -268,10 +270,13 @@ if (nomPage == 'inscription' || nomPage == 'connexion') {
           })
           .then((response) => {
             console.log(response)
-            
+            location.replace(BaseURL + "?requete=cellier");
           })
           .catch((error) => {
             console.error(error)
+
+            // Temporaire
+            location.replace(BaseURL + "?requete=cellier");
           })
       })
     }

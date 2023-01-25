@@ -170,7 +170,7 @@ class Controler
 			$resultat = $bte->ajouterBouteilleCellier($body);
 		} else {
 			$dataTypes = $types;
-			// var_dump($data);
+
 			include("vues/entete.php");
 			include("vues/navigation.php");
 			include("vues/ajouter.php");
