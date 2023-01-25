@@ -7,9 +7,9 @@
                 <path fill="#931818" d="M228 128a12 12 0 0 1-12 12H69l51.5 51.5a12 12 0 0 1 0 17a12.1 12.1 0 0 1-17 0l-72-72a12 12 0 0 1 0-17l72-72a12 12 0 0 1 17 17L69 116h147a12 12 0 0 1 12 12Z" />
             </svg>
         </a>
-    <header class="page-content-header">
-        <h2>Modifier une bouteille</h2>
-    </header>
+        <header class="page-content-header">
+            <h2>Modifier une bouteille</h2>
+        </header>
         <form method="POST" action="index.php?requete=modifierBouteilleCellier&bte=<?php echo $bouteille['vino__bouteille_id'] ?>" class="form-container">
             <div class="modifieBouteille" vertical layout>
                 <div>
@@ -59,17 +59,17 @@
                 <button type="button" class="bouton-large" name="btnSupprimer">Supprimer la bouteille</button>
             </div>
         </form>
-            <div class="modal-container" id="modal-container">
-                <div class="pop-up">
-                    <div class="form-popup" id="popupForm">
-                    <form action="/action_page.php" class="form-container">
+        <div class="modal-container" id="modal-container">
+            <div class="pop-up">
+                <div class="form-popup" id="popupForm">
+                    <form method="POST" action="index.php?requete=effacerBouteilleCellier&bteCellier=<?php echo $bouteille['id_bouteille_cellier'] ?>" class="form-container">
                         <h2>Voulez-vous supprimer cette bouteille?</h2>
                         <button type="submit" class="btn-boite-modale btn-oui">Oui</button>
                         <button type="button" class="btn-boite-modale btn-non" id="closeForm">Non</button>
                     </form>
-                    </div>
                 </div>
             </div>
+        </div>
     <?php
     }
     ?>

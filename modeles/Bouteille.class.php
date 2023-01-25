@@ -161,21 +161,20 @@ class Bouteille extends Modele
 		$data["quantite"] = intval($data["quantite"]);
 		$data["millesime"] = intval($data["millesime"]);
 
-		
-		if($data["id_bouteille"] == ""){
+
+		if ($data["id_bouteille"] == "") {
 			$stmtAjoutVinoBouteille = $this->_db->prepare("INSERT INTO vino__bouteille(vino__type_id, nom, pays, description, format, vino__catalogue_id) VALUES (?, ?, ?, ?, ?, ?)");
-			
+
 			$catalogueId = 2;
-			
+
 			$stmtAjoutVinoBouteille->bind_param("issssi", $data["id_type"], $data["nom"], $data["pays"], $data["description"], $data["format"], $catalogueId);
 
 			$resultat = $stmtAjoutVinoBouteille->execute();
 
 			$lastInsertedId = $stmtAjoutVinoBouteille->insert_id;
 			$data["id_bouteille"] = $lastInsertedId;
-			
 		}
-		
+
 		$cellierId = 1;
 
 		$stmtAjoutCellier = $this->_db->prepare("INSERT INTO vino__cellier_contient (vino__cellier_id, vino__bouteille_id, vino__type_id, nom, pays, description, date_ajout, garde_jusqua , notes, prix, format, quantite, millesime) VALUES (?,?,?,?,?,?,now(),?,?,?,?,?,?)");
@@ -195,9 +194,9 @@ class Bouteille extends Modele
 			$data["quantite"],
 			$data["millesime"]
 		);
-		
+
 		$res = $stmtAjoutCellier->execute();
-		
+
 		var_dump($stmtAjoutCellier->errno, $stmtAjoutCellier->error);
 		return $res;
 	}
@@ -235,6 +234,28 @@ class Bouteille extends Modele
 			$data["quantite"],
 			$data["millesime"],
 			$data["id_bouteille_cellier"]
+		);
+
+		$res = $stmt->execute();
+
+		return $res;
+	}
+
+
+	/**
+	 * Cette méthode efface une bouteille du cellier
+	 * 
+	 * @param Integer $idBouteilleCellier Id de la table vino__cellier_contient.
+	 * 
+	 * @return Boolean Succès ou échec de la suppression.
+	 */
+	public function effacerBouteilleCellier($idBouteilleCellier)
+	{
+		$stmt = $this->_db->prepare("DELETE FROM vino__cellier_contient WHERE id = ?");
+
+		$stmt->bind_param(
+			"i",
+			$idBouteilleCellier
 		);
 
 		$res = $stmt->execute();
