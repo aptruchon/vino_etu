@@ -161,6 +161,11 @@
         height: 400px;
      }
 
+     .logo{
+        width: 58px;
+        height: 58px;
+     }
+
 }
 
 @media only screen and (min-width: 1100px) {
@@ -197,5 +202,9 @@
         height: 400px;
     }
 
+    .logo{
+        width: 58px;
+        height: 58px;
+     }
 }
 
