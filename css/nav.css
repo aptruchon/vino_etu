@@ -1,12 +1,12 @@
 .nav-header {
     background-color:  var(--red);
-    height: 70px;
+    height: 80px;
 }
 
 nav {
     display: flex;
     flex-direction: row;
-    padding: 10px 20px;
+    padding: 5px 20px;
     justify-content: space-between;
     align-items: center;
  
@@ -14,12 +14,12 @@ nav {
 
 .titre {
     color: white;
-    font-weight: bold;
+    font-weight: 100;
     text-decoration: none;
-    font-size: 30px;
+    font-size: 50px;
     justify-content: center;
     align-items: center;
- 
+    font-family: 'Kurale', serif;
 }
 
 
