@@ -171,7 +171,6 @@ if (nomPage == 'inscription' || nomPage == 'connexion') {
     liste.addEventListener('click', function (evt) {
       if (evt.target.tagName == 'LI') {
         bouteille.nom.dataset.id = evt.target.dataset.id;
-        bouteille.nom.value = evt.target.innerHTML;
         
         let requete = new Request(
           BaseURL + "?requete=informationBouteilleParId&id=" + bouteille.nom.dataset.id ,
@@ -190,20 +189,27 @@ if (nomPage == 'inscription' || nomPage == 'connexion') {
           bouteilleChoisi = response;
           console.log(bouteille.typesPossibles);
 
+          bouteille.nom.value = bouteilleChoisi.nom;
           bouteille.pays.value = bouteilleChoisi.pays;
           bouteille.format.value = bouteilleChoisi.format;
           bouteille.description.value = bouteilleChoisi.description;
           bouteille.prix.value = bouteilleChoisi.prix_saq;
+          bouteille.nom.setAttribute("readonly", true);
+          bouteille.pays.setAttribute("readonly", true);
+          bouteille.format.setAttribute("readonly", true);
+          bouteille.description.setAttribute("readonly", true);
+          bouteille.prix.setAttribute("readonly", true);
 
           for (let i = 0, l = bouteille.typesPossibles.length; i < l; i++) {
             if(bouteille.typesPossibles[i].id == bouteilleChoisi.vino__type_id) {
-              console.log(bouteille.typesPossibles[i].id);
               
+              bouteille.typesPossibles[i].removeAttribute("disabled");
               bouteille.typesPossibles[i].setAttribute("selected", "");
               bouteille.type = bouteille.typesPossibles[i];  
             }
             else {
               bouteille.typesPossibles[i].removeAttribute("selected");
+              bouteille.typesPossibles[i].setAttribute("disabled", true);
             }
           }
         })
