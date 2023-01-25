@@ -1,5 +1,5 @@
-<div class="ajouter">
-    <!-- <header class="page-content-header"> 
+<div class="form-page">
+    <header class="page-content-header"> 
         <h2>Ajouter une bouteille</h2>
     </header>  -->
     <a href="?requete=cellier" class="retour">
@@ -35,12 +35,23 @@
             <span class="champ-obligatoire-message"></span>
 
             <label>Type</label>
-            <div class="options-container">
-                <?php for($i = 0; $i < count($dataTypes["types"]); $i++){ ?>
-                    <input type="radio" name="type" data-id="<?= $dataTypes["types"][$i]["id"]; ?>" id="<?= $dataTypes["types"][$i]["type"]; ?>" value="<?= $dataTypes["types"][$i]["type"]; ?>" class="radio-input">
-                    <label for="<?= $dataTypes["types"][$i]["type"]; ?>" class="radio-label"><?= $dataTypes["types"][$i]["type"]; ?></label><br>
+
+            <!-- ANCIEN RADIO BUTTON TYPE VIN -->
+            <!--<div class="options-container">
+                <?php for($i = 0; $i < count($data["types"]); $i++){ ?>
+                    <input type="radio" name="type" data-id="<?= $data["types"][$i]["id"]; ?>" id="<?= $data["types"][$i]["type"]; ?>" value="<?= $data["types"][$i]["type"]; ?>" class="radio-input">
+                    <label for="<?= $data["types"][$i]["type"]; ?>" class="radio-label"><?= $data["types"][$i]["type"]; ?></label><br>
+
+           
                 <?php } ?>
-            </div>
+            </div>-->
+
+            <!-- NOUVEAU SELECT OPTIONS TYPE VIN -->
+            <select name="type" data-id="<?= $data["types"][$i]["id"]; ?>" id="<?= $data["types"][$i]["type"]; ?>">
+                    <?php for($i = 0; $i < count($data["types"]); $i++){ ?>
+                        <option value="<?= $data["types"][$i]["type"]; ?>"><?= $data["types"][$i]["type"]; ?></option>
+                    <?php } ?>
+            </select>
             <span class="champ-obligatoire-message"></span>
 
             <label for="prix">Prix</label>

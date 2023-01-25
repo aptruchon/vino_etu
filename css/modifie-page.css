@@ -9,7 +9,7 @@
     font-size: 18px;
 }
 
-.modifieBouteille input[type=text], .modifieBouteille input[type=number] {
+.modifieBouteille input[type=text], .modifieBouteille input[type=number],  .modifieBouteille select {
     display: block;
     margin-bottom: 40px;
     font-size: 18px;
@@ -101,19 +101,6 @@
     border: 1px solid rgb(234, 234, 234);
     z-index: 9;
     border-radius: 10px;
-}
-
-/*  Container */
-.form-container {
-    min-width: 300px;
-    padding: 0 20px;
-    background-color: #fff;
-    height: 320px;
-    border-radius: 10px;
-}
-
-.form-container h2 {
-    margin-bottom: 50px;
 }
 
 /* Bouton de confirmation */
