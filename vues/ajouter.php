@@ -34,9 +34,9 @@
             <label>Type</label>
 
             <select>
-                    <?php for($i = 0; $i < count($dataTypes); $i++){ ?>
-                        <option name="type" value="<?= $dataTypes[$i]["type"]; ?>" id="<?= $dataTypes[$i]["id"]; ?>"><?= $dataTypes[$i]["type"]; ?></option>
-                    <?php } ?>
+                <?php for($i = 0; $i < count($dataTypes); $i++){ ?>
+                    <option name="type" value="<?= $dataTypes[$i]["type"]; ?>" id="<?= $dataTypes[$i]["id"]; ?>"><?= $dataTypes[$i]["type"]; ?></option>
+                <?php } ?>
             </select>
             <span class="champ-obligatoire-message"></span>
 
