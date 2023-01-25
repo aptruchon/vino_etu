@@ -36,9 +36,9 @@
 
             <label>Type</label>
             <div class="options-container">
-                <?php for($i = 0; $i < count($data["types"]); $i++){ ?>
-                    <input type="radio" name="type" data-id="<?= $data["types"][$i]["id"]; ?>" id="<?= $data["types"][$i]["type"]; ?>" value="<?= $data["types"][$i]["type"]; ?>" class="radio-input">
-                    <label for="<?= $data["types"][$i]["type"]; ?>" class="radio-label"><?= $data["types"][$i]["type"]; ?></label><br>
+                <?php for($i = 0; $i < count($dataTypes["types"]); $i++){ ?>
+                    <input type="radio" name="type" data-id="<?= $dataTypes["types"][$i]["id"]; ?>" id="<?= $dataTypes["types"][$i]["type"]; ?>" value="<?= $dataTypes["types"][$i]["type"]; ?>" class="radio-input">
+                    <label for="<?= $dataTypes["types"][$i]["type"]; ?>" class="radio-label"><?= $dataTypes["types"][$i]["type"]; ?></label><br>
                 <?php } ?>
             </div>
             <span class="champ-obligatoire-message"></span>

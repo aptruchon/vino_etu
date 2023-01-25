@@ -168,7 +168,6 @@ class Controler
 		if (!empty($body)) {
 			$bte = new Bouteille();
 			$resultat = $bte->ajouterBouteilleCellier($body);
-			var_dump($resultat);
 		} else {
 			$dataTypes["types"] = $types;
 			// var_dump($data);
