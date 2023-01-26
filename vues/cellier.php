@@ -43,7 +43,7 @@
 
 <!-- FENETRE POP-UP CONFIRMATION-->
 <?php 
-    $_SESSION['estVisible'] = true;
+    $_SESSION['estVisible'] = false;
 ?>
 
 <script type="text/javascript">
