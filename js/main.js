@@ -197,11 +197,21 @@ window.addEventListener('load', function() {
             bouteille.format.value = bouteilleChoisi.format
             bouteille.description.value = bouteilleChoisi.description
             bouteille.prix.value = bouteilleChoisi.prix_saq
+            
             bouteille.nom.setAttribute('readonly', true)
             bouteille.pays.setAttribute('readonly', true)
             bouteille.format.setAttribute('readonly', true)
             bouteille.description.setAttribute('readonly', true)
             bouteille.prix.setAttribute('readonly', true)
+
+            bouteille.nom.classList.add('readOnly')
+            bouteille.pays.classList.add('readOnly')
+            bouteille.format.classList.add('readOnly')
+            bouteille.description.classList.add('readOnly')
+            bouteille.prix.classList.add('readOnly')
+
+            let elSelectType = document.querySelector('select');
+            elSelectType.classList.add('noEvent');
 
             for (let i = 0, l = bouteille.typesPossibles.length; i < l; i++) {
               if (
