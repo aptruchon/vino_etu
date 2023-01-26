@@ -65,6 +65,12 @@
         font-size: 16px;
     }
 
+    .nouvelleBouteille input,
+    .nouvelleBouteille textarea,
+    .nouvelleBouteille select {
+        font-size: 16px;
+    }
+
     /* MODIFIE */
 
     .modifieBouteille label {
@@ -131,10 +137,8 @@
         margin-bottom: 0px;
     }
 
-    .nouvelleBouteille input,
-    .nouvelleBouteille textarea,
-    .nouvelleBouteille select {
-        margin-bottom: 20px;
+    .nouvelleBouteille label {
+        margin-top: 20px;
     }
 
     /* PAGE MODIFIER */

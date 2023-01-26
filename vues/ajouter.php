@@ -7,7 +7,7 @@
         <ul class="listeAutoComplete">
 
         </ul>
-        <div>
+        <div class="input-container">
             <label for="nom">Nom</label>
             <input type="text" name="nom" data-id="" id="nom">
             <span class="champ-obligatoire-message"></span>
