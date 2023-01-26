@@ -62,7 +62,8 @@ class Controler
 				$this->ficheDetailsBouteille($userId, $cellierId, $_GET['bte']);
 				break;
 			default:
-				$this->accueil();
+				// $this->accueil();
+				$this->cellier($userId, $cellierId);
 				break;
 		}
 	}
