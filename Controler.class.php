@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 /**
  * Class Controler
  * Gère les requêtes HTTP
@@ -87,10 +88,15 @@ class Controler
 	}
 
 
-	private function ficheDetailsBouteille($userId, $cellierId, $idBouteille)
+	private function ficheDetailsBouteille($userId, $cellierId, $idBouteille, $showMessage=false)
 	{
 		$bte = new Bouteille();
 		$dataFiche = $bte->getListeBouteilleCellier($userId, $cellierId, $idBouteille);
+		// Afficher message confirmation si modifications
+		if ($showMessage) {
+				$_SESSION["message"] = "Modifications enregistrées !";
+				$_SESSION["estVisible"] = true;
+		} 
 		include("vues/entete.php");
 		include("vues/navigation.php");
 		include("vues/fiche.php");
@@ -131,10 +137,12 @@ class Controler
 		if (!empty($body)) {
 			$bte = new Bouteille();
 			// var_dump($body);
-
 			$modifier = $bte->modifierBouteilleCellier($body);
+			
+			$showMessage = false;
+			if ($modifier) $showMessage = true;
 
-			$this->ficheDetailsBouteille($userId, $cellierId, $idBouteille);
+			$this->ficheDetailsBouteille($userId, $cellierId, $idBouteille, $showMessage);
 		} else {
 			$dataTypesModifier = $types;
 
@@ -178,7 +186,7 @@ class Controler
 				$_SESSION["message"] = "Bouteille déjà créée.";
 				$_SESSION["estVisible"] = true;
 			} else {
-				$_SESSION["message"] = "Bouteille ajoutée!";
+				$_SESSION["message"] = "Bouteille ajoutée !";
 				$_SESSION["estVisible"] = true;
 			}
 			// var_dump($resultat, $_SESSION["message"]);
@@ -209,7 +217,7 @@ class Controler
 
 		$bte = new Bouteille();
 		$resultat = $bte->modifierQuantiteBouteilleCellier($body->id, 1);
-		//var_dump($resultat);
+		// var_dump($resultat);
 		echo json_encode($resultat);
 	}
 

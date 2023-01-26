@@ -45,9 +45,7 @@
                     <?php endif; ?>
                     <!--  -->
                     <?php if ($bouteille['millesime']) : ?>
-                        <p> <?php echo $bouteille['millesime'] ?></p>
-                    <?php else : ?>
-                        <p></p>
+                        <p> Millesime <?php echo $bouteille['millesime'] ?></p>
                     <?php endif; ?>
                 </div>
                 <!--  -->
@@ -105,4 +103,18 @@
     <?php
     }
     ?>
+</div>
+
+<!-- FENETRE POP-UP CONFIRMATION-->
+
+<script type="text/javascript">
+    var estVisible = <?php echo $_SESSION['estVisible']; ?>;
+</script>
+<script src="./js/fenetreConf.js"></script>
+
+<div class="window-background <?= $_SESSION['estVisible'] ? 'show-window' : '' ; ?>" data-js-fenetre-message>
+    <div class="window ">
+        <?php echo $_SESSION['message']; ?></p>
+        <?php $_SESSION['estVisible'] = '0'; // false en php ?>
+    </div>
 </div>

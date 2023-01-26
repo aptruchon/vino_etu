@@ -42,18 +42,15 @@
 </div>
 
 <!-- FENETRE POP-UP CONFIRMATION-->
-<?php 
-    $_SESSION['estVisible'] = false;
-?>
 
 <script type="text/javascript">
     var estVisible = <?php echo $_SESSION['estVisible']; ?>;
 </script>
 <script src="./js/fenetreConf.js"></script>
 
-<div class="window-background" data-js-fenetre-message>
+<div class="window-background <?= $_SESSION['estVisible'] ? 'show-window' : '' ; ?>" data-js-fenetre-message>
     <div class="window ">
         <?php echo $_SESSION['message']; ?></p>
-        <?php $_SESSION['estVisible'] = false; ?>
+        <?php $_SESSION['estVisible'] = '0'; // false en php ?>
     </div>
 </div>
