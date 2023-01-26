@@ -120,6 +120,9 @@ class Controler
 
 	private function modifierBouteilleCellier($userId, $cellierId, $idBouteille)
 	{
+		$type = new Type();
+		$types = $type->getTypes();
+
 		$body = $_POST;
 
 		// var_dump($body);
@@ -132,6 +135,8 @@ class Controler
 
 			$this->ficheDetailsBouteille($userId, $cellierId, $idBouteille);
 		} else {
+			$dataTypes = $types;
+
 			$bte = new Bouteille();
 			$dataModifie = $bte->getListeBouteilleCellier($userId, $cellierId, $idBouteille);
 

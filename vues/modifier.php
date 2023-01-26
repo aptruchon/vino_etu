@@ -12,10 +12,10 @@
                 <div>
                     <input type="hidden" name="id_bouteille_cellier" id="id_bouteille_cellier" value="<?php echo $bouteille['id_bouteille_cellier'] ?>">
                     <label for="nom">Nom</label>
-                    <input type="text" name="nom" data-id="" id="nom" value="<?php echo $bouteille['nom'] ?>">
+                    <input type="text" name="nom" data-id="" id="nom" value="<?php echo utf8_decode($bouteille['nom']) ?>">
                     <span class="champ-obligatoire-message"></span>
                     <label for="pays">Pays</label>
-                    <input type="text" name="pays" data-id="" id="pays" value="<?php echo $bouteille['pays'] ?>">
+                    <input type="text" name="pays" data-id="" id="pays" value="<?php echo utf8_decode($bouteille['pays']) ?>">
                     <span class="champ-obligatoire-message"></span>
                     <label for="format">Format</label>
                     <input type="text" name="format" data-id="" id="format" value="<?php echo $bouteille['format'] ?>">
@@ -24,7 +24,7 @@
                     <input type="text" name="millesime" id="millesime" value="<?php echo $bouteille['millesime'] ?>">
                     <span class="champ-obligatoire-message"></span>
                     <label for="description">Description</label>
-                    <textarea name="description" id="description"><?php echo $bouteille['description'] ?></textarea>
+                    <textarea name="description" id="description"><?php echo utf8_decode($bouteille['description']) ?></textarea>
                     <span class="champ-obligatoire-message"></span>
                     <label for="quantite">Quantite</label>
                     <input type="number" name="quantite" id="quantite" value="<?php echo $bouteille['quantite'] ?>">
@@ -43,9 +43,10 @@
                     </div>-->
 
                     <!-- NOUVEAU SELECT OPTIONS TYPE VIN -->
-                    <select name="type" data-id="<?= $data["types"][$i]["id"]; ?>" id="<?= $data["types"][$i]["type"]; ?>">  
-                        <option value="rouge" <?php echo ((strtolower($bouteille['type']) == 'rouge') ? 'selected' : '') ?>>Rouge</option>
-                        <option value="blanc" <?php echo ((strtolower($bouteille['type']) == 'blanc') ? 'selected' : '') ?>>Blanc</option>   
+                    <select name="type">
+                        <?php for ($i = 0; $i < count($dataTypes); $i++) { ?>
+                            <option value="<?= $dataTypes[$i]["id"]; ?>" <?php echo ((strtolower($bouteille['type']) == strtolower($dataTypes[$i]["type"])) ? 'selected' : '') ?>><?= $dataTypes[$i]["type"]; ?></option>
+                        <?php } ?>
                     </select>
 
                     <span class="champ-obligatoire-message"></span>
@@ -57,10 +58,10 @@
                     <input type="number" name="prix" id="prix" value="<?php echo $bouteille['prix_paye'] ?>">
                     <span class="champ-obligatoire-message"></span>
                     <label for="garde_jusqua">A garder jusqu'au</label>
-                    <input type="text" name="garde_jusqua" id="garde_jusqua" value="<?php echo $bouteille['garde_jusqua'] ?>">
+                    <input type="text" name="garde_jusqua" id="garde_jusqua" value="<?php echo utf8_decode($bouteille['garde_jusqua']) ?>">
                     <span class="champ-obligatoire-message"></span>
                     <label for="notes">Notes</label>
-                    <input type="text" name="notes" id="notes" value="<?php echo $bouteille['notes'] ?>">
+                    <input type="text" name="notes" id="notes" value="<?php echo utf8_decode($bouteille['notes']) ?>">
                     <span class="champ-obligatoire-message"></span>
                 </div>
                 <div class="buttons-wrapper">
