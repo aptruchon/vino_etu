@@ -12,17 +12,18 @@
 //const BaseURL = document.baseURI;
 const BaseURL = window.location.href.split('?')[0];
 console.log(BaseURL);
+
 window.addEventListener('load', function() {
   // console.log('load')
 
-
   /***
    * Ajout d'une classe sur le body des pages inscription et connexion pour que le background colore ne deborde pas du body en mobile.
-   */  
-const nomPage = window.location.href.split('=')[1];
-if (nomPage == 'inscription' || nomPage == 'connexion') {
-  document.querySelector('body').classList.add('body-container');
-}
+   */
+  const nomPage = window.location.href.split('=')[1];
+  if (nomPage == 'inscription' || nomPage == 'connexion') {
+    document.querySelector('body').classList.add('body-container')
+  }
+
 
   /**
    * Fonctionnalité page Cellier
@@ -35,10 +36,10 @@ if (nomPage == 'inscription' || nomPage == 'connexion') {
       // Empêche la propagation de l'evt sur parent ou enfant
       evt.stopPropagation()
       let id = evt.target.dataset.id
-      let requete = new Request(
-        BaseURL + '?requete=boireBouteilleCellier',
-        { method: 'POST', body: '{"id": ' + id + '}' }
-      )
+      let requete = new Request(BaseURL + '?requete=boireBouteilleCellier', {
+        method: 'POST',
+        body: '{"id": ' + id + '}',
+      })
 
       fetch(requete)
         .then((response) => {
@@ -51,10 +52,10 @@ if (nomPage == 'inscription' || nomPage == 'connexion') {
         .then((response) => {
           console.debug(response)
 
-          if(response){
+          if (response) {
             // Recupere la div bouteille ou se trouvent les infos du vin
-            let div = evt.target.closest('.bouteille');
-            updateQuantiteApresBoire(div);
+            let div = evt.target.closest('.bouteille')
+            updateQuantiteApresBoire(div)
           }
         })
         .catch((error) => {
@@ -73,11 +74,11 @@ if (nomPage == 'inscription' || nomPage == 'connexion') {
     element.addEventListener('click', function (evt) {
       // Empêche la propagation de l'evt sur parent ou enfant
       evt.stopPropagation()
-      let id = evt.target.dataset.id;
-      let requete = new Request(
-        BaseURL + '?requete=ajouterBouteilleCellier',
-        { method: 'POST', body: '{"id": ' + id + '}' }
-      )
+      let id = evt.target.dataset.id
+      let requete = new Request(BaseURL + '?requete=ajouterBouteilleCellier', {
+        method: 'POST',
+        body: '{"id": ' + id + '}',
+      })
 
       fetch(requete)
         .then((response) => {
@@ -90,10 +91,10 @@ if (nomPage == 'inscription' || nomPage == 'connexion') {
         .then((response) => {
           console.debug(response)
 
-          if(response) {
+          if (response) {
             // Recupère la div bouteille où se trouvent les infos du vin.
-            let div = evt.target.closest('.bouteille');
-            updateQuantiteApresAjouter(div);
+            let div = evt.target.closest('.bouteille')
+            updateQuantiteApresAjouter(div)
           }
         })
         .catch((error) => {
@@ -117,10 +118,10 @@ if (nomPage == 'inscription' || nomPage == 'connexion') {
       let nom = inputNomBouteille.value
       liste.innerHTML = ''
       if (nom) {
-        let requete = new Request(
-          BaseURL + '?requete=autocompleteBouteille',
-          { method: 'POST', body: '{"nom": "' + nom + '"}' }
-        )
+        let requete = new Request(BaseURL + '?requete=autocompleteBouteille', {
+          method: 'POST',
+          body: '{"nom": "' + nom + '"}',
+        })
         fetch(requete)
           .then((response) => {
             if (response.status === 200) {
@@ -160,7 +161,7 @@ if (nomPage == 'inscription' || nomPage == 'connexion') {
       garde_jusqua: document.querySelector("[name='garde_jusqua']"),
       notes: document.querySelector("[name='notes']"),
       typesPossibles: document.querySelectorAll("[name='type']"),
-      type: {}
+      type: {},
     }
 
     /**
@@ -170,52 +171,54 @@ if (nomPage == 'inscription' || nomPage == 'connexion') {
      */
     liste.addEventListener('click', function (evt) {
       if (evt.target.tagName == 'LI') {
-        bouteille.nom.dataset.id = evt.target.dataset.id;
-        
+        bouteille.nom.dataset.id = evt.target.dataset.id
+
         let requete = new Request(
-          BaseURL + "?requete=informationBouteilleParId&id=" + bouteille.nom.dataset.id ,
+          BaseURL +
+            '?requete=informationBouteilleParId&id=' +
+            bouteille.nom.dataset.id,
           { method: 'GET' }
         )
         fetch(requete)
-        .then((response) => {
-          if (response.status === 200) {
-            return response.json()
-          } else {
-            throw new Error('Erreur')
-          }
-        })
-        .then((response) => {
-          console.log(response)
-          bouteilleChoisi = response;
-          console.log(bouteille.typesPossibles);
-
-          bouteille.nom.value = bouteilleChoisi.nom;
-          bouteille.pays.value = bouteilleChoisi.pays;
-          bouteille.format.value = bouteilleChoisi.format;
-          bouteille.description.value = bouteilleChoisi.description;
-          bouteille.prix.value = bouteilleChoisi.prix_saq;
-          bouteille.nom.setAttribute("readonly", true);
-          bouteille.pays.setAttribute("readonly", true);
-          bouteille.format.setAttribute("readonly", true);
-          bouteille.description.setAttribute("readonly", true);
-          bouteille.prix.setAttribute("readonly", true);
-
-          for (let i = 0, l = bouteille.typesPossibles.length; i < l; i++) {
-            if(bouteille.typesPossibles[i].id == bouteilleChoisi.vino__type_id) {
-              
-              bouteille.typesPossibles[i].removeAttribute("disabled");
-              bouteille.typesPossibles[i].setAttribute("selected", "");
-              bouteille.type = bouteille.typesPossibles[i];  
+          .then((response) => {
+            if (response.status === 200) {
+              return response.json()
+            } else {
+              throw new Error('Erreur')
             }
-            else {
-              bouteille.typesPossibles[i].removeAttribute("selected");
-              bouteille.typesPossibles[i].setAttribute("disabled", true);
+          })
+          .then((response) => {
+            console.log(response)
+            bouteilleChoisi = response
+            console.log(bouteille.typesPossibles)
+
+            bouteille.nom.value = bouteilleChoisi.nom
+            bouteille.pays.value = bouteilleChoisi.pays
+            bouteille.format.value = bouteilleChoisi.format
+            bouteille.description.value = bouteilleChoisi.description
+            bouteille.prix.value = bouteilleChoisi.prix_saq
+            bouteille.nom.setAttribute('readonly', true)
+            bouteille.pays.setAttribute('readonly', true)
+            bouteille.format.setAttribute('readonly', true)
+            bouteille.description.setAttribute('readonly', true)
+            bouteille.prix.setAttribute('readonly', true)
+
+            for (let i = 0, l = bouteille.typesPossibles.length; i < l; i++) {
+              if (
+                bouteille.typesPossibles[i].id == bouteilleChoisi.vino__type_id
+              ) {
+                bouteille.typesPossibles[i].removeAttribute('disabled')
+                bouteille.typesPossibles[i].setAttribute('selected', '')
+                bouteille.type = bouteille.typesPossibles[i]
+              } else {
+                bouteille.typesPossibles[i].removeAttribute('selected')
+                bouteille.typesPossibles[i].setAttribute('disabled', true)
+              }
             }
-          }
-        })
-        .catch((error) => {
-          console.error(error)
-        })
+          })
+          .catch((error) => {
+            console.error(error)
+          })
 
         liste.innerHTML = ''
         inputNomBouteille.value = ''
@@ -230,11 +233,9 @@ if (nomPage == 'inscription' || nomPage == 'connexion') {
     let btnAjouter = document.querySelector("[name='ajouterBouteilleCellier']")
     if (btnAjouter) {
       btnAjouter.addEventListener('click', function (evt) {
-
-        
         for (let i = 0, l = bouteille.typesPossibles.length; i < l; i++) {
-          if(bouteille.typesPossibles[i].checked == true) {
-            bouteille.type = bouteille.typesPossibles[i];  
+          if (bouteille.typesPossibles[i].checked == true) {
+            bouteille.type = bouteille.typesPossibles[i]
           }
         }
 
@@ -251,9 +252,8 @@ if (nomPage == 'inscription' || nomPage == 'connexion') {
           quantite: bouteille.quantite.value,
           millesime: bouteille.millesime.value,
         }
-        console.log(JSON.stringify(param));
-        
-        
+        console.log(JSON.stringify(param))
+
         let requete = new Request(
           BaseURL + '?requete=ajouterNouvelleBouteilleCellier',
           { method: 'POST', body: JSON.stringify(param) }
@@ -261,8 +261,8 @@ if (nomPage == 'inscription' || nomPage == 'connexion') {
         fetch(requete)
           .then((response) => {
             if (response.status === 200) {
-              console.log(response);
-              
+              console.log(response)
+
               return response.json()
             } else {
               throw new Error('Erreur')
@@ -270,35 +270,36 @@ if (nomPage == 'inscription' || nomPage == 'connexion') {
           })
           .then((response) => {
             console.log(response)
-            location.replace(BaseURL + "?requete=cellier");
+            location.replace(BaseURL + '?requete=cellier')
           })
           .catch((error) => {
             console.error(error)
 
             // Temporaire
-            location.replace(BaseURL + "?requete=cellier");
+            location.replace(BaseURL + '?requete=cellier')
           })
       })
     }
   }
 
   /**
-   * Fonctionnalité pour ouvrir la boite modale
+   * Fonctionnalité pour ouvrir la boite modale supprimer
    */
-    let popupForm = document.getElementById("popupForm");
-    let btnSupprimerBouteille = document.querySelector('[name="btnSupprimer"]');
-    let modalContainer = document.getElementById("modal-container");
-    console.log(btnSupprimerBouteille);
-    if(btnSupprimerBouteille){
-      btnSupprimerBouteille.addEventListener('click', function(evt){
-        popupForm.style.display = "block";
-        modalContainer.style.display = "block";
-      })
-    }
+  let popupForm = document.getElementById('popupForm')
+  let btnSupprimerBouteille = document.querySelector('[name="btnSupprimer"]')
+  let modalContainer = document.getElementById('modal-container')
+  console.log(btnSupprimerBouteille)
+  if (btnSupprimerBouteille) {
+    btnSupprimerBouteille.addEventListener('click', function (evt) {
+      popupForm.style.display = 'block'
+      modalContainer.style.display = 'block'
+    })
+  }
 
   /**
-   * Fonctionnalité pour fermer la boite modale
+   * Fonctionnalité pour fermer la boite modale supprimer
    */
+
   let btnCloseModale = document.getElementById("closeForm");
   let btnCloseX = document.getElementById("closeFormX");
   if(btnCloseModale){
@@ -353,4 +354,6 @@ function updateQuantiteApresAjouter(divBouteille) {
   let elemQuantite = divBouteille.getElementsByClassName('quantite')[0];
   elemQuantite.innerText = quantiteApresAjouter;
 }
+
+
 

@@ -48,6 +48,8 @@
     font-size: 18px;
     color: var(--black-light);
     text-decoration: none;
+    display: block;
+        flex: 1;
 }
 
 .bouteille-img-container {
