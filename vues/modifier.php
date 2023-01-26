@@ -43,9 +43,10 @@
                     </div>-->
 
                     <!-- NOUVEAU SELECT OPTIONS TYPE VIN -->
-                    <select name="type" data-id="<?= $data["types"][$i]["id"]; ?>" id="<?= $data["types"][$i]["type"]; ?>">  
-                        <option value="rouge" <?php echo ((strtolower($bouteille['type']) == 'rouge') ? 'selected' : '') ?>>Rouge</option>
-                        <option value="blanc" <?php echo ((strtolower($bouteille['type']) == 'blanc') ? 'selected' : '') ?>>Blanc</option>   
+                    <select name="type">
+                        <?php for ($i = 0; $i < count($dataTypes); $i++) { ?>
+                            <option value="<?= $dataTypes[$i]["id"]; ?>" <?php echo ((strtolower($bouteille['type']) == strtolower($dataTypes[$i]["type"])) ? 'selected' : '') ?>><?= $dataTypes[$i]["type"]; ?></option>
+                        <?php } ?>
                     </select>
 
                     <span class="champ-obligatoire-message"></span>

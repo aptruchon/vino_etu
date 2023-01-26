@@ -73,7 +73,7 @@ class Bouteille extends Modele
 						ce.vino__utilisateur_id 
 						from vino__cellier_contient cc 
 						INNER JOIN vino__bouteille b ON cc.vino__bouteille_id = b.id 
-						INNER JOIN vino__type t ON t.id = b.vino__type_id 
+						INNER JOIN vino__type t ON t.id = cc.vino__type_id 
 						INNER JOIN vino__cellier ce ON ce.id = cc.vino__cellier_id 
 						WHERE ce.vino__utilisateur_id =' . $userId . '
 						AND cc.vino__cellier_id =' . $cellierId;
@@ -212,7 +212,7 @@ class Bouteille extends Modele
 	public function modifierBouteilleCellier($data)
 	{
 		$stmt = $this->_db->prepare("UPDATE vino__cellier_contient " .
-			"SET nom = ?, pays = ?, description = ?, date_ajout = ?, garde_jusqua = ?, notes = ?, prix = ?, format = ?, quantite = ?, millesime = ? WHERE id = ?");
+			"SET nom = ?, pays = ?, description = ?, date_ajout = ?, garde_jusqua = ?, notes = ?, prix = ?, format = ?, quantite = ?, millesime = ?, vino__type_id = ? WHERE id = ?");
 
 		$data["nom"] = substr(htmlspecialchars($data["nom"]), 0, 200);
 		$data["pays"] = substr(htmlspecialchars($data["pays"]), 0, 50);
@@ -222,7 +222,7 @@ class Bouteille extends Modele
 		$data["format"] = substr(htmlspecialchars($data["format"]), 0, 20);
 
 		$stmt->bind_param(
-			"ssssssdsiii",
+			"ssssssdsiiii",
 			$data["nom"],
 			$data["pays"],
 			$data["description"],
@@ -233,6 +233,7 @@ class Bouteille extends Modele
 			$data["format"],
 			$data["quantite"],
 			$data["millesime"],
+			$data["type"],
 			$data["id_bouteille_cellier"]
 		);
 

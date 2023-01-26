@@ -18,8 +18,8 @@
                 <div class="description">
                     <a href="?requete=ficheDetailsBouteille&bte=<?php echo $bouteille['vino__bouteille_id'] ?>">
                         <p class="type <?php echo strtolower($bouteille['type']) ?>"><?php echo $bouteille['type'] ?></p>
-                        <p class="nom"><?php echo $bouteille['nom'] ?></p>
-                        <p class="pays"><?php echo $bouteille['pays'] ?></p>
+                        <p class="nom"><?php echo utf8_decode($bouteille['nom']) ?></p>
+                        <p class="pays"><?php echo utf8_decode($bouteille['pays']) ?></p>
                         <?php if ($bouteille['millesime'] != 0) : ?>
                             <p class="millesime">Millesime <?php echo $bouteille['millesime'] ?></p>
                         <?php endif; ?>
