@@ -44,8 +44,8 @@
 
                     <!-- NOUVEAU SELECT OPTIONS TYPE VIN -->
                     <select name="type">
-                        <?php for ($i = 0; $i < count($dataTypes); $i++) { ?>
-                            <option value="<?= $dataTypes[$i]["id"]; ?>" <?php echo ((strtolower($bouteille['type']) == strtolower($dataTypes[$i]["type"])) ? 'selected' : '') ?>><?= $dataTypes[$i]["type"]; ?></option>
+                        <?php for ($i = 0; $i < count($dataTypesModifier); $i++) { ?>
+                            <option value="<?= $dataTypesModifier[$i]["id"]; ?>" <?php echo ((strtolower($bouteille['type']) == strtolower($dataTypesModifier[$i]["type"])) ? 'selected' : '') ?>><?= $dataTypesModifier[$i]["type"]; ?></option>
                         <?php } ?>
                     </select>
 

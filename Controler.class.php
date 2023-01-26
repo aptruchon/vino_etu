@@ -135,7 +135,7 @@ class Controler
 
 			$this->ficheDetailsBouteille($userId, $cellierId, $idBouteille);
 		} else {
-			$dataTypes = $types;
+			$dataTypesModifier = $types;
 
 			$bte = new Bouteille();
 			$dataModifie = $bte->getListeBouteilleCellier($userId, $cellierId, $idBouteille);
