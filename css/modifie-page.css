@@ -111,16 +111,28 @@
     margin-bottom: 25px;
 }
 
+.form-popup p{
+    font-weight: bold;
+    font-size: 20px;
+    position: absolute;
+    left: 235px;
+    top: 20px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
 /* Bouton de confirmation */
 .form-container .btn-oui {
     margin: 15px 0;
     background-color: #567a20;
     color: #fff;
+    cursor: pointer;
 }
 
 /* Bouton pour annuler */
 .form-container .btn-non {
     background-color: var(--red);
+    cursor: pointer;
 }
 
 /* Effets pour les boutons */
