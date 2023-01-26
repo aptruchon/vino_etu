@@ -65,7 +65,7 @@
                     <span class="champ-obligatoire-message"></span>
                 </div>
                 <div class="buttons-wrapper">
-                    <button type="submit" class="bouton-large" name="modifierBouteilleCellier">Enregistrer</button>
+                    <button type="submit" class="bouton-large vert" name="modifierBouteilleCellier">Enregistrer</button>
                     <button type="button" class="bouton-large" name="btnSupprimer">Supprimer la bouteille</button>
                 </div>
             </div>
