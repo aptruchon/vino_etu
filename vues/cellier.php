@@ -36,10 +36,15 @@
                 </div>
             </div>
         <?php
-
-
         }
-
         ?>
     </section>
+</div>
+
+<!-- MODAL CONFIRMATION-->
+
+<div class="window-background" data-js-window>
+    <div class="window ">
+        <p>Vin ajouté !</p>
+    </div>
 </div>

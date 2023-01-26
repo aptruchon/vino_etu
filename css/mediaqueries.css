@@ -132,6 +132,12 @@
         display: block;
     }
 
+    /* FENETRE CONFIRMATION */
+
+    .window {
+        width: 30%;
+    }
+
     /* PAGE CONNEXION/INSCRIPTION */
 
     .tache-couleur {
