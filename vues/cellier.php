@@ -41,9 +41,18 @@
     </section>
 </div>
 
-<!-- MODAL CONFIRMATION-->
+<!-- FENETRE POP-UP CONFIRMATION-->
+<?php 
+    session_start();
+    $_SESSION['estConfirme'] = false;
+?>
 
-<div class="window-background" data-js-window>
+<script type="text/javascript">
+    var estConfirme = <?php echo $_SESSION['estConfirme']; ?>;
+</script>
+<script src="./js/fenetreConf.js"></script>
+
+<div class="window-background" data-js-fenetre-confirmation>
     <div class="window ">
         <p>Vin ajouté !</p>
     </div>
