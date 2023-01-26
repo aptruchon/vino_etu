@@ -103,3 +103,8 @@
 .readOnly:focus-visible,  .readOnly:focus, .readOnly:active{
     outline: none;
 }
+
+.noEvent {
+    pointer-events: none;
+    background-color: rgb(195 195 195) !important;
+}
