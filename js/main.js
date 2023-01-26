@@ -203,6 +203,12 @@ window.addEventListener('load', function() {
             bouteille.description.setAttribute('readonly', true)
             bouteille.prix.setAttribute('readonly', true)
 
+            bouteille.nom.classList.add('readOnly')
+            bouteille.pays.classList.add('readOnly')
+            bouteille.format.classList.add('readOnly')
+            bouteille.description.classList.add('readOnly')
+            bouteille.prix.classList.add('readOnly')
+
             for (let i = 0, l = bouteille.typesPossibles.length; i < l; i++) {
               if (
                 bouteille.typesPossibles[i].id == bouteilleChoisi.vino__type_id

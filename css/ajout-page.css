@@ -94,3 +94,12 @@
 .champ-obligatoire-message {
     color: red;
 }
+
+.readOnly {
+    background-color: rgb(195 195 195) !important;
+    color: black;
+}
+
+.readOnly:focus-visible,  .readOnly:focus, .readOnly:active{
+    outline: none;
+}
