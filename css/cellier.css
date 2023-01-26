@@ -49,7 +49,7 @@
     color: var(--black-light);
     text-decoration: none;
     display: block;
-        flex: 1;
+    flex: 1;
 }
 
 .bouteille-img-container {
@@ -58,7 +58,6 @@
 
 .bouteille-img-container img {
     width: 100%;
-    /* margin-top: 15px; */
 }
 
 .description {

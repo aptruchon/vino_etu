@@ -1,26 +1,74 @@
 @media only screen and (max-width:400px) {
-    /* CELLIER */
 
-    .bouteille {
-        flex-direction: column;
+    main {
+        margin-left: 10px;
+        margin-right: 10px;
     }
 
-    .bouteille-img-container {
-        flex: 1;
-        width: 180px;
-        margin: auto;
+    /* NAV */
+    .titre {
+        font-size: 26px;
+    }
+
+    /* CELLIER */
+
+    .menu-actions-container {
+        width: 32px;
+    }
+
+    .bouton-carre-label {
+        display: none;
     }
 
     .type {
-        display: inline-block;
+        font-size: 14px;
+        margin-bottom: 10px;   
     }
 
-    .description {
-        text-align: center;
+    .nom {
+        font-size: 16px;
+    }
+
+    .pays,
+    .millesime {
+        font-size: 14px;
     }
 
     .quantity-wrapper {
-        justify-content: center;
+        margin-top: 10px;
+    }
+
+    /* FICHE */
+
+    .bouteille_container img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .description-container {
+        width: 100%;
+        font-size: 16px;
+    }
+
+    .header-fiche h2 {
+        font-size: 24px;
+    }
+
+    .fiche .page-content-header {
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+
+    /* AJOUT */
+
+    .nouvelleBouteille label {
+        font-size: 16px;
+    }
+
+    /* MODIFIE */
+
+    .modifieBouteille label {
+        font-size: 16px;
     }
 }
 
@@ -76,16 +124,33 @@
 
     .nouvelleBouteille {
         margin-bottom: 0px;
+        margin-top: 20px;
     }
 
     .nouvelleBouteille .bouton-large {
         margin-bottom: 0px;
     }
 
+    .nouvelleBouteille input,
+    .nouvelleBouteille textarea,
+    .nouvelleBouteille select {
+        margin-bottom: 20px;
+    }
+
     /* PAGE MODIFIER */
 
     .modifieBouteille {
         padding-bottom: 0px;
+    }
+
+    .modifieBouteille input[type=text],
+    .modifieBouteille input[type=number],
+    .modifieBouteille select {
+        margin-bottom: 20px;
+    }
+
+    .modifieBouteille .bouton-large:last-child {
+        margin-bottom: 0px;
     }
 
     /* PAGE INSCRIPTION / CONNEXION */
@@ -98,10 +163,6 @@
 
 @media only screen and (min-width:640px) and (max-width: 768px) {
 
-    /* main {
-        padding-bottom: 42px;
-    } */
-
     /* PAGE CELLIER */
 
     .bouteilles-container {
@@ -111,8 +172,8 @@
     /* ACCUEIL */
 
     .svg-superieur, .svg-inferieur, .svg-logo {
-            height: 350px;
-        }
+        height: 350px;
+    }
 
 
 }

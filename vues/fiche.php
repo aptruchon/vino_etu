@@ -45,7 +45,7 @@
                     <?php endif; ?>
                     <!--  -->
                     <?php if ($bouteille['millesime']) : ?>
-                        <p> Millesime <?php echo $bouteille['millesime'] ?></p>
+                        <p><?php echo $bouteille['millesime'] ?></p>
                     <?php endif; ?>
                 </div>
                 <!--  -->
