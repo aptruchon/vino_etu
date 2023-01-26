@@ -9,11 +9,11 @@
         </ul>
         <div>
             <label for="nom">Nom</label>
-            <input type="text" name="nom" data-id="" id="nom">
+            <input type="text" name="nom" data-id="" id="nom" required>
             <span class="champ-obligatoire-message"></span>
 
             <label for="pays">Pays</label>
-            <input type="text" name="pays" data-id="" id="pays">
+            <input type="text" name="pays" data-id="" id="pays" required>
             <span class="champ-obligatoire-message"></span>
 
             <label for="format">Format</label>
@@ -28,12 +28,11 @@
             <span class="champ-obligatoire-message"></span>
 
             <label for="quantite">Quantite</label>
-            <input type="number" name="quantite" id="quantite" value="1">
+            <input type="number" name="quantite" id="quantite" value="1" required>
             <span class="champ-obligatoire-message"></span>
 
             <label>Type</label>
-
-            <select>
+            <select required>
                 <?php for($i = 0; $i < count($dataTypes); $i++){ ?>
                     <option name="type" value="<?= $dataTypes[$i]["type"]; ?>" id="<?= $dataTypes[$i]["id"]; ?>"><?= $dataTypes[$i]["type"]; ?></option>
                 <?php } ?>

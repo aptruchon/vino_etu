@@ -11,7 +11,6 @@
 //const BaseURL = "https://jmartel.webdev.cmaisonneuve.qc.ca/n61/vino/";
 //const BaseURL = document.baseURI;
 const BaseURL = window.location.href.split('?')[0];
-console.log(BaseURL);
 
 window.addEventListener('load', function() {
   // console.log('load')
@@ -252,7 +251,8 @@ window.addEventListener('load', function() {
           quantite: bouteille.quantite.value,
           millesime: bouteille.millesime.value,
         }
-        console.log(JSON.stringify(param))
+        console.log(param)
+        
 
         let requete = new Request(
           BaseURL + '?requete=ajouterNouvelleBouteilleCellier',
