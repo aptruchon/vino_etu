@@ -44,8 +44,8 @@
 
                     <!-- NOUVEAU SELECT OPTIONS TYPE VIN -->
                     <select name="type">
-                        <?php for ($i = 0; $i < count($dataTypes); $i++) { ?>
-                            <option value="<?= $dataTypes[$i]["id"]; ?>" <?php echo ((strtolower($bouteille['type']) == strtolower($dataTypes[$i]["type"])) ? 'selected' : '') ?>><?= $dataTypes[$i]["type"]; ?></option>
+                        <?php for ($i = 0; $i < count($dataTypesModifier); $i++) { ?>
+                            <option value="<?= $dataTypesModifier[$i]["id"]; ?>" <?php echo ((strtolower($bouteille['type']) == strtolower($dataTypesModifier[$i]["type"])) ? 'selected' : '') ?>><?= $dataTypesModifier[$i]["type"]; ?></option>
                         <?php } ?>
                     </select>
 
@@ -74,6 +74,7 @@
             <div class="pop-up">
                 <div class="form-popup" id="popupForm">
                     <form method="POST" action="index.php?requete=effacerBouteilleCellier&bteCellier=<?php echo $bouteille['id_bouteille_cellier'] ?>" class="form-container">
+                        <p id="closeFormX">X</p><br><br>
                         <h2>Voulez-vous supprimer cette bouteille?</h2>
                         <button type="submit" class="btn-boite-modale btn-oui">Oui</button>
                         <button type="button" class="btn-boite-modale btn-non" id="closeForm">Non</button>
