@@ -23,6 +23,12 @@
         display: none;
     }
 
+    /* CELLIER */
+
+    .bouteille {
+        flex-direction: row;
+    }
+
 }
 
 @media only screen and (min-width:510px) and (max-width:640px)  {

@@ -10,11 +10,11 @@
         foreach ($data as $cle => $bouteille) {
         ?>
             <div class="bouteille" data-quantite="<?php echo $bouteille['quantite'] ?>">
+                <a href="?requete=ficheDetailsBouteille&bte=<?php echo $bouteille['vino__bouteille_id'] ?>">
                 <div class="bouteille-img-container">
-                    <a href="?requete=ficheDetailsBouteille&bte=<?php echo $bouteille['vino__bouteille_id'] ?>">
-                        <img src="./images/vin-fallback.png">
-                    </a>
+                    <img src="./images/vin-fallback.png">
                 </div>
+                 </a>
                 <div class="description">
                     <a href="?requete=ficheDetailsBouteille&bte=<?php echo $bouteille['vino__bouteille_id'] ?>">
                         <p class="type <?php echo strtolower($bouteille['type']) ?>"><?php echo $bouteille['type'] ?></p>
@@ -43,17 +43,17 @@
 
 <!-- FENETRE POP-UP CONFIRMATION-->
 <?php 
-    session_start();
-    $_SESSION['estConfirme'] = false;
+    $_SESSION['estVisible'] = true;
 ?>
 
 <script type="text/javascript">
-    var estConfirme = <?php echo $_SESSION['estConfirme']; ?>;
+    var estVisible = <?php echo $_SESSION['estVisible']; ?>;
 </script>
 <script src="./js/fenetreConf.js"></script>
 
-<div class="window-background" data-js-fenetre-confirmation>
+<div class="window-background" data-js-fenetre-message>
     <div class="window ">
-        <p>Vin ajouté !</p>
+        <?php echo $_SESSION['message']; ?></p>
+        <?php $_SESSION['estVisible'] = false; ?>
     </div>
 </div>
