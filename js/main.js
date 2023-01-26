@@ -300,8 +300,15 @@ if (nomPage == 'inscription' || nomPage == 'connexion') {
    * Fonctionnalité pour fermer la boite modale
    */
   let btnCloseModale = document.getElementById("closeForm");
+  let btnCloseX = document.getElementById("closeFormX");
   if(btnCloseModale){
     btnCloseModale.addEventListener('click', function(evt){
+      popupForm.style.display = "none";
+      modalContainer.style.display = "none";
+    })
+  }
+  if(btnCloseX){
+    btnCloseX.addEventListener('click', function(evt){
       popupForm.style.display = "none";
       modalContainer.style.display = "none";
     })
