@@ -25,23 +25,6 @@ window.addEventListener('load', function() {
   }
 
 
-  // /**  
-  //  * Affiche une fenetre de confirmation pop-up de 1 seconde dans page cellier 
-  //  */
-  // if (nomPage == 'cellier') {
-  //   const fenetreConfirmation = document.querySelector(
-  //     '[data-js-fenetre-confirmation]'
-  //   )
-  //     console.log('var ', estConfirme)
-  //     if (estConfirme) {
-  //       fenetreConfirmation.classList.add('show-window')
-  //       setTimeout(() => {
-  //         fenetreConfirmation.classList.remove('show-window')
-  //       }, 1200)
-  //     }
-  // }
-
-
   /**
    * Fonctionnalité page Cellier
    * Appuyer sur bouton '-' réduit la quantité d'un type de bouteille.
@@ -316,13 +299,22 @@ window.addEventListener('load', function() {
   /**
    * Fonctionnalité pour fermer la boite modale supprimer
    */
-  let btnCloseModale = document.getElementById('closeForm')
-  if (btnCloseModale) {
-    btnCloseModale.addEventListener('click', function (evt) {
-      popupForm.style.display = 'none'
-      modalContainer.style.display = 'none'
+
+  let btnCloseModale = document.getElementById("closeForm");
+  let btnCloseX = document.getElementById("closeFormX");
+  if(btnCloseModale){
+    btnCloseModale.addEventListener('click', function(evt){
+      popupForm.style.display = "none";
+      modalContainer.style.display = "none";
     })
   }
+  if(btnCloseX){
+    btnCloseX.addEventListener('click', function(evt){
+      popupForm.style.display = "none";
+      modalContainer.style.display = "none";
+    })
+  }
+  
 });
 
 

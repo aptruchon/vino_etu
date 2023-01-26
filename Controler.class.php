@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 /**
  * Class Controler
  * Gère les requêtes HTTP
@@ -136,7 +136,7 @@ class Controler
 
 			$this->ficheDetailsBouteille($userId, $cellierId, $idBouteille);
 		} else {
-			$dataTypes = $types;
+			$dataTypesModifier = $types;
 
 			$bte = new Bouteille();
 			$dataModifie = $bte->getListeBouteilleCellier($userId, $cellierId, $idBouteille);
@@ -174,6 +174,15 @@ class Controler
 		if (!empty($body)) {
 			$bte = new Bouteille();
 			$resultat = $bte->ajouterBouteilleCellier($body);
+			if($resultat === false){
+				$_SESSION["message"] = "Bouteille déjà créée.";
+				$_SESSION["estVisible"] = true;
+			} else {
+				$_SESSION["message"] = "Bouteille ajoutée!";
+				$_SESSION["estVisible"] = true;
+			}
+			// var_dump($resultat, $_SESSION["message"]);
+			die();
 		} else {
 			$dataTypes = $types;
 

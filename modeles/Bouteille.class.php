@@ -177,27 +177,36 @@ class Bouteille extends Modele
 
 		$cellierId = 1;
 
-		$stmtAjoutCellier = $this->_db->prepare("INSERT INTO vino__cellier_contient (vino__cellier_id, vino__bouteille_id, vino__type_id, nom, pays, description, date_ajout, garde_jusqua , notes, prix, format, quantite, millesime) VALUES (?,?,?,?,?,?,now(),?,?,?,?,?,?)");
+		$resultat = $this->_db->query("SELECT id from vino__cellier_contient where vino__cellier_id = " .$cellierId. " AND vino__bouteille_id =" .$data["id_bouteille"]);
+		
+		if(!$resultat->num_rows > 0){
+			$stmtAjoutCellier = $this->_db->prepare("INSERT INTO vino__cellier_contient (vino__cellier_id, vino__bouteille_id, vino__type_id, nom, pays, description, date_ajout, garde_jusqua , notes, prix, format, quantite, millesime) VALUES (?,?,?,?,?,?,now(),?,?,?,?,?,?)");
+	
+			$stmtAjoutCellier->bind_param(
+				"iiisssssdsii",
+				$cellierId,
+				$data["id_bouteille"],
+				$data["id_type"],
+				$data["nom"],
+				$data["pays"],
+				$data["description"],
+				$data["garde_jusqua"],
+				$data["notes"],
+				$data["prix"],
+				$data["format"],
+				$data["quantite"],
+				$data["millesime"]
+			);
+	
+			$res = $stmtAjoutCellier->execute();
+			var_dump($stmtAjoutCellier->errno, $stmtAjoutCellier->error);
+			// var_dump("Mauvais chemin");
+		} else {
+			$res = false;
+			// var_dump("Bon chemin");
+		}
 
-		$stmtAjoutCellier->bind_param(
-			"iiisssssdsii",
-			$cellierId,
-			$data["id_bouteille"],
-			$data["id_type"],
-			$data["nom"],
-			$data["pays"],
-			$data["description"],
-			$data["garde_jusqua"],
-			$data["notes"],
-			$data["prix"],
-			$data["format"],
-			$data["quantite"],
-			$data["millesime"]
-		);
-
-		$res = $stmtAjoutCellier->execute();
-
-		var_dump($stmtAjoutCellier->errno, $stmtAjoutCellier->error);
+		// var_dump($res);
 		return $res;
 	}
 
@@ -286,6 +295,7 @@ class Bouteille extends Modele
 		$requete = "UPDATE vino__cellier_contient SET quantite = GREATEST(quantite + " . $nombre . ", 0) WHERE id = " . $id;
 		//echo $requete;
 		$res = $this->_db->query($requete);
+		var_dump($res);
 
 		return $res;
 	}

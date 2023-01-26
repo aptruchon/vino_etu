@@ -16,7 +16,7 @@
                 <h2 class="titre" name="titre">Mon cellier</h2>
             <?php elseif (isset($resultat) | isset($dataTypes)) : ?>
                 <h2 class="titre" name="titre">Ajouter vin</h2>
-            <?php elseif (isset($dataModifie)) : ?>
+            <?php elseif (isset($dataModifie) | isset($dataTypesModifier)) : ?>
                 <h2 class="titre" name="titre">Modifier vin</h2>
                 <?php elseif (isset($dataFiche)) : ?>
                 <h2 class="titre" name="titre">Fiche du vin</h2>
