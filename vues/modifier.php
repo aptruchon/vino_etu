@@ -74,7 +74,8 @@
             <div class="pop-up">
                 <div class="form-popup" id="popupForm">
                     <form method="POST" action="index.php?requete=effacerBouteilleCellier&bteCellier=<?php echo $bouteille['id_bouteille_cellier'] ?>" class="form-container">
-                        <p id="closeFormX">X</p><br><br>
+                    <svg id="closeFormX" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256">
+                        <path fill="#931818" d="M208.5 191.5a12 12 0 0 1 0 17a12.1 12.1 0 0 1-17 0L128 145l-63.5 63.5a12.1 12.1 0 0 1-17 0a12 12 0 0 1 0-17L111 128L47.5 64.5a12 12 0 0 1 17-17L128 111l63.5-63.5a12 12 0 0 1 17 17L145 128Z"/></svg><br><br>
                         <h2>Voulez-vous supprimer cette bouteille?</h2>
                         <button type="submit" class="btn-boite-modale btn-oui">Oui</button>
                         <button type="button" class="btn-boite-modale btn-non" id="closeForm">Non</button>
