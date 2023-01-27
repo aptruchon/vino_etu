@@ -9,7 +9,7 @@
         </a>
         <form method="POST" action="index.php?requete=modifierBouteilleCellier&bte=<?php echo $bouteille['vino__bouteille_id'] ?>">
             <div class="modifieBouteille" vertical layout>
-                <div>
+                <div class="input-container">
                     <input type="hidden" name="id_bouteille_cellier" id="id_bouteille_cellier" value="<?php echo $bouteille['id_bouteille_cellier'] ?>">
                     <label for="nom">Nom</label>
                     <input type="text" name="nom" data-id="" id="nom" value="<?php echo utf8_decode($bouteille['nom']) ?>">
@@ -27,20 +27,10 @@
                     <textarea name="description" id="description"><?php echo utf8_decode($bouteille['description']) ?></textarea>
                     <span class="champ-obligatoire-message"></span>
                     <label for="quantite">Quantite</label>
-                    <input type="number" name="quantite" id="quantite" value="<?php echo $bouteille['quantite'] ?>">
+                    <input type="number" name="quantite" id="quantite" min="0" value="<?php echo $bouteille['quantite'] ?>">
                     <span class="champ-obligatoire-message"></span>
 
                     <label>Type</label>
-
-                    <!-- ANCIEN RADIO BUTTON TYPE VIN -->
-                    <!--<div class="options-container">
-                        <label for="rouge" class="radio-label">Rouge</label>
-                        <input type="radio" id="rouge" name="type" value="rouge" class="radio-input" <?php echo ((strtolower($bouteille['type']) == 'rouge') ? 'checked' : '') ?>>
-                        <label for="blanc" class="radio-label">Blanc</label>
-                        <input type="radio" id="blanc" name="type" value="blanc" class="radio-input" <?php echo ((strtolower($bouteille['type']) == 'blanc') ? 'checked' : '') ?>>
-                        <label for="rose" class="radio-label">Rosé</label>
-                        <input type="radio" id="rose" name="type" value="rosé" class="radio-input" <?php echo ((strtolower($bouteille['type']) == 'rosé') ? 'checked' : '') ?>>
-                    </div>-->
 
                     <!-- NOUVEAU SELECT OPTIONS TYPE VIN -->
                     <select name="type">
@@ -65,7 +55,7 @@
                     <span class="champ-obligatoire-message"></span>
                 </div>
                 <div class="buttons-wrapper">
-                    <button type="submit" class="bouton-large" name="modifierBouteilleCellier">Enregistrer</button>
+                    <button type="submit" class="bouton-large vert" name="modifierBouteilleCellier">Enregistrer</button>
                     <button type="button" class="bouton-large" name="btnSupprimer">Supprimer la bouteille</button>
                 </div>
             </div>
