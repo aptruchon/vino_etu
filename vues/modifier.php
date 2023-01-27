@@ -27,7 +27,7 @@
                     <textarea name="description" id="description"><?php echo utf8_decode($bouteille['description']) ?></textarea>
                     <span class="champ-obligatoire-message"></span>
                     <label for="quantite">Quantite</label>
-                    <input type="number" name="quantite" id="quantite" value="<?php echo $bouteille['quantite'] ?>">
+                    <input type="number" name="quantite" id="quantite" min="0" value="<?php echo $bouteille['quantite'] ?>">
                     <span class="champ-obligatoire-message"></span>
 
                     <label>Type</label>

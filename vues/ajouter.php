@@ -27,14 +27,15 @@
             <textarea name="description" id="description"></textarea>
             <span class="champ-obligatoire-message"></span>
 
-            <label for="quantite">Quantite</label>
-            <input type="number" name="quantite" id="quantite" value="1" required>
+            <label for="quantite">Quantité</label>
+            <input type="number" name="quantite" id="quantite" value="1" min="0" required>
             <span class="champ-obligatoire-message"></span>
 
             <label>Type</label>
-            <select required>
+            <select name="types" required>
+                <option name="" value="" id="">Choisir</option>
                 <?php for($i = 0; $i < count($dataTypes); $i++){ ?>
-                    <option name="type" value="<?= $dataTypes[$i]["type"]; ?>" id="<?= $dataTypes[$i]["id"]; ?>"><?= $dataTypes[$i]["type"]; ?></option>
+                    <option name="" value="<?= $dataTypes[$i]["type"]; ?>" id="<?= $dataTypes[$i]["id"]; ?>"><?= $dataTypes[$i]["type"]; ?></option>
                 <?php } ?>
             </select>
             <span class="champ-obligatoire-message"></span>
