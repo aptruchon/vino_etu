@@ -165,10 +165,18 @@
 }
 
 .form-container>.btn-oui:hover {
-	background-color: #567a20ac; ;
+	background-color: var(--vert) ;
 }
 
 .form-container>.btn-non:hover {
 	background-color: var(--red-focus);
+}
+
+.vert {
+    background-color: var(--vert);
+}
+
+.vert:hover {
+    background-color: var(--vert-focus);
 }
 

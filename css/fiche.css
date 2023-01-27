@@ -36,7 +36,6 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    margin: 20px 0px;
     padding: 0;
 }
 
@@ -71,7 +70,7 @@
 }
 
 .bouteille_container h4 {
-    margin: 5px 0;
+    margin-top: 10px;
 }
 
 .prix-container {

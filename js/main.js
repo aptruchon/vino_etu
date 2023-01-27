@@ -196,17 +196,28 @@ window.addEventListener('load', function() {
             bouteille.format.value = bouteilleChoisi.format
             bouteille.description.value = bouteilleChoisi.description
             bouteille.prix.value = bouteilleChoisi.prix_saq
+            
             bouteille.nom.setAttribute('readonly', true)
             bouteille.pays.setAttribute('readonly', true)
             bouteille.format.setAttribute('readonly', true)
             bouteille.description.setAttribute('readonly', true)
             bouteille.prix.setAttribute('readonly', true)
 
+            bouteille.nom.classList.add('readOnly')
+            bouteille.pays.classList.add('readOnly')
+            bouteille.format.classList.add('readOnly')
+            bouteille.description.classList.add('readOnly')
+            bouteille.prix.classList.add('readOnly')
+            
+            // let elSelectType = document.querySelector('select');
+            bouteille.types.classList.add('noEvent');
+
             for (let i = 0, l = bouteille.types.options.length; i < l; i++) {
               if (bouteille.types.options[i].id == bouteilleChoisi.vino__type_id) {
                 bouteille.types.options[i].removeAttribute('disabled')
                 bouteille.types.options[i].setAttribute('selected', '')
                 bouteille.type = bouteille.types.options[i]
+
               } else {
                 bouteille.types.options[i].removeAttribute('selected')
                 bouteille.types.options[i].setAttribute('disabled', true)
