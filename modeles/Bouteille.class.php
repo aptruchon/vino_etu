@@ -81,6 +81,8 @@ class Bouteille extends Modele
 			$requete = $requete . ' AND cc.vino__bouteille_id = ' . $idBouteille;
 		}
 
+		$requete = $requete .' ORDER BY id_bouteille_cellier DESC';
+
 		// var_dump($requete);
 
 		if (($res = $this->_db->query($requete)) ==	 true) {
