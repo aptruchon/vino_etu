@@ -56,6 +56,9 @@ class Controler
 			case 'connexion':
 				$this->connexion();
 				break;
+			case 'mesCelliers':
+				$this->mesCelliers($userId, $cellierId);
+				break;
 			case 'cellier':
 				$this->cellier($userId, $cellierId);
 				break;
@@ -69,14 +72,18 @@ class Controler
 		}
 	}
 
-
+	/**
+	 * Affiche la vue de la page accueil
+	 */
 	private function accueil()
 	{
 		include("vues/entete.php");
 		include("vues/accueil.php");
 	}
 
-
+	/**
+	 * Affiche la vue de la page cellier
+	 */
 	private function cellier($userId, $cellierId)
 	{
 		$bte = new Bouteille();
@@ -87,7 +94,22 @@ class Controler
 		include("vues/pied.php");
 	}
 
+	/**
+	 * Affiche la vue de la page mesCelliers
+	 */
+	private function mesCelliers($userId, $cellierId)
+	{
+		$bte = new Bouteille();
+		$mesCelliers = $bte->getListeBouteilleCellier($userId, $cellierId);
+		include("vues/entete.php");
+		include("vues/navigation.php");
+		include("vues/mesCelliers.php");
+		include("vues/pied.php");
+	}
 
+	/**
+	 * Affiche la vue de la page fiche
+	 */
 	private function ficheDetailsBouteille($userId, $cellierId, $idBouteille, $showMessage=false)
 	{
 		$bte = new Bouteille();
@@ -124,7 +146,9 @@ class Controler
 		echo json_encode($listeBouteille);
 	}
 
-
+	/**
+	 * Affiche la vue de la page modifier
+	 */
 	private function modifierBouteilleCellier($userId, $cellierId, $idBouteille)
 	{
 		$type = new Type();
