@@ -13,11 +13,11 @@
     /* CELLIER */
 
     .menu-actions-container {
-        width: 32px;
+        width: 189px;
     }
 
     .bouton-carre-label {
-        display: none;
+        font-size: 16px;
     }
 
     .type {
