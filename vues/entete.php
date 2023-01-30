@@ -21,7 +21,7 @@
 		<!--<script src="./js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>-->
 		<script src="https://kit.fontawesome.com/32150d741e.js" crossorigin="anonymous"></script>
 		<script src="./js/plugins.js"></script>
-		<script src="./js/main.js"></script>
+		<script src="./js/main.js" type="module"></script>
 	</head>
 	<body >
 		

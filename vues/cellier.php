@@ -46,7 +46,7 @@
 <script type="text/javascript">
     var estVisible = <?php echo $_SESSION['estVisible']; ?>;
 </script>
-<script src="./js/fenetreConf.js"></script>
+<script src="./js/fenetreConfirmer.js"></script>
 
 <div class="window-background <?= $_SESSION['estVisible'] ? 'show-window' : '' ; ?>" data-js-fenetre-message>
     <div class="window ">
