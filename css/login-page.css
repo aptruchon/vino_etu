@@ -95,3 +95,16 @@
 .body-container {
     overflow: hidden;
 }
+
+.eye-hidden{
+    display: none;
+}
+
+.iconify-eye{
+    color: grey;
+    position: absolute;
+    top: 220px;
+    left: 310px;
+    width: 25px;
+    cursor: pointer;
+}

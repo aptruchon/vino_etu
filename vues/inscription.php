@@ -27,7 +27,9 @@
         <input type="text" name="uti_prenom" id="uti_prenom" placeholder="Prénom">
         <input type="text" name="uti_nom" id="uti_nom" placeholder="Nom">
         <input type="text" name="uti_courriel" id="uti_courriel" placeholder="Courriel">
-        <input type="text" name="uti_mdp" id="uti_mdp" placeholder="Mot de passe">
+        <input type="password" name="uti_mdp" id="uti_mdp" placeholder="Mot de passe">
+        <img src="https://api.iconify.design/mdi:eye-off-outline.svg?color=%23636363" alt="" id="icon-eye-open" class="iconify-eye">
+        <img src="https://api.iconify.design/mdi:eye-outline.svg?color=%23636363" alt="" class="iconify-eye eye-hidden" id="icon-eye-close">
     </div>
     <div class="mdp-infos">
         <p>Doit inclure :</p>

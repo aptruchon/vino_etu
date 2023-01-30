@@ -333,7 +333,6 @@ window.addEventListener('load', function() {
   let popupForm = document.getElementById('popupForm')
   let btnSupprimerBouteille = document.querySelector('[name="btnSupprimer"]')
   let modalContainer = document.getElementById('modal-container')
-  console.log(btnSupprimerBouteille)
   if (btnSupprimerBouteille) {
     btnSupprimerBouteille.addEventListener('click', function (evt) {
       popupForm.style.display = 'block'
@@ -365,7 +364,6 @@ window.addEventListener('load', function() {
    * Fonctionnalité pour ouvrir la boite modale ajouter cellier
    */
    let btnAjoutCellier = document.querySelector('[name="btnAjoutCellier"]')
-   console.log(btnAjoutCellier)
    if (btnAjoutCellier) {
     btnAjoutCellier.addEventListener('click', function (evt) {
        popupForm.style.display = 'block'
@@ -389,6 +387,34 @@ window.addEventListener('load', function() {
        modalContainer.style.display = "none";
      })
    }
+
+
+   /**
+    * Fonctionnalité pour les yeux du password
+    */
+    const iconEyeOpen = document.getElementById('icon-eye-open');
+    const iconEyeClose = document.getElementById('icon-eye-close');
+    const inputPassword = document.getElementById("uti_mdp");
+
+    /* addEventListener for the close eye */
+    iconEyeOpen.addEventListener('click', function(e){
+        e.preventDefault;
+        inputPassword.type = inputPassword.type == 'text' ? 'password' : 'text';
+
+        if(inputPassword.type == 'text'){
+            /* add and remove hidden class */
+            iconEyeClose.classList.remove('eye-hidden');
+            iconEyeOpen.classList.add('hidden');
+            
+            /* addEventListener for the open eye */
+            iconEyeClose.addEventListener('click', function(e){
+                inputPassword.type = inputPassword.type == 'text' ? 'password' : 'text';
+                /* add and remove hidden class */
+                iconEyeClose.classList.add('eye-hidden');
+                iconEyeOpen.classList.remove('hidden');
+            })
+        }
+    });
   
 });
 
