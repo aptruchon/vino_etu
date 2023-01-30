@@ -8,341 +8,61 @@
  *
  */
 
+import { reduitQuantBouteille, augmenteQuantBouteille } from './pageCellier.js'
+import { ouvrirBoiteModaleSupprimer, fermerBoiteModaleSupprimer,} from './fenetreSupprimer.js';
+import { afficheResulatRechVin, preremplitFormAjout, ajoutVinCellier } from './pageAjout.js';
+
 //const BaseURL = "https://jmartel.webdev.cmaisonneuve.qc.ca/n61/vino/";
 //const BaseURL = document.baseURI;
 const BaseURL = window.location.href.split('?')[0];
 
 window.addEventListener('load', function() {
-  // console.log('load')
-
   /***
    * Ajout d'une classe sur le body des pages inscription et connexion pour que le background colore ne deborde pas du body en mobile.
    */
-  const nomPage = window.location.href.split('=')[1];
+  const nomPage = window.location.href.split('=')[1]
   if (nomPage == 'inscription' || nomPage == 'connexion') {
     document.querySelector('body').classList.add('body-container')
   }
 
-
   /**
-   * Fonctionnalité page Cellier
-   * Appuyer sur bouton '-' réduit la quantité d'un type de bouteille.
+   * Fonctionnalités page Cellier
    */
+   
+  reduitQuantBouteille();
+  augmenteQuantBouteille();
 
-  document.querySelectorAll('.btnBoire').forEach(function (element) {
-    // console.log(element)
-    element.addEventListener('click', function (evt) {
-      // Empêche la propagation de l'evt sur parent ou enfant
-      evt.stopPropagation()
-      let id = evt.target.dataset.id
-      let requete = new Request(BaseURL + '?requete=boireBouteilleCellier', {
-        method: 'POST',
-        body: '{"id": ' + id + '}',
-      })
+  /** 
+   * Fonctionnalites Page Ajout
+   * */ 
 
-      fetch(requete)
-        .then((response) => {
-          if (response.status === 200) {
-            return response.json
-          } else {
-            throw new Error('Erreur')
-          }
-        })
-        .then((response) => {
-          console.debug(response)
+  let bouteille = {
+    nom: document.querySelector("[name='nom']"),
+    millesime: document.querySelector("[name='millesime']"),
+    quantite: document.querySelector("[name='quantite']"),
+    /* date_achat: document.querySelector("[name='date_achat']"), */
+    description: document.querySelector("[name='description']"),
+    format: document.querySelector("[name='format']"),
+    pays: document.querySelector("[name='pays']"),
+    prix: document.querySelector("[name='prix']"),
+    garde_jusqua: document.querySelector("[name='garde_jusqua']"),
+    notes: document.querySelector("[name='notes']"),
+    // typesPossibles: document.querySelectorAll("[name='type']"),
+    types: document.querySelector("[name='types']"),
+    type: {},
+  };
 
-          if (response) {
-            // Recupere la div bouteille ou se trouvent les infos du vin
-            let div = evt.target.closest('.bouteille')
-            updateQuantiteApresBoire(div)
-          }
-        })
-        .catch((error) => {
-          console.error(error)
-        })
-    })
-  })
-
-  /**
-   * Fonctionnalité page Cellier
-   * Appuyer sur bouton '+' augmente la quantité d'un type de bouteille.
-   */
-
-  document.querySelectorAll('.btnAjouter').forEach(function (element) {
-    // console.log(element)
-    element.addEventListener('click', function (evt) {
-      // Empêche la propagation de l'evt sur parent ou enfant
-      evt.stopPropagation()
-      let id = evt.target.dataset.id
-      let requete = new Request(BaseURL + '?requete=ajouterBouteilleCellier', {
-        method: 'POST',
-        body: '{"id": ' + id + '}',
-      })
-
-      fetch(requete)
-        .then((response) => {
-          if (response.status === 200) {
-            return response.json
-          } else {
-            throw new Error('Erreur')
-          }
-        })
-        .then((response) => {
-          console.debug(response)
-
-          if (response) {
-            // Recupère la div bouteille où se trouvent les infos du vin.
-            let div = evt.target.closest('.bouteille')
-            updateQuantiteApresAjouter(div)
-          }
-        })
-        .catch((error) => {
-          console.error(error)
-        })
-    })
-  })
-
-  /**
-   * Fonctionnalité page Ajout
-   * Affichage de résultats d'une recherche d'un nom de bouteille.
-   */
-
-  let inputNomBouteille = document.querySelector("[name='nom_bouteille']")
-  // console.log(inputNomBouteille)
-  let liste = document.querySelector('.listeAutoComplete')
-
-  if (inputNomBouteille) {
-    inputNomBouteille.addEventListener('keyup', function (evt) {
-      // console.log(evt)
-      let nom = inputNomBouteille.value
-      liste.innerHTML = ''
-      if (nom) {
-        let requete = new Request(BaseURL + '?requete=autocompleteBouteille', {
-          method: 'POST',
-          body: '{"nom": "' + nom + '"}',
-        })
-        fetch(requete)
-          .then((response) => {
-            if (response.status === 200) {
-              return response.json()
-            } else {
-              throw new Error('Erreur')
-            }
-          })
-          .then((response) => {
-            console.log(response)
-
-            response.forEach(function (element) {
-              liste.innerHTML +=
-                "<li data-id='" + element.id + "'>" + element.nom + '</li>'
-            })
-          })
-          .catch((error) => {
-            console.error(error)
-          })
-      }
-    })
-
-    /**
-     * Fonctionnalité page Ajout
-     * Affichage de résultats d'une recherche d'un nom de bouteille.
-     */
-
-    let bouteille = {
-      nom: document.querySelector("[name='nom']"),
-      millesime: document.querySelector("[name='millesime']"),
-      quantite: document.querySelector("[name='quantite']"),
-      /* date_achat: document.querySelector("[name='date_achat']"), */
-      description: document.querySelector("[name='description']"),
-      format: document.querySelector("[name='format']"),
-      pays: document.querySelector("[name='pays']"),
-      prix: document.querySelector("[name='prix']"),
-      garde_jusqua: document.querySelector("[name='garde_jusqua']"),
-      notes: document.querySelector("[name='notes']"),
-      // typesPossibles: document.querySelectorAll("[name='type']"),
-      types: document.querySelector("[name='types']"),
-      type: {}
-    }
-
-    /**
-     * Fonctionnalité page Ajout
-     * Si élément de liste dans les résultats de recherche cliqué,
-     * complète le nom de la bouteille dans l'input du form.
-     */
-    liste.addEventListener('click', function (evt) {
-      if (evt.target.tagName == 'LI') {
-        bouteille.nom.dataset.id = evt.target.dataset.id
-
-        let requete = new Request(
-          BaseURL +
-            '?requete=informationBouteilleParId&id=' +
-            bouteille.nom.dataset.id,
-          { method: 'GET' }
-        )
-        fetch(requete)
-          .then((response) => {
-            if (response.status === 200) {
-              return response.json()
-            } else {
-              throw new Error('Erreur')
-            }
-          })
-          .then((response) => {
-            console.log(response)
-            bouteilleChoisi = response
-
-            bouteille.nom.value = bouteilleChoisi.nom
-            bouteille.pays.value = bouteilleChoisi.pays
-            bouteille.format.value = bouteilleChoisi.format
-            bouteille.description.value = bouteilleChoisi.description
-            bouteille.prix.value = bouteilleChoisi.prix_saq
-            
-            bouteille.nom.setAttribute('readonly', true)
-            bouteille.pays.setAttribute('readonly', true)
-            bouteille.format.setAttribute('readonly', true)
-            bouteille.description.setAttribute('readonly', true)
-            bouteille.prix.setAttribute('readonly', true)
-
-            bouteille.nom.classList.add('readOnly')
-            bouteille.pays.classList.add('readOnly')
-            bouteille.format.classList.add('readOnly')
-            bouteille.description.classList.add('readOnly')
-            bouteille.prix.classList.add('readOnly')
-            
-            // let elSelectType = document.querySelector('select');
-            bouteille.types.classList.add('noEvent');
-
-            for (let i = 0, l = bouteille.types.options.length; i < l; i++) {
-              if (bouteille.types.options[i].id == bouteilleChoisi.vino__type_id) {
-                bouteille.types.options[i].removeAttribute('disabled')
-                bouteille.types.options[i].setAttribute('selected', '')
-                bouteille.type = bouteille.types.options[i]
-
-              } else {
-                bouteille.types.options[i].removeAttribute('selected')
-                bouteille.types.options[i].setAttribute('disabled', true)
-              }
-            }
-          })
-          .catch((error) => {
-            console.error(error)
-          })
-
-        liste.innerHTML = ''
-        inputNomBouteille.value = ''
-      }
-    })
-
-    /**
-     * Fonctionnalité page Ajout
-     * Fait une requete à la DB pour ajouter une bouteille au cellier de l'usager.
-     */
-    let btnAjouter = document.querySelector("[name='ajouterBouteilleCellier']")
-    if (btnAjouter) {
-      btnAjouter.addEventListener('click', function (evt) {
-        // for (let i = 0, l = bouteille.typesPossibles.length; i < l; i++) {
-        
-        for (let i = 0, l = bouteille.types.options.length; i < l; i++) {
-          
-          if (bouteille.types.options[i].id == bouteille.types.selectedIndex) {
-            bouteille.type = bouteille.types.options[i]
-            
-          }
-        }
-
-        var param = {
-          id_bouteille: bouteille.nom.dataset.id,
-          id_type: bouteille.type.id,
-          nom: bouteille.nom.value,
-          pays: bouteille.pays.value,
-          description: bouteille.description.value,
-          format: bouteille.format.value,
-          garde_jusqua: bouteille.garde_jusqua.value,
-          notes: bouteille.notes.value,
-          prix: bouteille.prix.value,
-          quantite: bouteille.quantite.value,
-          millesime: bouteille.millesime.value,
-        }
-        console.log(param)
-        
-          bouteille.nom.classList.remove("champ-obligatoire-input")
-          bouteille.nom.nextElementSibling.innerHTML = ""
-
-          bouteille.pays.classList.remove("champ-obligatoire-input")
-          bouteille.pays.nextElementSibling.innerHTML = ""
-
-          bouteille.quantite.classList.remove("champ-obligatoire-input")
-          bouteille.quantite.nextElementSibling.innerHTML = ""
-
-          bouteille.types.classList.remove("champ-obligatoire-input")
-          bouteille.types.nextElementSibling.innerHTML = ""
-
-        if(!(param.id_type == "" || param.nom == "" || param.pays == "" || param.quantite == "")){
-          let requete = new Request(
-            BaseURL + '?requete=ajouterNouvelleBouteilleCellier',
-            { method: 'POST', body: JSON.stringify(param) }
-          )
-          fetch(requete)
-            .then((response) => {
-              if (response.status === 200) {
-                console.log(response)
+  afficheResulatRechVin();
+  preremplitFormAjout(bouteille)
+  ajoutVinCellier(bouteille)
   
-                return response.json()
-              } else {
-                throw new Error('Erreur')
-              }
-            })
-            .then((response) => {
-              console.log(response)
-              location.replace(BaseURL + '?requete=cellier')
-            })
-            .catch((error) => {
-              console.error(error)
-  
-              // Temporaire
-              location.replace(BaseURL + '?requete=cellier')
-            })
-        } else {
-          // Injection des messages d'erreurs
-          console.log("bon chemin");
-          
-          if(param.nom === "") {
-            bouteille.nom.classList.add("champ-obligatoire-input")
-            bouteille.nom.nextElementSibling.innerHTML = "Champs obligatoire"
-          }
-          if(param.pays === "") {
-            bouteille.pays.classList.add("champ-obligatoire-input")
-            bouteille.pays.nextElementSibling.innerHTML = "Champs obligatoire"
-          }
-          if(param.quantite === "") {
-            bouteille.quantite.classList.add("champ-obligatoire-input")
-            bouteille.quantite.nextElementSibling.innerHTML = "Champs obligatoire"
-          }
-          if(param.id_type === "") {
-            bouteille.types.classList.add("champ-obligatoire-input")
-            bouteille.types.nextElementSibling.innerHTML = "Champs obligatoire"
-          }
-        }
-      })
-    }
-  }
 
   /**
-   * Fonctionnalité pour ouvrir la boite modale supprimer
+   * Fonctionnalité pour ouvrir et fermer la boite modale supprimer
    */
-  let popupForm = document.getElementById('popupForm')
-  let btnSupprimerBouteille = document.querySelector('[name="btnSupprimer"]')
-  let modalContainer = document.getElementById('modal-container')
-  if (btnSupprimerBouteille) {
-    btnSupprimerBouteille.addEventListener('click', function (evt) {
-      popupForm.style.display = 'block'
-      modalContainer.style.display = 'block'
-    })
-  }
+  ouvrirBoiteModaleSupprimer();
+  fermerBoiteModaleSupprimer();
 
-  /**
-   * Fonctionnalité pour fermer la boite modale supprimer
-   */
 
   let btnCloseModale = document.getElementById("closeForm");
   let btnCloseX = document.getElementById("closeFormX");
@@ -389,37 +109,6 @@ window.addEventListener('load', function() {
    }
 
 
-   /**
-    * Fonctionnalité pour les yeux du password
-    */
-    const iconEyeOpen = document.getElementById('icon-eye-open');
-    const iconEyeClose = document.getElementById('icon-eye-close');
-    const inputPassword = document.getElementById("uti_mdp");
-
-    /* addEventListener for the close eye */
-    iconEyeOpen.addEventListener('click', function(e){
-        e.preventDefault;
-        inputPassword.type = inputPassword.type == 'text' ? 'password' : 'text';
-
-        if(inputPassword.type == 'text'){
-            /* add and remove hidden class */
-            iconEyeClose.classList.remove('eye-hidden');
-            iconEyeOpen.classList.add('hidden');
-            
-            /* addEventListener for the open eye */
-            iconEyeClose.addEventListener('click', function(e){
-                inputPassword.type = inputPassword.type == 'text' ? 'password' : 'text';
-                /* add and remove hidden class */
-                iconEyeClose.classList.add('eye-hidden');
-                iconEyeOpen.classList.remove('hidden');
-            })
-        }
-    });
-  
-});
-
-
-
 /**
  * Actualise la quantité du dataset du vin
  * ainsi que la quantité affiché après le clic du bouton (-).
@@ -438,23 +127,6 @@ function updateQuantiteApresBoire(divBouteille) {
   elemQuantite.innerText = quantiteApresBoire;
 }
 
-/**
- * Actualise la quantité du dataset du vin
- * ainsi que la quantité affiché après le clic du bouton (+).
- * 
- * @param divBouteille - div où se trouvent les infos du vin.
- */
-function updateQuantiteApresAjouter(divBouteille) {
-  // Quantité qui est au dataset de la div.
-  let quantiteAvantAjouter = parseInt(divBouteille.dataset.quantite);
-  // On calcule la nouvelle quantité.
-  let quantiteApresAjouter = quantiteAvantAjouter + 1;
-  // On actualise le dataset.
-  divBouteille.dataset.quantite = quantiteApresAjouter;
-  // Et on actualise aussi l'élément <p> qui affiche la quantité.
-  let elemQuantite = divBouteille.getElementsByClassName('quantite')[0];
-  elemQuantite.innerText = quantiteApresAjouter;
-}
 
 
 
