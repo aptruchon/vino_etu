@@ -49,19 +49,13 @@
     color: var(--black-light);
     text-decoration: none;
     display: block;
-    flex: 1;
-}
-
-.bouteille-img-container {
-    flex: 1;
 }
 
 .bouteille-img-container img {
-    width: 100%;
-}
-
-.description {
-    flex: 1;
+    width: 70px;
+    object-fit: cover;
+    height: 120px;
+    object-position: center;
 }
 
 .type {

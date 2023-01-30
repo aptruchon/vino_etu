@@ -38,6 +38,11 @@
         margin-top: 10px;
     }
 
+    .bouteille-img-container img {
+        width: 50px;
+        height: 100px;
+    }
+
     /* FICHE */
 
     .bouteille_container img {
