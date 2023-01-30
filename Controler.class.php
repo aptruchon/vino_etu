@@ -57,7 +57,7 @@ class Controler
 				$this->connexion();
 				break;
 			case 'mesCelliers':
-				$this->mesCelliers();
+				$this->mesCelliers($userId, $cellierId);
 				break;
 			case 'cellier':
 				$this->cellier($userId, $cellierId);
@@ -97,10 +97,10 @@ class Controler
 	/**
 	 * Affiche la vue de la page mesCelliers
 	 */
-	private function mesCelliers()
+	private function mesCelliers($userId, $cellierId)
 	{
-		// $bte = new Bouteille();
-		// $mesCelliers = $bte->getListeBouteilleCellier($userId, $cellierId);
+		$bte = new Bouteille();
+		$mesCelliers = $bte->getListeBouteilleCellier($userId, $cellierId);
 		include("vues/entete.php");
 		include("vues/navigation.php");
 		include("vues/mesCelliers.php");
