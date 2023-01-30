@@ -359,6 +359,36 @@ window.addEventListener('load', function() {
       modalContainer.style.display = "none";
     })
   }
+
+
+   /**
+   * Fonctionnalité pour ouvrir la boite modale ajouter cellier
+   */
+   let btnAjoutCellier = document.querySelector('[name="btnAjoutCellier"]')
+   console.log(btnAjoutCellier)
+   if (btnAjoutCellier) {
+    btnAjoutCellier.addEventListener('click', function (evt) {
+       popupForm.style.display = 'block'
+       modalContainer.style.display = 'block'
+     })
+   }
+ 
+   /**
+    * Fonctionnalité pour fermer la boite modale ajouter cellier
+    */
+ 
+   if(btnCloseModale){
+     btnCloseModale.addEventListener('click', function(evt){
+       popupForm.style.display = "none";
+       modalContainer.style.display = "none";
+     })
+   }
+   if(btnCloseX){
+     btnCloseX.addEventListener('click', function(evt){
+       popupForm.style.display = "none";
+       modalContainer.style.display = "none";
+     })
+   }
   
 });
 
