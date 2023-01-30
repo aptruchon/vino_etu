@@ -179,6 +179,12 @@
         height: 350px;
     }
 
+    /* PAGE MES CELLIERS */
+
+       .celliers-container {
+        grid-template-columns: 1fr 1fr;
+    }
+
 
 }
 
@@ -227,6 +233,12 @@
         margin-left: auto;
         margin-right: auto;
         display: block;
+    }
+
+    /* PAGE MES CELLIERS */
+
+     .celliers-container {
+        grid-template-columns: 1fr 1fr;
     }
 
     /* FENETRE CONFIRMATION */
@@ -296,6 +308,13 @@
     .bouteilles-container {
         grid-template-columns: 1fr 1fr 1fr;
     } 
+
+    /* PAGE MES CELLIERS */
+
+     .celliers-container {
+        grid-template-columns: 1fr 1fr;
+    }
+  
 
     /* PAGE CONNEXION / INSCRIPTION */
 

@@ -1,17 +1,37 @@
-<div class="cellier">
+<div class="celliers">
     <div class="menu-actions-container">
         <!-- <a class="no-underline" href="?requete=ajouterCellier"> -->
             <span class="bouton-carre-label">Ajouter un cellier</span>
             <div class="bouton-carre" name="btnAjoutCellier"><i class="fa-solid fa-plus"></i></div>
         <!-- </a> -->
     </div>
-    <section class="bouteilles-container">
-        <a class="no-underline" href="?requete=cellier">
-            <div class="mesCelliers">
-              <h2>Nom cellier</h2>
-              <p>X bouteilles dans le cellier </p>
-            </div>
-        </a>    
+    <section class="celliers-container">
+        <div class="cellier">
+            <a class="no-underline" href="?requete=cellier">
+                <div class="mesCelliers">
+                    <h2>Nom cellier</h2>
+                    <p>X bouteilles dans le cellier </p>
+                </div>
+            </a>  
+        </div>  
+
+        <div class="cellier">
+            <a class="no-underline" href="?requete=cellier">
+                <div class="mesCelliers">
+                    <h2>Nom cellier</h2>
+                    <p>X bouteilles dans le cellier </p>
+                </div>
+            </a>  
+        </div> 
+
+        <div class="cellier">
+            <a class="no-underline" href="?requete=cellier">
+                <div class="mesCelliers">
+                    <h2>Nom cellier</h2>
+                    <p>X bouteilles dans le cellier </p>
+                </div>
+            </a>  
+        </div> 
     </section>
 
     <div class="modal-container" id="modal-container">
