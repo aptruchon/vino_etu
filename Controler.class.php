@@ -97,7 +97,7 @@ class Controler
 	/**
 	 * Affiche la vue de la page mesCelliers
 	 */
-	private function mesCelliers($userId, $cellierId)
+	private function mesCelliers()
 	{
 		// $bte = new Bouteille();
 		// $mesCelliers = $bte->getListeBouteilleCellier($userId, $cellierId);
