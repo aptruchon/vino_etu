@@ -101,6 +101,17 @@ a {
 	display: block;
 	width: fit-content;
 }
+.btn-rond-rouge {
+	background-color: var(--red);
+	border-radius: 50%;
+	display: inline-block;
+	padding: 5px 8px;
+	cursor: pointer;
+}
+
+.btn-rond-rouge .fa-plus {
+	color: white;
+}
 
 
 

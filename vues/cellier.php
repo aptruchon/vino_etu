@@ -2,7 +2,7 @@
     <div class="menu-actions-container">
         <a class="no-underline" href="?requete=ajouterNouvelleBouteilleCellier">
             <span class="bouton-carre-label">Ajouter une bouteille</span>
-            <div class="bouton-carre"><i class="fa-solid fa-plus"></i></div>
+            <div class="btn-rond-rouge"><i class="fa-solid fa-plus"></i></div>
         </a>
     </div>
     <section class="bouteilles-container">
@@ -46,7 +46,7 @@
 <script type="text/javascript">
     var estVisible = <?php echo $_SESSION['estVisible']; ?>;
 </script>
-<script src="./js/fenetreConf.js"></script>
+<script src="./js/fenetreConfirmer.js"></script>
 
 <div class="window-background <?= $_SESSION['estVisible'] ? 'show-window' : '' ; ?>" data-js-fenetre-message>
     <div class="window ">
