@@ -2,10 +2,10 @@
  * Fonctionnalité pour ouvrir la boite modale supprimer
  */
 function ouvrirBoiteModaleSupprimer() {
-    let popupForm = document.getElementById('popupForm')
-    let btnSupprimerBouteille = document.querySelector('[name="btnSupprimer"]')
-    let modalContainer = document.getElementById('modal-container')
-    console.log('btn supprimer',btnSupprimerBouteille)
+    let popupForm = document.getElementById('popupForm');
+    let btnSupprimerBouteille = document.querySelector('[name="btnSupprimer"]');
+    let modalContainer = document.getElementById('modal-container');
+    // console.log('btn supprimer',btnSupprimerBouteille);
     if (btnSupprimerBouteille) {
         btnSupprimerBouteille.addEventListener('click', function (evt) {
             popupForm.style.display = 'block'
@@ -18,7 +18,7 @@ function ouvrirBoiteModaleSupprimer() {
  * Fonctionnalité pour fermer la boite modale supprimer
  */
 function fermerBoiteModaleSupprimer() {
-
+    let modalContainer = document.getElementById('modal-container')
     let btnCloseModale = document.getElementById('closeForm')
     let btnCloseX = document.getElementById('closeFormX')
     if (btnCloseModale) {
