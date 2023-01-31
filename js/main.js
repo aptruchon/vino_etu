@@ -39,19 +39,17 @@ window.addEventListener('load', function() {
   /**
    * Fonctionnalites Page Ajout
    * */
-
+  
   let bouteille = {
     nom: document.querySelector("[name='nom']"),
     millesime: document.querySelector("[name='millesime']"),
     quantite: document.querySelector("[name='quantite']"),
-    /* date_achat: document.querySelector("[name='date_achat']"), */
     description: document.querySelector("[name='description']"),
     format: document.querySelector("[name='format']"),
     pays: document.querySelector("[name='pays']"),
     prix: document.querySelector("[name='prix']"),
     garde_jusqua: document.querySelector("[name='garde_jusqua']"),
     notes: document.querySelector("[name='notes']"),
-    // typesPossibles: document.querySelectorAll("[name='type']"),
     types: document.querySelector("[name='types']"),
     type: {},
   }

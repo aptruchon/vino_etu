@@ -97,10 +97,12 @@ class Controler
 	/**
 	 * Affiche la vue de la page mesCelliers
 	 */
-	private function mesCelliers($userId, $cellierId)
+	private function mesCelliers($userId)
 	{
-		$bte = new Bouteille();
-		$mesCelliers = $bte->getListeBouteilleCellier($userId, $cellierId);
+		$cellier = new Cellier();
+		$mesCelliers = $cellier->getCelliers($userId);
+
+		json_encode($mesCelliers);
 		include("vues/entete.php");
 		include("vues/navigation.php");
 		include("vues/mesCelliers.php");
