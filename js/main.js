@@ -17,6 +17,7 @@ import {
   effaceInputsForm,
 } from './pageAjout.js'
 import { ouvrirBoiteModaleAjoutCelliers, fermerBoiteModaleAjoutCelliers } from './pageMesCelliers.js'
+import { openNav, closeNav } from './navigation.js'
 
 const BaseURL = window.location.href.split('?')[0];
 
@@ -54,11 +55,24 @@ window.addEventListener('load', function() {
     type: {},
   }
 
+  let inputsFormAjout = [
+    bouteille.nom,
+    bouteille.millesime,
+    bouteille.quantite,
+    bouteille.description,
+    bouteille.format,
+    bouteille.pays,
+    bouteille.prix,
+    bouteille.garde_jusqua,
+    bouteille.notes,
+    bouteille.types,
+  ]
+
   if (nomPage == 'ajouterNouvelleBouteilleCellier') {
     afficheResulatRechVin()
     preremplitFormAjout(bouteille)
     ajoutVinCellier(bouteille)
-    effaceInputsForm(bouteille)
+    effaceInputsForm(inputsFormAjout)
   }
 
   /**
@@ -68,15 +82,19 @@ window.addEventListener('load', function() {
   ouvrirBoiteModaleSupprimer()
   fermerBoiteModaleSupprimer()
 
-
-
   /**
    * Fonctionnalités Page Mes Cellier
    */
 
-  ouvrirBoiteModaleAjoutCelliers(); 
-  fermerBoiteModaleAjoutCelliers() 
+  ouvrirBoiteModaleAjoutCelliers()
+  fermerBoiteModaleAjoutCelliers()
 
+  /**
+   * Fonctionnalités Navigation
+   */
+  const elMobileNav = document.getElementById('mobile-nav');
+  openNav(elMobileNav)
+  closeNav(elMobileNav)
 
 });
 

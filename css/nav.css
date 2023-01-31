@@ -28,7 +28,58 @@ nav {
 }
 
 
-/* .fa-wine-glass {
-    font-size: 24px;
+nav svg {
     color: white;
-} */
+    cursor: pointer;
+}
+
+/* VOLET NAVIGATION */
+
+.mobile-nav {
+    background-color: var(--red);
+    color: white;
+    height: 100vh;
+
+    width: 0px;
+    position: fixed; 
+    z-index: 1; 
+    top: 0;
+    left: 0;
+    overflow-x: hidden; 
+    transition: 0.5s;
+}
+
+.mobile-nav div {
+    font-size: 22px;
+    margin-bottom: 20px;
+    font-family: 'Kurale', serif;
+    cursor: pointer;
+    margin-left: 23px;
+}
+
+.mobile-nav div:hover {
+    font-weight: bold;
+}
+
+.mobile-nav .first-div {
+    margin-top: 60px;
+}
+
+.mobile-nav a {
+    text-decoration: none;
+    color: white;
+    display: block;
+}
+
+.mobile-nav .closebtn {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    cursor: pointer;
+}
+
+.showMobileNav {
+    width: 100%;
+}
