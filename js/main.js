@@ -82,24 +82,3 @@ window.addEventListener('load', function() {
 
 });
 
-/**
- * Actualise la quantité du dataset du vin
- * ainsi que la quantité affiché après le clic du bouton (-).
- * 
- * @param divBouteille - div où se trouvent les infos du vin.
- */
-function updateQuantiteApresBoire(divBouteille) {
-  // Quantité qui est au dataset de la div.
-  let quantiteAvantBoire = parseInt(divBouteille.dataset.quantite);
-  // On calcule la nouvelle quantité.
-  let quantiteApresBoire = (quantiteAvantBoire == 0) ? 0 : (quantiteAvantBoire - 1);
-  // On actualise le dataset.
-  divBouteille.dataset.quantite = quantiteApresBoire;
-  // Et on actualise aussi l'élément <p> qui affiche la quantité.
-  let elemQuantite = divBouteille.getElementsByClassName('quantite')[0];
-  elemQuantite.innerText = quantiteApresBoire;
-}
-
-
-
-
