@@ -67,7 +67,7 @@ class Controler
 			default:
 				// $this->accueil();
 				// $this->cellier($userId, $_SESSION["cellierId"]);
-				$this->mesCelliers($userId, $_SESSION["cellierId"]);
+				$this->mesCelliers($userId);
 				break;
 		}
 	}
