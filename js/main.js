@@ -98,9 +98,3 @@ window.addEventListener('load', function() {
 
 });
 
-
-
-
-
-
-
