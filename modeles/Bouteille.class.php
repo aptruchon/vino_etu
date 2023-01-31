@@ -177,7 +177,7 @@ class Bouteille extends Modele
 			$data["id_bouteille"] = $lastInsertedId;
 		}
 
-		$cellierId = 1;
+		$cellierId = $_SESSION["cellierId"];
 
 		$resultat = $this->_db->query("SELECT id from vino__cellier_contient where vino__cellier_id = " .$cellierId. " AND vino__bouteille_id =" .$data["id_bouteille"]);
 		

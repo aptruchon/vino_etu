@@ -50,8 +50,8 @@ function afficheResulatRechVin() {
 
   function preremplitFormAjout(bouteille) {
     const BaseURL = window.location.href.split('?')[0]
-    let liste = document.querySelector('.listeAutoComplete');
-    let inputNomBouteille = document.querySelector("[name='nom_bouteille']");
+    let liste = document.querySelector('.listeAutoComplete')
+    let inputNomBouteille = document.querySelector("[name='nom_bouteille']")
 
     liste.addEventListener('click', function (evt) {
       if (evt.target.tagName == 'LI') {
@@ -72,7 +72,7 @@ function afficheResulatRechVin() {
             }
           })
           .then((response) => {
-            console.log(response)
+            // console.log(response)
             let bouteilleChoisi = response
 
             bouteille.nom.value = bouteilleChoisi.nom
@@ -93,7 +93,6 @@ function afficheResulatRechVin() {
             bouteille.description.classList.add('readOnly')
             bouteille.prix.classList.add('readOnly')
 
-            // let elSelectType = document.querySelector('select');
             bouteille.types.classList.add('noEvent')
 
             for (let i = 0, l = bouteille.types.options.length; i < l; i++) {
@@ -117,7 +116,6 @@ function afficheResulatRechVin() {
         inputNomBouteille.value = ''
       }
     })
-
   }
 
   
@@ -125,11 +123,11 @@ function afficheResulatRechVin() {
    * Fait une requete à la DB pour ajouter une bouteille au cellier de l'usager.
    */
   function ajoutVinCellier(bouteille) {
+    let cellierId = document.querySelector("[name='cellierId']");
     let btnAjouter = document.querySelector("[name='ajouterBouteilleCellier']");
     const BaseURL = window.location.href.split('?')[0];
     if (btnAjouter) {
       btnAjouter.addEventListener('click', function (evt) {
-        // for (let i = 0, l = bouteille.typesPossibles.length; i < l; i++) {
 
         for (let i = 0, l = bouteille.types.options.length; i < l; i++) {
           if (bouteille.types.options[i].id == bouteille.types.selectedIndex) {
@@ -188,13 +186,13 @@ function afficheResulatRechVin() {
             })
             .then((response) => {
               console.log(response)
-              location.replace(BaseURL + '?requete=cellier')
+              location.replace(BaseURL + '?requete=cellier&cellierId=' + cellierId.id)
             })
             .catch((error) => {
               console.error(error)
 
               // Temporaire
-              location.replace(BaseURL + '?requete=cellier')
+              location.replace(BaseURL + '?requete=cellier&cellierId=' + cellierId.id)
             })
         } else {
           // Injection des messages d'erreurs
@@ -223,13 +221,18 @@ function afficheResulatRechVin() {
   }
   
   /**
-   *  Efface les inputs du form ajout au click du bouton
+   *  Efface les inputs et le style 'read only' du form ajout au click du bouton efface
    * @param Object formInputs - les inputs du form
    * */  
   function effaceInputsForm(formInputs) {
     const elBtnRefresh = document.querySelector('[data-js-efface]');
     elBtnRefresh.addEventListener('click', () => {
-      console.log(formInputs[0]) 
+      for (let i in formInputs) {
+        formInputs[i].value = '';
+        formInputs[i].setAttribute('readonly', false);
+        formInputs[i].classList.remove('readOnly');
+        if (formInputs[i].name == 'types') formInputs[i].classList.remove('noEvent')
+      }
     })
   }
 
