@@ -38,10 +38,10 @@
         margin-top: 10px;
     }
 
-    .bouteille-img-container img {
+    /* .bouteille-img-container img {
         width: 50px;
         height: 100px;
-    }
+    } */
 
     /* FICHE */
 
@@ -223,8 +223,9 @@
     .bouteille_container img {
         margin-right: 0;
         margin-left: 0;
-        width: 400px;
-        height: 400px;
+        object-fit: cover;
+        /* width: 400px;
+        height: 400px; */
     }
 
     /* PAGE CELLIER */
@@ -292,6 +293,9 @@
     .titre{
         font-size: 40px;
     }
+    .bouteille-img-container img{
+        height: 150px;
+    }
 
 
 }
@@ -312,6 +316,7 @@
 
     .bouteilles-container {
         grid-template-columns: 1fr 1fr 1fr;
+        margin-bottom: 40px;
     } 
 
     /* PAGE MES CELLIERS */
@@ -347,6 +352,10 @@
     }
     .titre{
         font-size: 40px;
+    }
+
+    .bouteille-img-container img{
+        height: 150px;
     }
 }
 

@@ -25,7 +25,7 @@
 
  .bouteilles-container {
     margin-top: 40px;
-    margin-bottom: 40px;
+    /* margin-bottom: 40px; */
     display: grid;
     column-gap: 20px;
     grid-template-columns: 1fr;
@@ -37,7 +37,7 @@
     display: flex;
     flex-direction: row;
     gap: 20px;
-    padding: 20px;
+    padding: 20px 20px 10px 20px;
 }
 
 .bouteille:hover {
@@ -52,22 +52,26 @@
 }
 
 .bouteille-img-container img {
-    width: 70px;
+    width: 80px;
     object-fit: cover;
     height: 120px;
     object-position: center;
 }
 
+.description > type{
+    margin-left: 2px;
+}
+
 .type {
     color: rgb(54, 54, 54);
     background-color: rgb(214, 214, 214);
-    border-radius: 12px;
+    border-radius: 10px;
     width: fit-content;
-    padding: 2px 8px;
+    padding: 2px 6px;
     margin-bottom: 10px;
     margin-left: -2px;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .rouge {
