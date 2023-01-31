@@ -87,13 +87,21 @@
 
     /* PAGE CONNEXION/INSCRIPTION */
 
-    .login-container {
-        width: 450px;
-        margin-left: auto;
+    /* .login-container { */
+        /* width: 450px; */
+        /* margin-left: auto;
         margin-right: auto;
         box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
         border-radius: 5px;
         padding: 40px 20px;
+    } */
+
+    .login-container{
+        box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+        border-radius: 5px;
+        padding-top: 30px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .mdp-infos {
@@ -186,8 +194,18 @@
 
     /* PAGE MES CELLIERS */
 
-       .celliers-container {
+    .celliers-container {
         grid-template-columns: 1fr 1fr;
+    }
+
+    /* INSCRIPTION */
+    .login-container {
+        width: 450px;
+        height: 600px;
+    }
+
+    .iconify-eye{
+        left: 390px;
     }
 
 
@@ -259,6 +277,10 @@
         right: -61px;
     }
 
+    .iconify-eye{
+        left: 390px;
+    }
+
     /* PAGE MODIFIE */
 
     .buttons-wrapper {
@@ -297,6 +319,11 @@
         height: 150px;
     }
 
+    .login-container {
+        width: 450px;
+        height: 600px;
+    }
+
 
 }
 
@@ -329,11 +356,16 @@
     /* PAGE CONNEXION / INSCRIPTION */
 
     .logo-complet-login {
-        display: block;
+        display: none;
     }
 
     .tache-couleur {
         top: -42px;
+    }
+
+      .login-container {
+        width: 450px;
+        height: 600px;
     }
 
     /* ACCUEIL */
