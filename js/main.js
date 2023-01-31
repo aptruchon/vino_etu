@@ -10,10 +10,14 @@
 
 import { reduitQuantBouteille, augmenteQuantBouteille } from './pageCellier.js'
 import { ouvrirBoiteModaleSupprimer, fermerBoiteModaleSupprimer,} from './fenetreSupprimer.js';
-import { afficheResulatRechVin, preremplitFormAjout, ajoutVinCellier } from './pageAjout.js';
+import {
+  afficheResulatRechVin,
+  preremplitFormAjout,
+  ajoutVinCellier,
+  effaceInputsForm,
+} from './pageAjout.js'
+import { ouvrirBoiteModaleAjoutCelliers, fermerBoiteModaleAjoutCelliers } from './pageMesCelliers.js'
 
-//const BaseURL = "https://jmartel.webdev.cmaisonneuve.qc.ca/n61/vino/";
-//const BaseURL = document.baseURI;
 const BaseURL = window.location.href.split('?')[0];
 
 window.addEventListener('load', function() {
@@ -28,13 +32,13 @@ window.addEventListener('load', function() {
   /**
    * Fonctionnalités page Cellier
    */
-   
-  reduitQuantBouteille();
-  augmenteQuantBouteille();
 
-  /** 
+  reduitQuantBouteille()
+  augmenteQuantBouteille()
+
+  /**
    * Fonctionnalites Page Ajout
-   * */ 
+   * */
 
   let bouteille = {
     nom: document.querySelector("[name='nom']"),
@@ -50,64 +54,33 @@ window.addEventListener('load', function() {
     // typesPossibles: document.querySelectorAll("[name='type']"),
     types: document.querySelector("[name='types']"),
     type: {},
-  };
+  }
 
-  afficheResulatRechVin();
-  preremplitFormAjout(bouteille)
-  ajoutVinCellier(bouteille)
-  
+  if (nomPage == 'ajouterNouvelleBouteilleCellier') {
+    afficheResulatRechVin()
+    preremplitFormAjout(bouteille)
+    ajoutVinCellier(bouteille)
+    effaceInputsForm(bouteille)
+  }
 
   /**
-   * Fonctionnalité pour ouvrir et fermer la boite modale supprimer
+   * Fonctionnalité Page Modifier
    */
-  ouvrirBoiteModaleSupprimer();
-  fermerBoiteModaleSupprimer();
+  //pour ouvrir et fermer la boite modale supprimer
+  ouvrirBoiteModaleSupprimer()
+  fermerBoiteModaleSupprimer()
 
 
-  let btnCloseModale = document.getElementById("closeForm");
-  let btnCloseX = document.getElementById("closeFormX");
-  if(btnCloseModale){
-    btnCloseModale.addEventListener('click', function(evt){
-      popupForm.style.display = "none";
-      modalContainer.style.display = "none";
-    })
-  }
-  if(btnCloseX){
-    btnCloseX.addEventListener('click', function(evt){
-      popupForm.style.display = "none";
-      modalContainer.style.display = "none";
-    })
-  }
 
-
-   /**
-   * Fonctionnalité pour ouvrir la boite modale ajouter cellier
+  /**
+   * Fonctionnalités Page Mes Cellier
    */
-   let btnAjoutCellier = document.querySelector('[name="btnAjoutCellier"]')
-   if (btnAjoutCellier) {
-    btnAjoutCellier.addEventListener('click', function (evt) {
-       popupForm.style.display = 'block'
-       modalContainer.style.display = 'block'
-     })
-   }
- 
-   /**
-    * Fonctionnalité pour fermer la boite modale ajouter cellier
-    */
- 
-   if(btnCloseModale){
-     btnCloseModale.addEventListener('click', function(evt){
-       popupForm.style.display = "none";
-       modalContainer.style.display = "none";
-     })
-   }
-   if(btnCloseX){
-     btnCloseX.addEventListener('click', function(evt){
-       popupForm.style.display = "none";
-       modalContainer.style.display = "none";
-     })
-   }
 
+  ouvrirBoiteModaleAjoutCelliers(); 
+  fermerBoiteModaleAjoutCelliers() 
+
+
+});
 
 /**
  * Actualise la quantité du dataset du vin
