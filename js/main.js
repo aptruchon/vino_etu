@@ -17,6 +17,7 @@ import {
   effaceInputsForm,
 } from './pageAjout.js'
 import { ouvrirBoiteModaleAjoutCelliers, fermerBoiteModaleAjoutCelliers } from './pageMesCelliers.js'
+import { openNav, closeNav } from './navigation.js'
 
 const BaseURL = window.location.href.split('?')[0];
 
@@ -44,23 +45,34 @@ window.addEventListener('load', function() {
     nom: document.querySelector("[name='nom']"),
     millesime: document.querySelector("[name='millesime']"),
     quantite: document.querySelector("[name='quantite']"),
-    /* date_achat: document.querySelector("[name='date_achat']"), */
     description: document.querySelector("[name='description']"),
     format: document.querySelector("[name='format']"),
     pays: document.querySelector("[name='pays']"),
     prix: document.querySelector("[name='prix']"),
     garde_jusqua: document.querySelector("[name='garde_jusqua']"),
     notes: document.querySelector("[name='notes']"),
-    // typesPossibles: document.querySelectorAll("[name='type']"),
     types: document.querySelector("[name='types']"),
     type: {},
   }
+
+  let inputsFormAjout = [
+    bouteille.nom,
+    bouteille.millesime,
+    bouteille.quantite,
+    bouteille.description,
+    bouteille.format,
+    bouteille.pays,
+    bouteille.prix,
+    bouteille.garde_jusqua,
+    bouteille.notes,
+    bouteille.types,
+  ]
 
   if (nomPage == 'ajouterNouvelleBouteilleCellier') {
     afficheResulatRechVin()
     preremplitFormAjout(bouteille)
     ajoutVinCellier(bouteille)
-    effaceInputsForm(bouteille)
+    effaceInputsForm(inputsFormAjout)
   }
 
   /**
@@ -70,15 +82,19 @@ window.addEventListener('load', function() {
   ouvrirBoiteModaleSupprimer()
   fermerBoiteModaleSupprimer()
 
-
-
   /**
    * Fonctionnalités Page Mes Cellier
    */
 
-  ouvrirBoiteModaleAjoutCelliers(); 
-  fermerBoiteModaleAjoutCelliers() 
+  ouvrirBoiteModaleAjoutCelliers()
+  fermerBoiteModaleAjoutCelliers()
 
+  /**
+   * Fonctionnalités Navigation
+   */
+  const elMobileNav = document.getElementById('mobile-nav');
+  openNav(elMobileNav)
+  closeNav(elMobileNav)
 
 });
 
