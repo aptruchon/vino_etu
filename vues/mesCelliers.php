@@ -10,7 +10,7 @@
             foreach ($mesCelliers as $key => $cellier) {
         ?>
         <div class="cellier">
-            <a class="no-underline" href="?requete=cellier">
+            <a class='no-underline' href="<?= "?requete=cellier&cellierId=" .$cellier['id']; ?>">
                 <div class="mesCelliers">
                     <h2><?= $cellier["nom"]; ?></h2>
                     <p><?= $cellier["nbDeVins"]; ?> bouteilles dans le cellier </p>

@@ -19,17 +19,7 @@ class Cellier extends Modele {
     }
     
 	public function getCelliers($userId){
-        $celliers = $this->_db->query("SELECT vc.nom, COUNT(vcc.id) AS nbDeVins FROM vino__cellier vc LEFT JOIN vino__cellier_contient vcc ON vc.id = vcc.vino__cellier_id WHERE vc.vino__utilisateur_id = " .$userId. " GROUP BY vc.nom");
-        $arrayCelliers = [];
-        while($row = $celliers->fetch_assoc()){
-            array_push($arrayCelliers, $row);
-        }
-
-        return $arrayCelliers;
-    }
-    
-	public function getNbBouteilleParCellier($userId){
-        $celliers = $this->_db->query("select nom from vino__cellier where vino__utilisateur_id = ". $userId);
+        $celliers = $this->_db->query("SELECT vc.id, vc.nom, COUNT(vcc.id) AS nbDeVins FROM vino__cellier vc LEFT JOIN vino__cellier_contient vcc ON vc.id = vcc.vino__cellier_id WHERE vc.vino__utilisateur_id = " .$userId. " GROUP BY vc.nom");
         $arrayCelliers = [];
         while($row = $celliers->fetch_assoc()){
             array_push($arrayCelliers, $row);

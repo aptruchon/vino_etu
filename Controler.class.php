@@ -23,11 +23,10 @@ class Controler
 	{
 		// ID utilisateur et ID de cellier en attendant de recevoir les vraies informations dynamiquement
 		$userId = 2;
-		$cellierId = 1;
 
 		switch ($_GET['requete']) {
 			case 'listeBouteille':
-				$this->listeBouteille($userId, $cellierId);
+				$this->listeBouteille($userId, $_SESSION['cellierId']);
 				break;
 			case 'informationBouteilleParId':
 				$this->informationBouteilleParId();
@@ -39,7 +38,7 @@ class Controler
 				$this->ajouterNouvelleBouteilleCellier();
 				break;
 			case 'modifierBouteilleCellier':
-				$this->modifierBouteilleCellier($userId, $cellierId, $_GET['bte']);
+				$this->modifierBouteilleCellier($userId, $_SESSION['cellierId'], $_GET['bte']);
 				break;
 			case 'ajouterBouteilleCellier':
 				$this->ajouterBouteilleCellier();
@@ -57,17 +56,17 @@ class Controler
 				$this->connexion();
 				break;
 			case 'mesCelliers':
-				$this->mesCelliers($userId, $cellierId);
+				$this->mesCelliers($userId);
 				break;
 			case 'cellier':
-				$this->cellier($userId, $cellierId);
+				$this->cellier($userId, $_SESSION['cellierId']);
 				break;
 			case 'ficheDetailsBouteille':
-				$this->ficheDetailsBouteille($userId, $cellierId, $_GET['bte']);
+				$this->ficheDetailsBouteille($userId, $_GET['bte']);
 				break;
 			default:
 				// $this->accueil();
-				$this->cellier($userId, $cellierId);
+				$this->mesCelliers($userId);
 				break;
 		}
 	}
@@ -84,10 +83,11 @@ class Controler
 	/**
 	 * Affiche la vue de la page cellier
 	 */
-	private function cellier($userId, $cellierId)
+	private function cellier($userId)
 	{
+		$_SESSION['cellierId'] = $_GET["cellierId"];
 		$bte = new Bouteille();
-		$data = $bte->getListeBouteilleCellier($userId, $cellierId);
+		$data = $bte->getListeBouteilleCellier($userId, $_SESSION["cellierId"]);
 		include("vues/entete.php");
 		include("vues/navigation.php");
 		include("vues/cellier.php");
@@ -112,10 +112,10 @@ class Controler
 	/**
 	 * Affiche la vue de la page fiche
 	 */
-	private function ficheDetailsBouteille($userId, $cellierId, $idBouteille, $showMessage=false)
+	private function ficheDetailsBouteille($userId, $idBouteille, $showMessage=false)
 	{
 		$bte = new Bouteille();
-		$dataFiche = $bte->getListeBouteilleCellier($userId, $cellierId, $idBouteille);
+		$dataFiche = $bte->getListeBouteilleCellier($userId, $_SESSION['cellierId'], $idBouteille);
 		// Afficher message confirmation si modifications
 		if ($showMessage) {
 				$_SESSION["message"] = "Modifications enregistrées !";
@@ -128,10 +128,10 @@ class Controler
 	}
 
 
-	private function listeBouteille($userId, $cellierId)
+	private function listeBouteille($userId)
 	{
 		$bte = new Bouteille();
-		$cellier = $bte->getListeBouteilleCellier($userId, $cellierId);
+		$cellier = $bte->getListeBouteilleCellier($userId, $_SESSION['cellierId']);
 
 		echo json_encode($cellier);
 	}
@@ -151,7 +151,7 @@ class Controler
 	/**
 	 * Affiche la vue de la page modifier
 	 */
-	private function modifierBouteilleCellier($userId, $cellierId, $idBouteille)
+	private function modifierBouteilleCellier($userId, $idBouteille)
 	{
 		$type = new Type();
 		$types = $type->getTypes();
@@ -168,12 +168,12 @@ class Controler
 			$showMessage = false;
 			if ($modifier) $showMessage = true;
 
-			$this->ficheDetailsBouteille($userId, $cellierId, $idBouteille, $showMessage);
+			$this->ficheDetailsBouteille($userId, $_SESSION['cellierId'], $idBouteille, $showMessage);
 		} else {
 			$dataTypesModifier = $types;
 
 			$bte = new Bouteille();
-			$dataModifie = $bte->getListeBouteilleCellier($userId, $cellierId, $idBouteille);
+			$dataModifie = $bte->getListeBouteilleCellier($userId, $_SESSION['cellierId'], $idBouteille);
 
 			include("vues/entete.php");
 			include("vues/navigation.php");
