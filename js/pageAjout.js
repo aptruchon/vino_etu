@@ -123,6 +123,7 @@ function afficheResulatRechVin() {
    * Fait une requete à la DB pour ajouter une bouteille au cellier de l'usager.
    */
   function ajoutVinCellier(bouteille) {
+    let cellierId = document.querySelector("[name='cellierId']");
     let btnAjouter = document.querySelector("[name='ajouterBouteilleCellier']");
     const BaseURL = window.location.href.split('?')[0];
     if (btnAjouter) {
@@ -185,13 +186,13 @@ function afficheResulatRechVin() {
             })
             .then((response) => {
               console.log(response)
-              location.replace(BaseURL + '?requete=cellier')
+              location.replace(BaseURL + '?requete=cellier&cellierId=' + cellierId.id)
             })
             .catch((error) => {
               console.error(error)
 
               // Temporaire
-              location.replace(BaseURL + '?requete=cellier')
+              location.replace(BaseURL + '?requete=cellier&cellierId=' + cellierId.id)
             })
         } else {
           // Injection des messages d'erreurs

@@ -40,7 +40,7 @@ window.addEventListener('load', function() {
   /**
    * Fonctionnalites Page Ajout
    * */
-
+  
   let bouteille = {
     nom: document.querySelector("[name='nom']"),
     millesime: document.querySelector("[name='millesime']"),
