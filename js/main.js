@@ -17,6 +17,7 @@ import {
   effaceInputsForm,
 } from './pageAjout.js'
 import { ouvrirBoiteModaleAjoutCelliers, fermerBoiteModaleAjoutCelliers } from './pageMesCelliers.js'
+import { openNav, closeNav } from './navigation.js'
 
 const BaseURL = window.location.href.split('?')[0];
 
@@ -64,7 +65,7 @@ window.addEventListener('load', function() {
     bouteille.prix,
     bouteille.garde_jusqua,
     bouteille.notes,
-    bouteille.types
+    bouteille.types,
   ]
 
   if (nomPage == 'ajouterNouvelleBouteilleCellier') {
@@ -81,15 +82,19 @@ window.addEventListener('load', function() {
   ouvrirBoiteModaleSupprimer()
   fermerBoiteModaleSupprimer()
 
-
-
   /**
    * Fonctionnalités Page Mes Cellier
    */
 
-  ouvrirBoiteModaleAjoutCelliers(); 
-  fermerBoiteModaleAjoutCelliers() 
+  ouvrirBoiteModaleAjoutCelliers()
+  fermerBoiteModaleAjoutCelliers()
 
+  /**
+   * Fonctionnalités Navigation
+   */
+  const elMobileNav = document.getElementById('mobile-nav');
+  openNav(elMobileNav)
+  closeNav(elMobileNav)
 
 });
 
