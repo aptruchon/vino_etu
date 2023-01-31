@@ -222,6 +222,20 @@ function afficheResulatRechVin() {
     }
   }
   
-  
+  /**
+   *  Efface les inputs du form ajout au click du bouton
+   * @param Object formInputs - les inputs du form
+   * */  
+  function effaceInputsForm(formInputs) {
+    const elBtnRefresh = document.querySelector('[data-js-efface]');
+    elBtnRefresh.addEventListener('click', () => {
+      console.log(formInputs[0]) 
+    })
+  }
 
-export { afficheResulatRechVin, preremplitFormAjout, ajoutVinCellier }
+export {
+  afficheResulatRechVin,
+  preremplitFormAjout,
+  ajoutVinCellier,
+  effaceInputsForm,
+}
