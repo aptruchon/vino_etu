@@ -6,32 +6,20 @@
         <!-- </a> -->
     </div>
     <section class="celliers-container">
+        <?php
+            foreach ($mesCelliers as $key => $cellier) {
+        ?>
         <div class="cellier">
-            <a class="no-underline" href="?requete=cellier">
+            <a class='no-underline' href="<?= "?requete=cellier&cellierId=" .$cellier['id']; ?>">
                 <div class="mesCelliers">
-                    <h2>Nom cellier</h2>
-                    <p>X bouteilles dans le cellier </p>
+                    <h2><?= $cellier["nom"]; ?></h2>
+                    <p><?= $cellier["nbDeVins"]; ?> bouteilles dans le cellier </p>
                 </div>
             </a>  
-        </div>  
-
-        <div class="cellier">
-            <a class="no-underline" href="?requete=cellier">
-                <div class="mesCelliers">
-                    <h2>Nom cellier</h2>
-                    <p>X bouteilles dans le cellier </p>
-                </div>
-            </a>  
-        </div> 
-
-        <div class="cellier">
-            <a class="no-underline" href="?requete=cellier">
-                <div class="mesCelliers">
-                    <h2>Nom cellier</h2>
-                    <p>X bouteilles dans le cellier </p>
-                </div>
-            </a>  
-        </div> 
+        </div>
+        <?php
+        }
+        ?>  
     </section>
 
     <div class="modal-container" id="modal-container">

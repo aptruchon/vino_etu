@@ -23,11 +23,10 @@ class Controler
 	{
 		// ID utilisateur et ID de cellier en attendant de recevoir les vraies informations dynamiquement
 		$userId = 2;
-		$cellierId = 1;
 
 		switch ($_GET['requete']) {
 			case 'listeBouteille':
-				$this->listeBouteille($userId, $cellierId);
+				$this->listeBouteille($userId, $_SESSION["cellierId"]);
 				break;
 			case 'informationBouteilleParId':
 				$this->informationBouteilleParId();
@@ -39,7 +38,7 @@ class Controler
 				$this->ajouterNouvelleBouteilleCellier();
 				break;
 			case 'modifierBouteilleCellier':
-				$this->modifierBouteilleCellier($userId, $cellierId, $_GET['bte']);
+				$this->modifierBouteilleCellier($userId, $_SESSION["cellierId"], $_GET['bte']);
 				break;
 			case 'ajouterBouteilleCellier':
 				$this->ajouterBouteilleCellier();
@@ -57,17 +56,18 @@ class Controler
 				$this->connexion();
 				break;
 			case 'mesCelliers':
-				$this->mesCelliers($userId, $cellierId);
+				$this->mesCelliers($userId, $_SESSION["cellierId"]);
 				break;
 			case 'cellier':
-				$this->cellier($userId, $cellierId);
+				$this->cellier($userId, $_SESSION["cellierId"]);
 				break;
 			case 'ficheDetailsBouteille':
-				$this->ficheDetailsBouteille($userId, $cellierId, $_GET['bte']);
+				$this->ficheDetailsBouteille($userId, $_SESSION["cellierId"], $_GET['bte']);
 				break;
 			default:
 				// $this->accueil();
-				$this->cellier($userId, $cellierId);
+				// $this->cellier($userId, $_SESSION["cellierId"]);
+				$this->mesCelliers($userId);
 				break;
 		}
 	}
@@ -84,10 +84,11 @@ class Controler
 	/**
 	 * Affiche la vue de la page cellier
 	 */
-	private function cellier($userId, $cellierId)
+	private function cellier($userId)
 	{
+		$_SESSION["cellierId"] = $_GET["cellierId"];
 		$bte = new Bouteille();
-		$data = $bte->getListeBouteilleCellier($userId, $cellierId);
+		$data = $bte->getListeBouteilleCellier($userId, $_SESSION["cellierId"]);
 		include("vues/entete.php");
 		include("vues/navigation.php");
 		include("vues/cellier.php");
@@ -97,10 +98,12 @@ class Controler
 	/**
 	 * Affiche la vue de la page mesCelliers
 	 */
-	private function mesCelliers($userId, $cellierId)
+	private function mesCelliers($userId)
 	{
-		$bte = new Bouteille();
-		$mesCelliers = $bte->getListeBouteilleCellier($userId, $cellierId);
+		$cellier = new Cellier();
+		$mesCelliers = $cellier->getCelliers($userId);
+
+		json_encode($mesCelliers);
 		include("vues/entete.php");
 		include("vues/navigation.php");
 		include("vues/mesCelliers.php");
@@ -186,7 +189,7 @@ class Controler
 
 		$effacer = $bte->effacerBouteilleCellier($idBouteilleCellier);
 
-		Utilitaires::nouvelleRoute('index.php?requete=cellier');
+		Utilitaires::nouvelleRoute('index.php?requete=cellier&cellierId='.$_SESSION["cellierId"].'');
 	}
 
 	private function informationBouteilleParId()

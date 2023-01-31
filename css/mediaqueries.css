@@ -6,6 +6,10 @@
     }
 
     /* NAV */
+    nav {
+        padding: 5px 10px;
+    }
+
     .titre {
         font-size: 26px;
     }
@@ -84,6 +88,10 @@
 }
 
 @media only screen and (min-width:460px) {
+
+    .showMobileNav {
+        width: 40%;
+    }
 
     /* PAGE CONNEXION/INSCRIPTION */
 
@@ -214,8 +222,8 @@
 @media only screen and (min-width: 768px) {
 
     nav {
-            margin: auto;
-        }
+        margin: auto;
+    }
     
     main {
         margin-left: auto;
@@ -308,10 +316,12 @@
     .nav-header {
         height: 70px;
     }
+
     .logo{
         width: 58px;
         height: 58px;
     }
+
     .titre{
         font-size: 40px;
     }
@@ -334,6 +344,12 @@
     .tache-couleur {
             right: 0px;    
      }
+
+     /* NAV */
+
+    .showMobileNav {
+        width: 20%;
+    }
     
 }
 
