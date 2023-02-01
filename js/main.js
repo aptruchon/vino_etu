@@ -18,6 +18,7 @@ import {
 } from './pageAjout.js'
 import { ouvrirBoiteModaleAjoutCelliers, fermerBoiteModaleAjoutCelliers } from './pageMesCelliers.js'
 import { openNav, closeNav } from './navigation.js'
+import { oeilPassword } from './inscription.js'
 
 const BaseURL = window.location.href.split('?')[0];
 
@@ -90,11 +91,19 @@ window.addEventListener('load', function() {
   fermerBoiteModaleAjoutCelliers()
 
   /**
+   * Fonctionnalité pour le password dans Inscription
+   */
+  oeilPassword()
+
+  /**
    * Fonctionnalités Navigation
    */
   const elMobileNav = document.getElementById('mobile-nav');
   openNav(elMobileNav)
   closeNav(elMobileNav)
+
+
+
 
 });
 
