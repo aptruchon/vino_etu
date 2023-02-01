@@ -24,3 +24,5 @@ Bingo.
 
 
 ![Demo vino geekClub](./AnimationVino.gif)
+
+![Demo vino mobile geekClub](./AnimationVinoMobile.gif)
