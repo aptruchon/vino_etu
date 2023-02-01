@@ -59,7 +59,7 @@ class Controler
 				$this->mesCelliers($userId, $_SESSION["cellierId"]);
 				break;
 			case 'cellier':
-				$this->cellier($userId, $_SESSION["cellierId"]);
+				$this->cellier($userId);
 				break;
 			case 'ficheDetailsBouteille':
 				$this->ficheDetailsBouteille($userId, $_SESSION["cellierId"], $_GET['bte']);
