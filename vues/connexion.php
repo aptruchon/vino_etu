@@ -25,7 +25,7 @@
 <section class="login-container-connexion">
     <div class="infos-wrapper">
         <input type="text" name="uti_courriel" id="uti_courriel" placeholder="Courriel">
-        <input type="text" name="uti_mdp" id="uti_mdp" placeholder="Mot de passe">
+        <input type="password" name="uti_mdp" id="uti_mdp" placeholder="Mot de passe">
         <img src="https://api.iconify.design/mdi:eye-off-outline.svg?color=%23636363" alt="" id="icon-eye-open" class="iconify-eye-connexion">
         <img src="https://api.iconify.design/mdi:eye-outline.svg?color=%23636363" alt="" class="iconify-eye-connexion eye-hidden" id="icon-eye-close">
     </div>
