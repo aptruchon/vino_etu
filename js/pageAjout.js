@@ -225,13 +225,26 @@ function afficheResulatRechVin() {
    * @param Object formInputs - les inputs du form
    * */  
   function effaceInputsForm(formInputs) {
+    
     const elBtnRefresh = document.querySelector('[data-js-efface]');
+    const elOptions = document.querySelectorAll('option')
+
     elBtnRefresh.addEventListener('click', () => {
       for (let i in formInputs) {
         formInputs[i].value = '';
-        formInputs[i].setAttribute('readonly', false);
+        formInputs[i].removeAttribute('readOnly');
         formInputs[i].classList.remove('readOnly');
-        if (formInputs[i].name == 'types') formInputs[i].classList.remove('noEvent')
+
+        if (formInputs[i].name == 'types') {
+          formInputs[i].classList.remove('noEvent');
+
+          for (let i = 0; i < elOptions.length; i++) {
+            elOptions[i].removeAttribute('selected')
+            elOptions[i].removeAttribute('disabled')
+          }
+        }
+      
+      
       }
     })
   }

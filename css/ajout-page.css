@@ -103,7 +103,7 @@
 /* CLASSE POUR MESSAGE CHAMP OBLIGATOIRE */
 
 .champ-obligatoire-input {
-    border: 1px solid red
+    border: 1px solid red !important;
 }
 
 .champ-obligatoire-message {
@@ -113,7 +113,7 @@
 }
 
 .readOnly {
-    background-color: rgb(195 195 195) !important;
+    background-color: rgb(208, 208, 208) !important;
     color: black;
 }
 
@@ -123,5 +123,5 @@
 
 .noEvent {
     pointer-events: none;
-    background-color: rgb(195 195 195) !important;
+    background-color: rgb(208,208,208) !important;
 }
