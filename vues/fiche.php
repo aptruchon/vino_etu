@@ -22,24 +22,24 @@
             <?php endif; ?>
             <div class="description-container">
                 <header class="page-content-header header-fiche">
-                    <h2><?php echo utf8_decode($bouteille['nom']) ?></h2>
+                    <h2><?php echo mb_convert_encoding($bouteille['nom'], "UTF-8") ?></h2>
                 </header>
                 <!--  -->
                 <?php if ($bouteille['type']) : ?>
-                    <p class="type <?php echo strtolower($bouteille['type']) ?>"><?php echo $bouteille['type'] ?></p>
+                    <p class="type <?php echo strtolower($bouteille['type']) ?>"><?php echo mb_convert_encoding($bouteille['type'], "UTF-8") ?></p>
                 <?php else : ?>
                     <p class="type"></p>
                 <?php endif; ?>
                 <!--  -->
                 <div class="bloc-description">
                     <?php if ($bouteille['pays']) : ?>
-                        <p><?php echo utf8_decode($bouteille['pays']) ?></p>
+                        <p><?php echo mb_convert_encoding($bouteille['pays'], "UTF-8") ?></p>
                     <?php else : ?>
                         <p></p>
                     <?php endif; ?>
                     <!--  -->
                     <?php if ($bouteille['format']) : ?>
-                        <p><?php echo $bouteille['format'] ?></p>
+                        <p><?php echo mb_convert_encoding($bouteille['format'], "UTF-8") ?></p>
                     <?php else : ?>
                         <p></p>
                     <?php endif; ?>
@@ -51,7 +51,7 @@
                 <!--  -->
                 <?php if ($bouteille['description']) : ?>
                     <h4>Description</h4>
-                    <p><?php echo utf8_decode($bouteille['description']) ?></p>
+                    <p><?php echo mb_convert_encoding($bouteille['description'], "UTF-8") ?></p>
                 <?php else : ?>
                     <p></p>
                 <?php endif; ?>
@@ -65,14 +65,14 @@
                 <!--  -->
                 <?php if ($bouteille['garde_jusqua']) : ?>
                     <h4>A garder jusqu'au</h4>
-                    <p class="garde_jusqua"><?php echo utf8_decode($bouteille['garde_jusqua']) ?></p>
+                    <p class="garde_jusqua"><?php echo mb_convert_encoding($bouteille['garde_jusqua'], "UTF-8") ?></p>
                 <?php else : ?>
                     <p class="garde_jusqua"></p>
                 <?php endif; ?>
                 <!--  -->
                 <?php if ($bouteille['notes']) : ?>
                     <h4>Notes</h4>
-                    <p class="notes"><?php echo utf8_decode($bouteille['notes']) ?></p>
+                    <p class="notes"><?php echo mb_convert_encoding($bouteille['notes'], "UTF-8") ?></p>
                 <?php else : ?>
                     <p class="notes"></p>
                 <?php endif; ?>
