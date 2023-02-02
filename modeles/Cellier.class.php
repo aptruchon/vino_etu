@@ -27,6 +27,18 @@ class Cellier extends Modele {
 
         return $arrayCelliers;
     }
+
+    public function ajouterCellier($userId, $nom) {
+        $nom = htmlspecialchars($nom);
+
+        $stmt = $this->_db->prepare("INSERT INTO vino__cellier(nom, vino__utilisateur_id) VALUES (?,?)");
+
+        $stmt->bind_param("si", $nom, $userId);
+
+        $resultat = $stmt->execute();
+
+        return $resultat;
+    }
 }
 
 ?>

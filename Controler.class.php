@@ -61,6 +61,9 @@ class Controler
 			case 'cellier':
 				$this->cellier($userId);
 				break;
+			case 'ajouterCellier':
+				$this->mesCelliers($userId);
+				break;
 			case 'ficheDetailsBouteille':
 				$this->ficheDetailsBouteille($userId, $_SESSION["cellierId"], $_GET['bte']);
 				break;
@@ -101,6 +104,17 @@ class Controler
 	private function mesCelliers($userId)
 	{
 		$cellier = new Cellier();
+		$body = $_POST;
+
+		if(!empty($body)){
+			$resultat = $cellier->ajouterCellier($userId, $body["nomCellier"]);
+		}
+
+		if($resultat === true) {
+			$_SESSION["message"] = "Cellier ajoutée !";
+			$_SESSION["estVisible"] = true;
+		}
+
 		$mesCelliers = $cellier->getCelliers($userId);
 
 		json_encode($mesCelliers);
