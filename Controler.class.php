@@ -51,6 +51,8 @@ class Controler
 				break;
 			case 'inscription':
 				$this->inscription();
+			case 'inscrireUtilisateur':
+				$this->inscrireUtilisateur();
 				break;
 			case 'connexion':
 				$this->connexion();
@@ -113,7 +115,7 @@ class Controler
 			$resultat = $cellier->ajouterCellier($userId, $body["nomCellier"]);
 		}
 
-		if($resultat === true) {
+		if(isset($resultat) && $resultat === true) {
 			$_SESSION["message"] = "Cellier ajoutée !";
 			$_SESSION["estVisible"] = true;
 		}
