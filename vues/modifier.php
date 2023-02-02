@@ -31,14 +31,11 @@
                     <span class="champ-obligatoire-message"></span>
 
                     <label>Type</label>
-
-                    <!-- NOUVEAU SELECT OPTIONS TYPE VIN -->
                     <select name="type">
                         <?php for ($i = 0; $i < count($dataTypesModifier); $i++) { ?>
                             <option value="<?= $dataTypesModifier[$i]["id"]; ?>" <?php echo ((strtolower($bouteille['type']) == strtolower($dataTypesModifier[$i]["type"])) ? 'selected' : '') ?>><?= $dataTypesModifier[$i]["type"]; ?></option>
                         <?php } ?>
                     </select>
-
                     <span class="champ-obligatoire-message"></span>
 
                     <label for="date_achat">Date achat</label>
