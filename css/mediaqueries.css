@@ -121,7 +121,7 @@
     }
 
     .logo-complet-login {
-        display: none;
+        display: block;
     }
 
     /* CELLIER */
@@ -342,7 +342,7 @@
     /* PAGE CONNEXION/INSCRIPTION */
 
     .tache-couleur {
-            right: 0px;    
+        right: 0px;    
      }
 
      /* NAV */
@@ -372,7 +372,7 @@
     /* PAGE CONNEXION / INSCRIPTION */
 
     .logo-complet-login {
-        display: none;
+        display: block;
     }
 
     .tache-couleur {
