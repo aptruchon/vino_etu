@@ -88,7 +88,7 @@ class Bouteille extends Modele
 		if (($res = $this->_db->query($requete)) ==	 true) {
 			if ($res->num_rows) {
 				while ($row = $res->fetch_assoc()) {
-					$row['nom'] = trim(utf8_encode($row['nom']));
+					$row['nom'] = trim(mb_convert_encoding($row['nom'], "UTF-8"));
 					$rows[] = $row;
 				}
 			}
@@ -126,7 +126,7 @@ class Bouteille extends Modele
 		if (($res = $this->_db->query($requete)) ==	 true) {
 			if ($res->num_rows) {
 				while ($row = $res->fetch_assoc()) {
-					$row['nom'] = trim(utf8_encode($row['nom']));
+					$row['nom'] = trim(mb_convert_encoding(($row['nom']), "UTF-8"));
 					$rows[] = $row;
 				}
 			}
