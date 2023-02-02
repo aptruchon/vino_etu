@@ -2,7 +2,7 @@
     <div class="menu-actions-container">
         <a class="no-underline" href="?requete=ajouterNouvelleBouteilleCellier">
             <span class="bouton-carre-label">Ajouter une bouteille</span>
-            <div class="btn-rond-rouge-"><i class="fa-solid fa-plus"></i></div>
+            <div class="btn-rond-rouge"><i class="fa-solid fa-plus"></i></div>
         </a>
     </div>
     <section class="bouteilles-container">
