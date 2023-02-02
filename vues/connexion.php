@@ -23,27 +23,27 @@
 </svg>
 <!-- FIN LOGO ENTIER -->
 <form method="POST" action="index.php?requete=connexion">
-<section class="login-container">
-    <div class="infos-wrapper">
-        <input type="text" name="uti_courriel" id="uti_courriel" placeholder="Courriel">
-        <input type="password" name="uti_mdp" id="uti_mdp" placeholder="Mot de passe">
-        <img src="https://api.iconify.design/mdi:eye-off-outline.svg?color=%23636363" alt="" id="icon-eye-open" class="iconify-eye-connexion">
-        <img src="https://api.iconify.design/mdi:eye-outline.svg?color=%23636363" alt="" class="iconify-eye-connexion eye-hidden" id="icon-eye-close">
-    </div>
-    <div class="mdp-infos">
-        <p>Doit inclure :</p>
-        <span>8 caractères minimum</span>
-        <span>1 minuscule</span>
-        <span>1 majuscule</span>
-        <span>1 chiffre</span>
-    </div>
-    <button class="bouton-large">Se connecter</button>
-    <div class="login-link">Pas de compte ? <a href="?requete=inscription" class="link-bold">Inscrivez-vous !</a></div>
-    <div><?= $_SESSION["message"] ?></div>
-        <?php
-        // Après afficher le message ci-haut, on l'efface ici.
-        $_SESSION["message"] = "";
-        ?>
+    <section class="login-container">
+        <div class="infos-wrapper">
+            <input type="text" name="uti_courriel" id="uti_courriel" placeholder="Courriel">
+            <input type="password" name="uti_mdp" id="uti_mdp" placeholder="Mot de passe">
+            <img src="https://api.iconify.design/mdi:eye-off-outline.svg?color=%23636363" alt="" id="icon-eye-open" class="iconify-eye-connexion">
+            <img src="https://api.iconify.design/mdi:eye-outline.svg?color=%23636363" alt="" class="iconify-eye-connexion eye-hidden" id="icon-eye-close">
+        </div>
+        <div class="mdp-infos">
+            <p>Doit inclure :</p>
+            <span>8 caractères minimum</span>
+            <span>1 minuscule</span>
+            <span>1 majuscule</span>
+            <span>1 chiffre</span>
+        </div>
+        <button class="bouton-large">Se connecter</button>
+        <div class="login-link">Pas de compte ? <a href="?requete=inscription" class="link-bold">Inscrivez-vous !</a></div>
+        <div><?= $_SESSION["message"] ?></div>
+            <?php
+            // Après afficher le message ci-haut, on l'efface ici.
+            $_SESSION["message"] = "";
+            ?>
 
-</section>
+    </section>
 </form>

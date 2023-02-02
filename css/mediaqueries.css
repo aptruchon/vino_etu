@@ -308,7 +308,8 @@
     /* PAGE CONNEXION/INSCRIPTION */
 
     .tache-couleur {
-        right: -61px;
+        right: -171px;
+        top: -5%;
     }
 
     .iconify-eye{
@@ -384,7 +385,8 @@
     /* PAGE CONNEXION/INSCRIPTION */
 
     .tache-couleur {
-        right: 0px;    
+        right: 0px;   
+        top: -40px; 
      }
 
      /* NAV */
