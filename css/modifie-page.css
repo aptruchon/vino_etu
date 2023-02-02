@@ -165,7 +165,7 @@
 }
 
 .form-container>.btn-oui:hover {
-	background-color: var(--vert) ;
+	background-color: var(--vert-focus) ;
 }
 
 .form-container>.btn-non:hover {
