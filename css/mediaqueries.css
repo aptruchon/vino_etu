@@ -16,12 +16,14 @@
 
     /* CELLIER */
 
-    .menu-actions-container {
+    /* .menu-actions-container {
         width: 165px;
-    }
+    } */
 
     .bouton-carre-label {
-        font-size: 16px;
+        font-size: 18px;
+        padding-top: 4px;
+        padding-right: 3px;
     }
 
     .type {
