@@ -115,7 +115,7 @@ class Controler
 			$resultat = $cellier->ajouterCellier($userId, $body["nomCellier"]);
 		}
 
-		if($resultat === true) {
+		if(isset($resultat) && $resultat === true) {
 			$_SESSION["message"] = "Cellier ajoutée !";
 			$_SESSION["estVisible"] = true;
 		}
