@@ -32,7 +32,7 @@
 }
 
 .celliers-container{
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 .form-container label{
@@ -74,4 +74,12 @@
 
 .mesCelliers-descriptions p{
     padding-top: 20px;
+}
+
+.btn-ajouter{
+    margin-top: 20px;
+}
+
+.btn-ajouter:hover{
+    background-color: var(--red-focus);
 }

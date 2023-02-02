@@ -36,7 +36,7 @@
                         <path fill="#931818" d="M208.5 191.5a12 12 0 0 1 0 17a12.1 12.1 0 0 1-17 0L128 145l-63.5 63.5a12.1 12.1 0 0 1-17 0a12 12 0 0 1 0-17L111 128L47.5 64.5a12 12 0 0 1 17-17L128 111l63.5-63.5a12 12 0 0 1 17 17L145 128Z"/></svg><br><br>
                         <label for="nomCellier">Nom Cellier:</label>
                         <input type="text" name="nomCellier" id="nomCellier" class="nomCellier">
-                        <button type="submit" class="btn-boite-modale btn-oui">Ajouter</button>
+                        <button type="submit" class="btn-boite-modale btn-ajouter">Ajouter</button>
                     </form>
                 </div>
             </div>
