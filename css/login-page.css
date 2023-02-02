@@ -16,6 +16,8 @@
     position: relative;
 }
 
+/* CONTAINER INSCRIPTION */
+
 .login-container {
     width: 300px;
     height: 600px;
@@ -33,7 +35,6 @@
     padding-top: 30px;
     margin-left: auto;
     margin-right: auto;
-
 }
 
 .login-container header {
@@ -58,13 +59,65 @@
     width: 100%;
 }
 
-.login-container button {
+.login-container  button {
     background-color: var(--black-light);
 }
 
-.login-container button:hover {
+.login-container  button:hover {
     background-color: var(--red);
 }
+
+/* CONTAINER CONNEXION */
+
+.login-container-connexion{
+    width: 300px;
+    height: 450px;
+    margin-top: 60px;
+    padding: 0 20px;
+    z-index: 2;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+    border-radius: 5px;
+    padding-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.login-container-connexion header {
+    margin-top: 20px;
+}
+
+.login-container-connexion label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.login-container-connexion input {
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 18px;
+    padding: 12px 8px;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid var(--black-light);
+    width: 100%;
+}
+
+.login-container-connexion  button {
+    background-color: var(--black-light);
+}
+
+.login-container-connexion  button:hover {
+    background-color: var(--red);
+}
+
 
 #uti_mdp {
     margin-bottom: 20px;
@@ -111,6 +164,15 @@
     color: grey;
     position: absolute;
     top: 241px;
+    left: 240px;
+    width: 25px;
+    cursor: pointer;
+}
+
+.iconify-eye-connexion{
+    color: grey;
+    position: absolute;
+    top: 107px;
     left: 240px;
     width: 25px;
     cursor: pointer;
