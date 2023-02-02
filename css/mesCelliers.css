@@ -40,3 +40,9 @@
     margin-top: 20px;
 }
 
+.icons-mesCelliers{
+    display: flex;
+}
+.icons-mesCelliers:first-child svg{
+    margin-right: 15px;
+}
