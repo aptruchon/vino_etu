@@ -99,7 +99,6 @@
                 <!--  -->
             </div>
         </section>
-        <!-- <button class="bouton-large"><a href="?requete=modifierBouteilleCellier">Modifier</a></button> -->
     <?php
     }
     ?>
@@ -116,5 +115,6 @@
     <div class="window ">
         <?php echo $_SESSION['message']; ?></p>
         <?php $_SESSION['estVisible'] = '0'; // false en php ?>
+        <?php unset($_SESSION['message']); ?>
     </div>
 </div>

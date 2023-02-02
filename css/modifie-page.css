@@ -7,22 +7,11 @@
     margin-bottom: 10px;
     font-weight: bold;
     font-size: 18px;
+    margin-top: 40px;
 }
 
-.modifieBouteille input[type=text], .modifieBouteille input[type=number],  .modifieBouteille select {
+.modifieBouteille input[type=text], .modifieBouteille input[type=number],  .modifieBouteille select, .modifieBouteille textarea {
     display: block;
-    margin-bottom: 40px;
-    font-size: 18px;
-    padding: 8px 8px;
-    background-color: rgb(234, 234, 234);
-    border-radius: 10px;
-    border: 1px solid rgb(234, 234, 234);
-    width: 100%;
-}
-
-.modifieBouteille textarea{
-    display: block;
-    margin-bottom: 40px;
     font-size: 18px;
     padding: 8px 8px;
     background-color: rgb(234, 234, 234);
@@ -33,7 +22,6 @@
 
 .modifieBouteille input[type=radio]{
     margin: 8px 10px;
-    margin-bottom: 40px;
     margin-right: 30px;
 }
 
@@ -58,14 +46,13 @@
     border: 2px solid rgb(234, 234, 234);
     padding: 2px 2px;
 }
+
 .form-select option{
     min-width: 100px;
     height: 30px;
     border: none;
     border-radius: 5px;
 }
-
-
 
 .options-container {
     display: flex;
@@ -165,7 +152,7 @@
 }
 
 .form-container>.btn-oui:hover {
-	background-color: var(--vert) ;
+	background-color: var(--vert-focus) ;
 }
 
 .form-container>.btn-non:hover {

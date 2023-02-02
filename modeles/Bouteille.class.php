@@ -17,7 +17,6 @@ class Bouteille extends Modele
 
 	public function getListeBouteille()
 	{
-
 		$rows = array();
 		$res = $this->_db->query('Select * from ' . self::TABLE);
 		if ($res->num_rows) {
@@ -49,7 +48,6 @@ class Bouteille extends Modele
 
 	public function getListeBouteilleCellier($userId, $cellierId, $idBouteille = -1)
 	{
-
 		$rows = array();
 		$requete = 'SELECT 
 						cc.id AS id_bouteille_cellier, 
@@ -77,13 +75,12 @@ class Bouteille extends Modele
 						INNER JOIN vino__cellier ce ON ce.id = cc.vino__cellier_id 
 						WHERE ce.vino__utilisateur_id =' . $userId . '
 						AND cc.vino__cellier_id =' . $cellierId;
+						
 		if ($idBouteille != -1) {
 			$requete = $requete . ' AND cc.vino__bouteille_id = ' . $idBouteille;
 		}
 
 		$requete = $requete .' ORDER BY id_bouteille_cellier DESC';
-
-		// var_dump($requete);
 
 		if (($res = $this->_db->query($requete)) ==	 true) {
 			if ($res->num_rows) {
@@ -149,7 +146,6 @@ class Bouteille extends Modele
 	 */
 	public function ajouterBouteilleCellier($data)
 	{
-		//TODO : Valider les données.
 
 		$data["nom"] = htmlspecialchars($data["nom"]);
 		$data["pays"] = htmlspecialchars($data["pays"]);
@@ -201,14 +197,11 @@ class Bouteille extends Modele
 			);
 	
 			$res = $stmtAjoutCellier->execute();
-			var_dump($stmtAjoutCellier->errno, $stmtAjoutCellier->error);
-			// var_dump("Mauvais chemin");
+
 		} else {
 			$res = false;
-			// var_dump("Bon chemin");
 		}
 
-		// var_dump($res);
 		return $res;
 	}
 
@@ -223,8 +216,9 @@ class Bouteille extends Modele
 	public function modifierBouteilleCellier($data)
 	{
 		$stmt = $this->_db->prepare("UPDATE vino__cellier_contient " .
-			"SET nom = ?, pays = ?, description = ?, date_ajout = ?, garde_jusqua = ?, notes = ?, prix = ?, format = ?, quantite = ?, millesime = ?, vino__type_id = ? WHERE id = ?");
+			"SET nom = ?, pays = ?, description = ?, garde_jusqua = ?, notes = ?, prix = ?, format = ?, quantite = ?, millesime = ?, vino__type_id = ? WHERE id = ?");
 
+		// Limite nombre de caracteres des strings
 		$data["nom"] = substr(htmlspecialchars($data["nom"]), 0, 200);
 		$data["pays"] = substr(htmlspecialchars($data["pays"]), 0, 50);
 		$data["description"] = substr(htmlspecialchars($data["description"]), 0, 200);
@@ -232,22 +226,28 @@ class Bouteille extends Modele
 		$data["notes"] = substr(htmlspecialchars($data["notes"]), 0, 200);
 		$data["format"] = substr(htmlspecialchars($data["format"]), 0, 20);
 
+		// Convertit les stings en integer si requis
+		$data["quantite"] = intval($data["quantite"]);
+		$data["millesime"] = intval($data["millesime"]);
+		$data["id_type"] = intval($data["id_type"]);
+		$data["id_bouteille"] = intval($data["id_bouteille"]);
+		$data["prix"] = floatval($data["prix"]);
+
 		$stmt->bind_param(
-			"ssssssdsiiii",
+			"sssssdsiiii",
 			$data["nom"],
 			$data["pays"],
 			$data["description"],
-			$data["date_achat"],
 			$data["garde_jusqua"],
 			$data["notes"],
 			$data["prix"],
 			$data["format"],
 			$data["quantite"],
 			$data["millesime"],
-			$data["type"],
-			$data["id_bouteille_cellier"]
+			$data["id_type"],
+			$data["id_bouteille"]
 		);
-
+	
 		$res = $stmt->execute();
 
 		return $res;
