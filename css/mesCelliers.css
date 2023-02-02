@@ -83,3 +83,29 @@
 .btn-ajouter:hover{
     background-color: var(--red-focus);
 }
+
+.modal-container-modifier{
+    display: none; /* Hidden by default */
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 100px; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(36, 36, 36, 0.832); 
+}
+
+.modal-container-supprimer{
+    display: none; /* Hidden by default */
+    position: fixed; 
+    z-index: 1; 
+    padding-top: 100px; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(36, 36, 36, 0.832); 
+}
