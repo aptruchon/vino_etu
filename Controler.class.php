@@ -5,11 +5,9 @@ session_start();
  * Class Controler
  * Gère les requêtes HTTP
  * 
- * @author Jonathan Martel
- * @version 1.0
- * @update 2019-01-21
- * @license Creative Commons BY-NC 3.0 (Licence Creative Commons Attribution - Pas d’utilisation commerciale 3.0 non transposé)
- * @license http://creativecommons.org/licenses/by-nc/3.0/deed.fr
+ * @author Alana Fulvia Bezerra De Moraes, Alex Poulin Truchon, Claudia Lisboa, Pauline Huby
+ * @version 2.0
+ * @update 2023-02-05
  * 
  */
 
