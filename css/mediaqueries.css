@@ -85,6 +85,31 @@
     .modifieBouteille label {
         font-size: 16px;
     }
+
+}
+
+@media only screen and (min-width:400px) {
+    
+    /* INSCRIPTION ET CONNEXION */
+    
+    .login-container{
+        box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+        border-radius: 5px;
+        padding-top: 30px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .login-container-connexion{
+        box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+        border-radius: 5px;
+        padding-top: 30px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+
 }
 
 @media only screen and (min-width:460px) {
@@ -104,20 +129,13 @@
         padding: 40px 20px;
     } */
 
-    .login-container{
-        box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
-        border-radius: 5px;
-        padding-top: 30px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
     .mdp-infos {
         margin-left: 20px;
     }
 
     .tache-couleur {
-        top: -2px;
+        top: -82px;
+        right: -100px;
     }
 
     .logo-complet-login {
@@ -209,10 +227,19 @@
     /* INSCRIPTION */
     .login-container {
         width: 450px;
-        height: 600px;
+        height: 550px;
+    }
+
+    .login-container-connexion {
+        width: 450px;
+        height: 410px;
     }
 
     .iconify-eye{
+        left: 390px;
+    }
+
+    .iconify-eye-connexion{
         left: 390px;
     }
 
@@ -282,7 +309,8 @@
     /* PAGE CONNEXION/INSCRIPTION */
 
     .tache-couleur {
-        right: -61px;
+        right: -171px;
+        top: -5%;
     }
 
     .iconify-eye{
@@ -329,9 +357,25 @@
         height: 150px;
     }
 
+    /* INSCRIPTION ET CONNEXION */
+
+
+    .logo-complet-login {
+        display: block;
+    }
+
     .login-container {
         width: 450px;
-        height: 600px;
+        height: 550px;
+    }
+
+    .login-container-connexion {
+        width: 450px;
+        height: 410px;
+    }
+
+    .iconify-eye-connexion{
+        left: 390px;
     }
 
 
@@ -342,7 +386,8 @@
     /* PAGE CONNEXION/INSCRIPTION */
 
     .tache-couleur {
-            right: 0px;    
+        right: 0px;   
+        top: -40px; 
      }
 
      /* NAV */
@@ -372,16 +417,25 @@
     /* PAGE CONNEXION / INSCRIPTION */
 
     .logo-complet-login {
-        display: none;
+        display: block;
     }
 
     .tache-couleur {
         top: -42px;
     }
 
-      .login-container {
+    .login-container {
         width: 450px;
-        height: 600px;
+        height: 550px;
+    }
+
+    .login-container-connexion {
+        width: 450px;
+        height: 410px;
+    }
+
+    .iconify-eye-connexion{
+        left: 390px;
     }
 
     /* ACCUEIL */
