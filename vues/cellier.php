@@ -52,5 +52,6 @@
     <div class="window ">
         <?php echo $_SESSION['message']; ?></p>
         <?php $_SESSION['estVisible'] = '0'; // false en php ?>
+        <?php unset($_SESSION['message']); ?>
     </div>
 </div>

@@ -115,6 +115,10 @@ class Controler
 	{
 		$bte = new Bouteille();
 		$dataFiche = $bte->getListeBouteilleCellier($userId, $cellierId, $idBouteille);
+		// var_dump($dataFiche);
+		// var_dump('$userId', $userId);
+		// var_dump('$cellierId', $cellierId);
+		// var_dump('$idBouteille', $idBouteille);
 		// Afficher message confirmation si modifications
 		if ($showMessage) {
 				$_SESSION["message"] = "Modifications enregistrées !";
@@ -159,17 +163,19 @@ class Controler
 		$type = new Type();
 		$types = $type->getTypes();
 
-		$body = $_POST;
+		$body = json_decode(file_get_contents('php://input'), true);
 
 		if (!empty($body)) {
 			$bte = new Bouteille();
-			$modifier = $bte->modifierBouteilleCellier($body);
+			$resultat = $bte->modifierBouteilleCellier($body);
 
 			// Message pop-up confirmation modification faite
-			$showMessage = false;
-			if ($modifier) $showMessage = true;
+			$_SESSION["message"] = "Bouteille modifiée !";
+			$_SESSION["estVisible"] = true;
 
-			$this->ficheDetailsBouteille($userId, $cellierId, $idBouteille, $showMessage);
+			die();
+
+
 		} else {
 			$dataTypesModifier = $types;
 
