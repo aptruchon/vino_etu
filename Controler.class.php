@@ -51,6 +51,8 @@ class Controler
 				break;
 			case 'inscription':
 				$this->inscription();
+			case 'inscrireUtilisateur':
+				$this->inscrireUtilisateur();
 				break;
 			case 'connexion':
 				$this->connexion();
