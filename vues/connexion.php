@@ -22,7 +22,8 @@
 	<path id="ino" class="s0" aria-label="ino"  d="m383.7 186.4c3.4 0 8.6-5.3 8.6-8.8 0-3.4-5.2-8.9-8.6-8.9-3.1 0-8.3 5.5-8.3 8.9 0.1 3.5 5.3 8.8 8.3 8.8zm4.5 82.5c4.4 0 10.4-3.4 15.3-8.7l-2.6-3.4c-2.5 1.9-4.8 2.8-6.8 2.8-2.9 0-4.1-1.6-4.1-4.6v-53.1c0-2.4-1.8-4-4.5-4-4.9 0-12.4 3.3-17.7 8l1.1 3.3h6.1c1.9 0 2.7 1 2.7 3.4v42c0 10.1 3 14.3 10.5 14.3zm86.6 0c4.6 0 10.6-3.4 15.3-8.7l-2.6-3.4c-2.4 1.9-4.6 2.8-6.7 2.8-2.7 0-4.1-1.6-4.1-4.6v-32.9c0-16.8-5.7-24.2-18.3-24.2-10.3 0-20.7 8.3-25.3 20.2v-14.9c0-2.3-1.7-4.1-4.4-4.1-5.1 0-12.7 3.3-18 8l1.4 3.6h5.8c2 0 2.7 0.9 2.7 3v38.1c0 6.9-1 9.3-5.8 10.3l-2.6 0.7 1.4 4.2h23.8l1.7-2.1-1.7-2.1c-3.3-4.7-4.3-9.2-4.3-17.6 0-22 7.8-37 19.5-37 7.8 0 11.8 4.8 11.8 13.9v32.5c0 10.1 2.9 14.3 10.4 14.3zm57.1 0c20.1 0 33.1-13.9 33.1-35.7 0-21.7-13-35.3-33.1-35.3-20.4 0-33.3 13.6-33.3 35.3 0 21.8 12.9 35.7 33.3 35.7zm-0.3-7.3c-11.6 0-18.7-11-18.7-28.2 0-17.1 7.7-28.5 19.5-28.5 14.2 0 18.4 17.5 18.4 28.7 0 16.9-7.9 28-19.2 28z"/>
 </svg>
 <!-- FIN LOGO ENTIER -->
-<section class="login-container-connexion">
+<form method="POST" action="index.php?requete=connexion">
+<section class="login-container">
     <div class="infos-wrapper">
         <input type="text" name="uti_courriel" id="uti_courriel" placeholder="Courriel">
         <input type="password" name="uti_mdp" id="uti_mdp" placeholder="Mot de passe">
@@ -38,4 +39,11 @@
     </div>
     <button class="bouton-large">Se connecter</button>
     <div class="login-link">Pas de compte ? <a href="?requete=inscription" class="link-bold">Inscrivez-vous !</a></div>
+    <div><?= $_SESSION["message"] ?></div>
+        <?php
+        // Après afficher le message ci-haut, on l'efface ici.
+        $_SESSION["message"] = "";
+        ?>
+
 </section>
+</form>
