@@ -83,3 +83,18 @@ nav svg {
 .showMobileNav {
     width: 100%;
 }
+
+.hiddenBurguer{
+    display: none; 
+}
+
+.hiddenBurguer a {
+    text-decoration: none;
+    color: white;
+    font-family: 'Kurale', serif;
+    font-size: 20px;
+    cursor: pointer;
+}
+.hiddenBurguer a:first-child{
+    padding-right: 10px;
+}
