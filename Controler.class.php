@@ -23,6 +23,7 @@ class Controler
 		$userId = $_SESSION['utilisateur']['id'];
 
 	
+
 		switch ($_GET['requete']) {
 			case 'listeBouteille':
 				$this->listeBouteille($userId, $_SESSION["cellierId"]);
@@ -72,9 +73,9 @@ class Controler
 				$this->ficheDetailsBouteille($userId, $_SESSION["cellierId"], $_GET['bte']);
 				break;
 			default:
-				// $this->accueil();
-				// $this->cellier($userId, $_SESSION["cellierId"]);
-				$this->mesCelliers($userId);
+				 $this->accueil();
+			    // $this->cellier($userId, $_SESSION["cellierId"]);
+				//$this->mesCelliers($userId);
 				break;
 		}
 	}
