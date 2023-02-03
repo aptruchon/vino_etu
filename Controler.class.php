@@ -56,7 +56,7 @@ class Controler
 				$this->deconnexion();
 				break;
 			case 'mesCelliers':
-				$this->mesCelliers($_SESSION['utilisateur']['id'], $_SESSION["cellierId"]);
+				$this->mesCelliers($_SESSION['utilisateur']['id']);
 				break;
 			case 'cellier':
 				$this->cellier($_SESSION['utilisateur']['id']);
@@ -68,9 +68,9 @@ class Controler
 				$this->ficheDetailsBouteille($_SESSION['utilisateur']['id'], $_SESSION["cellierId"], $_GET['bte']);
 				break;
 			default:
-				//  $this->accueil();
+				 $this->accueil();
 			    // $this->cellier($_SESSION['utilisateur']['id'], $_SESSION["cellierId"]);
-				$this->mesCelliers($_SESSION['utilisateur']['id']);
+				// $this->mesCelliers($_SESSION['utilisateur']['id']);
 				break;
 		}
 	}
@@ -80,8 +80,13 @@ class Controler
 	 */
 	private function accueil()
 	{
-		include("vues/entete.php");
-		include("vues/accueil.php");
+		// Redirection si un utilisateur déjà connecté essaie de rendre sur la page connexion
+		if(isset($_SESSION["utilisateur"])){
+			Utilitaires::nouvelleRoute('index.php?requete=mesCelliers');
+		} else {
+			include("vues/entete.php");
+			include("vues/accueil.php");
+		}
 	}
 
 	/**
@@ -90,8 +95,14 @@ class Controler
 	private function cellier($userId)
 	{
 		$_SESSION["cellierId"] = $_GET["cellierId"];
+
 		$bte = new Bouteille();
 		$data = $bte->getListeBouteilleCellier($userId, $_SESSION["cellierId"]);
+
+		$cellier = new Cellier();
+		$nomCellier = $cellier->getNomCellier($_SESSION["cellierId"]);
+		$_SESSION["nomCellier"] = $nomCellier["nom"];
+
 		include("vues/entete.php");
 		include("vues/navigation.php");
 		include("vues/cellier.php");
@@ -107,7 +118,7 @@ class Controler
 		$body = $_POST;
 
 		if(!empty($body)){
-			$resultat = $cellier->ajouterCellier($userId, $body["nomCellier"]);
+			$resultatCelliers = $cellier->ajouterCellier($userId, $body["nomCellier"]);
 		}
 
 		if(isset($resultat) && $resultat === true) {
@@ -301,6 +312,11 @@ class Controler
 	 */
 	private function connexion()
 	{
+		// Redirection si un utilisateur déjà connecté essaie de rendre sur la page connexion
+		if(isset($_SESSION["utilisateur"])){
+			Utilitaires::nouvelleRoute('index.php?requete=mesCelliers');
+		}
+
 		$body = $_POST;
 
 		if (empty($body)) {
@@ -324,8 +340,8 @@ class Controler
 				// Sauvegarder l'état de connexion
 				$_SESSION['utilisateur'] = $resultat;
 
-				// Si la connexion a pas bien marché on redirectione vers la page d'accueil.
-				Utilitaires::nouvelleRoute('index.php?requete=accueil');
+				// Si la connexion a bien marché on redirectione vers la page mesCelliers.
+				Utilitaires::nouvelleRoute('index.php?requete=mesCelliers');
 			}
 		}
 	}
@@ -344,6 +360,11 @@ class Controler
 	 */
 	private function inscrireUtilisateur()
 	{
+		// Redirection si un utilisateur déjà connecté essaie de rendre sur la page inscription
+		if(isset($_SESSION["utilisateur"])){
+			Utilitaires::nouvelleRoute('index.php?requete=mesCelliers');
+		}
+
 		$body = $_POST;
 
 		if (!empty($body)) {
