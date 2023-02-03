@@ -19,6 +19,8 @@ class Controler
 	 */
 	public function gerer()
 	{
+		$userId = $_SESSION['utilisateur']['id'];
+    
 		switch ($_GET['requete']) {
 			case 'listeBouteille':
 				$this->listeBouteille($_SESSION['utilisateur']['id'], $_SESSION["cellierId"]);
@@ -140,6 +142,7 @@ class Controler
 			$_SESSION["message"] = "Cellier ajoutée !";
 			$_SESSION["estVisible"] = true;
 		}
+
 
 		$mesCelliers = $cellier->getCelliers($userId);
 

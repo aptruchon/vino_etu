@@ -8,12 +8,11 @@
   function ouvrirBoitesModalesMesCelliers() {
 
     let btnAjoutCellier = document.querySelector('[name="btnAjoutCellier"]')
-    let btnModifierCellier = document.getElementById('btnModifierCellier')
-    let btnSupprimerCellier = document.getElementById('btnSupprimerCellier')
+    let btnModifierCellier = document.querySelectorAll('.btnModifierCellier')
+    let btnSupprimerCellier = document.querySelectorAll('.btnSupprimerCellier')
     let popupFormAjouter = document.getElementById('popupFormAjouter')
     let popupFormModifier = document.getElementById('popupFormModifier')
     let modalContainer = document.getElementById('modal-container')
-
     let modalContainerModifier = document.getElementById('modal-container-modifier')
     let modalContainerSupprimer = document.getElementById('modal-container-supprimer')
     let popupFormSupprimer = document.getElementById('popupFormSupprimer')
@@ -27,18 +26,29 @@
     }
 
     if (btnModifierCellier) {
-      btnModifierCellier.addEventListener('click', function (evt) {
-        evt.preventDefault();
-        popupFormModifier.style.display = 'block'
-        modalContainerModifier.style.display = 'block'
+      [...btnModifierCellier].forEach(function(btnmodifier) {
+          
+        btnmodifier.addEventListener('click', function (evt) {
+          evt.preventDefault();
+          let idModif = evt.target.dataset.id
+          console.log(idModif);
+          popupFormModifier.style.display = 'block'
+          modalContainerModifier.style.display = 'block'
+        })
       })
     }
-
     if (btnSupprimerCellier) {
-      btnSupprimerCellier.addEventListener('click', function (evt) {
-        evt.preventDefault();
-        popupFormSupprimer.style.display = 'block'
-        modalContainerSupprimer.style.display = 'block'
+      [...btnSupprimerCellier].forEach(function(btnsupprimer) {
+          
+        btnsupprimer.addEventListener('click', function (evt) {
+          evt.preventDefault();
+          // console.log({evt});
+          let idSuprimer = evt.target.dataset.id
+          console.log(idSuprimer);
+
+          popupFormSupprimer.style.display = 'block'
+          modalContainerSupprimer.style.display = 'block'
+  })
       })
     }
 
