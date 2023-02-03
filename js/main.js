@@ -40,7 +40,7 @@ window.addEventListener('load', function() {
   /**
    * Fonctionnalites Page Ajout
    * */
-  
+
   let bouteille = {
     nom: document.querySelector("[name='nom']"),
     millesime: document.querySelector("[name='millesime']"),
@@ -66,7 +66,7 @@ window.addEventListener('load', function() {
     bouteille.garde_jusqua,
     bouteille.notes,
     bouteille.types,
-  ];
+  ]
 
   let inputsRequired = {
     nom: document.querySelector("[name='nom']"),
@@ -86,10 +86,14 @@ window.addEventListener('load', function() {
    * Fonctionnalité Page Modifier
    */
   //pour ouvrir et fermer la boite modale supprimer
-  ouvrirBoiteModaleSupprimer();
-  fermerBoiteModaleSupprimer();
-  modifieVinCellier(bouteille, inputsRequired);
-  checkRequiredInputContent(inputsRequired)
+  ouvrirBoiteModaleSupprimer()
+  fermerBoiteModaleSupprimer()
+
+
+  if (nomPage == 'modifierBouteilleCellier&bte') {
+    modifieVinCellier(bouteille, inputsRequired)
+    checkRequiredInputContent(inputsRequired)
+  }
 
   /**
    * Fonctionnalités Page Mes Cellier
@@ -101,17 +105,20 @@ window.addEventListener('load', function() {
   /**
    * Fonctionnalité pour le password dans Inscription
    */
-  // oeilPassword()
+
+  if (nomPage == 'inscription' || nomPage == 'connexion') {
+    oeilPassword()
+  }
 
   /**
    * Fonctionnalités Navigation
    */
-  const elMobileNav = document.getElementById('mobile-nav');
-  openNav(elMobileNav)
-  closeNav(elMobileNav)
 
-
-
-
+  if (nomPage != 'inscription' && nomPage != 'connexion') {
+    const elMobileNav = document.getElementById('mobile-nav')
+    openNav(elMobileNav)
+    closeNav(elMobileNav)
+  }
+  
 });
 

@@ -10,7 +10,7 @@
     let btnAjoutCellier = document.querySelector('[name="btnAjoutCellier"]')
     let popupForm = document.getElementById('popupForm')
     let modalContainer = document.getElementById('modal-container')
-    console.log(btnAjoutCellier)
+    // console.log(btnAjoutCellier)
 
     if (btnAjoutCellier) {
       btnAjoutCellier.addEventListener('click', function (evt) {
