@@ -20,9 +20,8 @@ class Controler
 	public function gerer()
 	{
 		// ID utilisateur qui est connecté
-		$userId = $_SESSION['utilisateur']['id'];
-
-	
+		// $userId = $_SESSION['utilisateur']['id'];
+		$userId = 2;
 
 		switch ($_GET['requete']) {
 			case 'listeBouteille':
