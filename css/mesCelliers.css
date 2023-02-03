@@ -33,6 +33,9 @@
 
 .celliers-container{
     margin-top: 40px;
+    display: grid;
+    column-gap: 20px;
+    grid-template-columns: 1fr;
 }
 
 .form-container label{
