@@ -130,6 +130,9 @@ class Controler
 			$_SESSION["estVisible"] = true;
 		}
 
+		$nomMesCelliers = $cellier->getNomCellier($_SESSION["cellierId"]);
+		$_SESSION["nomMesCelliers"] = $nomMesCelliers["nom"];
+
 		$mesCelliers = $cellier->getCelliers($userId);
 
 		json_encode($mesCelliers);
