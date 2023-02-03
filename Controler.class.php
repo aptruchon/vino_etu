@@ -19,7 +19,9 @@ class Controler
 	 */
 	public function gerer()
 	{
-		$userId = $_SESSION['utilisateur']['id'];
+		if(isset($_SESSION["utilisateur"])){
+			$userId = $_SESSION['utilisateur']['id'];
+		}
     
 		switch ($_GET['requete']) {
 			case 'listeBouteille':
@@ -403,7 +405,7 @@ class Controler
 			Utilitaires::nouvelleRoute('index.php?requete=mesCelliers');
 		}
     
-    $body = json_decode(file_get_contents('php://input'), true);
+    	$body = json_decode(file_get_contents('php://input'), true);
 
 		if (!empty($body)) {
 

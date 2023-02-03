@@ -45,6 +45,6 @@
         </div>
         <button type="submit" class="bouton-large">S'inscrire</button>
         <div class="login-link">Déjà inscrit.e ? <a href="?requete=connexion" class="link-bold">Connectez-vous !</a></div>
-        <span></span>
+        <span id='message'></span>
     </section> 
 </form>

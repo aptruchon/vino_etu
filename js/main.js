@@ -20,6 +20,7 @@ import {
   oeilPassword,
   envoiDonneesInscription,
   checkRequiredInputContentLogin,
+  envoiDonneesConnexion,
 } from './inscription.js'
 import { modifieVinCellier, checkRequiredInputContent } from './pageModifie.js'
 
@@ -114,8 +115,15 @@ window.addEventListener('load', function() {
 
   if (nomPage == 'inscription' || nomPage == 'connexion') {
     oeilPassword()
-    envoiDonneesInscription();
     checkRequiredInputContentLogin()
+  }
+
+  if (nomPage == 'inscription' ) {
+    envoiDonneesInscription()
+  }
+
+  if (nomPage == 'connexion') {
+    envoiDonneesConnexion()
   }
 
   /**

@@ -31,8 +31,6 @@ function oeilPassword(){
  * Envoie requete inscription d'un utilisateur
  */
 
-//index.php?requete=inscrireUtilisateur
-
 function envoiDonneesInscription() {
   
     const elSubmitButton = document.querySelector('button')
@@ -58,7 +56,7 @@ function envoiDonneesInscription() {
         if (formInputs[i].value == '') {
           isFormReady = false
           formInputs[i].classList.add('champ-requis-input')
-          formInputs[i].nextElementSibling.innerHTML = 'Champs requis.'
+          formInputs[i].nextElementSibling.innerHTML = 'Champs requis'
           formInputs[i].nextElementSibling.classList.add('show-message-input-requis')
         }
         if (formInputs[i].id == 'uti_courriel') {
@@ -99,13 +97,12 @@ function envoiDonneesInscription() {
         fetch(requete).then((response) => {
             console.log(response);
             if (response.status == 200) {
-                console.log('yes');
                 location.replace(
                   BaseURL + '?requete=mesCelliers'
                 )
             } else if (response.status == 400) {
-                console.log('no')
-
+                const elSpanMessage = document.getElementById('message')
+                elSpanMessage.innerHTML = 'Courriel déjà utilisé.'
             } else {
               throw new Error('Erreur')
             }
@@ -117,16 +114,108 @@ function envoiDonneesInscription() {
 
 }
 
+/**
+ * Envoie requete connexion d'un utilisateur
+ */
+
+function envoiDonneesConnexion() {
+
+  const elSubmitButton = document.querySelector('button')
+  const elInputCourriel = document.getElementById('uti_courriel')
+  const elInputMdp = document.getElementById('uti_mdp')
+
+  let formInputs = [elInputCourriel, elInputMdp]
+
+  elSubmitButton.addEventListener('click', (evt) => {
+    evt.preventDefault()
+
+    // Valide le contenu des inputs
+    let isFormReady = true
+
+    for (let i in formInputs) {
+      if (formInputs[i].value == '') {
+        isFormReady = false
+        formInputs[i].classList.add('champ-requis-input')
+        formInputs[i].nextElementSibling.innerHTML = 'Champs requis'
+        formInputs[i].nextElementSibling.classList.add(
+          'show-message-input-requis'
+        )
+      }
+      if (formInputs[i].id == 'uti_courriel') {
+        if (!controleCourriel(formInputs[i].value)) {
+          isFormReady = false
+          formInputs[i].nextElementSibling.innerHTML =
+            'Veuillez entrer un courriel valide.'
+          formInputs[i].nextElementSibling.classList.add(
+            'show-message-input-requis'
+          )
+        }
+      }
+      if (formInputs[i].id == 'uti_mdp') {
+        if (!controleMdp(formInputs[i].value)) {
+          isFormReady = false
+          formInputs[i].nextElementSibling.innerHTML =
+            'Veuillez entrer un mot de passe valide.'
+          formInputs[i].nextElementSibling.classList.add(
+            'show-message-input-requis'
+          )
+        }
+      }
+    }
+
+    // Envoie requete
+    let param = {
+      uti_courriel: elInputCourriel.value,
+      uti_mdp: elInputMdp.value,
+    }
+    const BaseURL = window.location.href.split('?')[0]
+    if (isFormReady) {
+      let requete = new Request(BaseURL + '?requete=connexion', {
+        method: 'POST',
+        body: JSON.stringify(param),
+      })
+      fetch(requete).then((response) => {
+        console.log(response)
+        if (response.status == 200) {
+          console.log('yes')
+          location.replace(BaseURL + '?requete=mesCelliers')
+        } else if (response.status == 400) {
+          const elSpanMessage = document.getElementById('message');
+          elSpanMessage.innerHTML = 'Identifiants incorrects.'
+        } else {
+          throw new Error('Erreur')
+        }
+      })
+    }
+  })
+
+
+}
+
+/**
+ * Valide un courriel
+ * @param courriel string - Courriel
+ * @return boolean
+ */
+
 function controleCourriel(courriel) {
   let regle = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
   return regle.test(courriel)
 }
 
+/**
+ * Valide un mdp
+ * @param mdp string - mdp
+ * @return boolean
+ */
 function controleMdp(mdp) {
     let regle = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
     return regle.test(mdp)
 }
 
+/**
+ * Valide si les inputs requis sont remplis
+ */
 function checkRequiredInputContentLogin() {
   const inputs = document.querySelectorAll('input')
   let inputsRequired = [...inputs];
@@ -148,4 +237,9 @@ function checkRequiredInputContentLogin() {
   }
 }
 
-export { oeilPassword, envoiDonneesInscription, checkRequiredInputContentLogin } 
+export {
+  oeilPassword,
+  envoiDonneesInscription,
+  checkRequiredInputContentLogin,
+  envoiDonneesConnexion,
+} 
