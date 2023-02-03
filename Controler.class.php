@@ -5,11 +5,9 @@ session_start();
  * Class Controler
  * Gère les requêtes HTTP
  * 
- * @author Jonathan Martel
- * @version 1.0
- * @update 2019-01-21
- * @license Creative Commons BY-NC 3.0 (Licence Creative Commons Attribution - Pas d’utilisation commerciale 3.0 non transposé)
- * @license http://creativecommons.org/licenses/by-nc/3.0/deed.fr
+ * @author Alana Fulvia Bezerra De Moraes, Alex Poulin Truchon, Claudia Lisboa, Pauline Huby
+ * @version 2.0
+ * @update 2023-02-05
  * 
  */
 
@@ -130,12 +128,16 @@ class Controler
 	}
 
 	/**
-	 * Affiche la vue de la page fiche
+	 * Affiche la vue de la page Fiche d'un vin
 	 */
 	private function ficheDetailsBouteille($userId, $cellierId, $idBouteille, $showMessage=false)
 	{
 		$bte = new Bouteille();
 		$dataFiche = $bte->getListeBouteilleCellier($userId, $cellierId, $idBouteille);
+		// var_dump($dataFiche);
+		// var_dump('$userId', $userId);
+		// var_dump('$cellierId', $cellierId);
+		// var_dump('$idBouteille', $idBouteille);
 		// Afficher message confirmation si modifications
 		if ($showMessage) {
 				$_SESSION["message"] = "Modifications enregistrées !";
@@ -147,7 +149,9 @@ class Controler
 		include("vues/pied.php");
 	}
 
-
+	/**
+	 * 
+	 */
 	private function listeBouteille($userId, $cellierId)
 	{
 		$bte = new Bouteille();
@@ -156,7 +160,9 @@ class Controler
 		echo json_encode($cellier);
 	}
 
-
+	/**
+	 * 
+	 */
 	private function autocompleteBouteille()
 	{
 		$bte = new Bouteille();
@@ -169,26 +175,26 @@ class Controler
 	}
 
 	/**
-	 * Affiche la vue de la page modifier
+	 * Modifie les informations d'un vin dans un cellier
 	 */
 	private function modifierBouteilleCellier($userId, $cellierId, $idBouteille)
 	{
 		$type = new Type();
 		$types = $type->getTypes();
 
-		$body = $_POST;
-
-		// var_dump($body);
+		$body = json_decode(file_get_contents('php://input'), true);
 
 		if (!empty($body)) {
 			$bte = new Bouteille();
-			// var_dump($body);
-			$modifier = $bte->modifierBouteilleCellier($body);
-			
-			$showMessage = false;
-			if ($modifier) $showMessage = true;
+			$resultat = $bte->modifierBouteilleCellier($body);
 
-			$this->ficheDetailsBouteille($userId, $cellierId, $idBouteille, $showMessage);
+			// Message pop-up confirmation modification faite
+			$_SESSION["message"] = "Bouteille modifiée !";
+			$_SESSION["estVisible"] = true;
+
+			die();
+
+
 		} else {
 			$dataTypesModifier = $types;
 
@@ -202,15 +208,23 @@ class Controler
 		}
 	}
 
+	/**
+	 * Supprime un vin d'un cellier
+	 */
 	private function effacerBouteilleCellier($idBouteilleCellier)
 	{
 		$bte = new Bouteille();
-
 		$effacer = $bte->effacerBouteilleCellier($idBouteilleCellier);
-
-		Utilitaires::nouvelleRoute('index.php?requete=cellier&cellierId='.$_SESSION["cellierId"].'');
+		// Message pop-up confirmation bouteille supprimée
+		$_SESSION["message"] = "Bouteille supprimée !";
+		$_SESSION["estVisible"] = true;
+		// Redirection page cellier
+		Utilitaires::nouvelleRoute('index.php?requete=cellier&cellierId=' . $_SESSION["cellierId"] . '');
 	}
 
+	/**
+	 * 
+	 */
 	private function informationBouteilleParId()
 	{
 		$bte = new Bouteille();
@@ -219,6 +233,9 @@ class Controler
 		echo json_encode($bouteille);
 	}
 
+	/**
+	 * Ajoute un nouveau vin dans un cellier
+	 */
 	private function ajouterNouvelleBouteilleCellier()
 	{
 		$type = new Type();
@@ -235,7 +252,6 @@ class Controler
 				$_SESSION["message"] = "Bouteille ajoutée !";
 				$_SESSION["estVisible"] = true;
 			}
-			// var_dump($resultat, $_SESSION["message"]);
 			die();
 		} else {
 			$dataTypes = $types;
@@ -247,7 +263,9 @@ class Controler
 		}
 	}
 
-
+	/**
+	 * Diminue la quantite de bouteilles d'un vin dans un cellier
+	 */
 	private function boireBouteilleCellier()
 	{
 		$body = json_decode(file_get_contents('php://input'));
@@ -257,6 +275,9 @@ class Controler
 		echo json_encode($resultat);
 	}
 
+	/**
+	 * Augmente la quantite de bouteilles d'un vin dans un cellier
+	 */
 	private function ajouterBouteilleCellier()
 	{
 		$body = json_decode(file_get_contents('php://input'));

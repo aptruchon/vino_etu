@@ -27,8 +27,9 @@
             <span class="champ-obligatoire-message"></span>
 
             <label for="millesime">Millesime</label>
-            <input type="text" name="millesime" id="millesime">
+            <input type="number" name="millesime" id="millesime">
             <span class="champ-obligatoire-message"></span>
+            
             <label for="description">Description</label>
             <textarea name="description" id="description"></textarea>
             <span class="champ-obligatoire-message"></span>

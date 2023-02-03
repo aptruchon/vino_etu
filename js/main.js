@@ -1,10 +1,8 @@
 /**
  * @file Script contenant les fonctions de base
- * @author Jonathan Martel (jmartel@cmaisonneuve.qc.ca)
- * @version 0.1
- * @update 2019-01-21
- * @license Creative Commons BY-NC 3.0 (Licence Creative Commons Attribution - Pas d’utilisation commerciale 3.0 non transposé)
- * @license http://creativecommons.org/licenses/by-nc/3.0/deed.fr
+ * @author Alana Fulvia Bezerra De Moraes, Alex Poulin Truchon, Claudia Lisboa, Pauline Huby
+ * @version 0.2
+ * @update 2023-02-05
  *
  */
 
@@ -19,6 +17,7 @@ import {
 import { ouvrirBoiteModaleAjoutCelliers, fermerBoiteModaleAjoutCelliers } from './pageMesCelliers.js'
 import { openNav, closeNav } from './navigation.js'
 import { oeilPassword } from './inscription.js'
+import { modifieVinCellier, checkRequiredInputContent } from './pageModifie.js'
 
 const BaseURL = window.location.href.split('?')[0];
 
@@ -67,7 +66,14 @@ window.addEventListener('load', function() {
     bouteille.garde_jusqua,
     bouteille.notes,
     bouteille.types,
-  ]
+  ];
+
+  let inputsRequired = {
+    nom: document.querySelector("[name='nom']"),
+    quantite: document.querySelector("[name='quantite']"),
+    pays: document.querySelector("[name='pays']"),
+    types: document.querySelector("[name='types']"),
+  }
 
   if (nomPage == 'ajouterNouvelleBouteilleCellier') {
     afficheResulatRechVin()
@@ -80,8 +86,10 @@ window.addEventListener('load', function() {
    * Fonctionnalité Page Modifier
    */
   //pour ouvrir et fermer la boite modale supprimer
-  ouvrirBoiteModaleSupprimer()
-  fermerBoiteModaleSupprimer()
+  ouvrirBoiteModaleSupprimer();
+  fermerBoiteModaleSupprimer();
+  modifieVinCellier(bouteille, inputsRequired);
+  checkRequiredInputContent(inputsRequired)
 
   /**
    * Fonctionnalités Page Mes Cellier
@@ -93,7 +101,7 @@ window.addEventListener('load', function() {
   /**
    * Fonctionnalité pour le password dans Inscription
    */
-  oeilPassword()
+  // oeilPassword()
 
   /**
    * Fonctionnalités Navigation

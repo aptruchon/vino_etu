@@ -6,9 +6,12 @@ window.addEventListener('load', function() {
      * Affiche une fenetre de message pop-up de 1 seconde dans page cellier
      */
 
-    if (nomPage == 'cellier&cellierId' || nomPage == 'modifierBouteilleCellier&bte') {
+    if (
+      nomPage == 'cellier&cellierId' ||
+      nomPage == 'ficheDetailsBouteille&bte'
+    ) {
       const fenetreMessage = document.querySelector('[data-js-fenetre-message]')
-    //   console.log('estVisible', estVisible)
+      //   console.log('estVisible', estVisible)
       if (estVisible == 1) {
         // fenetreMessage.classList.add('show-window')
         setTimeout(() => {
