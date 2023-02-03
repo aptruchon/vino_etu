@@ -85,12 +85,14 @@ class Utilisateur extends Modele
 
 		$stmt = $this->_db->prepare("INSERT INTO " . self::TABLE . " (nom, prenom, courriel, mot_de_passe, date_inscription, vino__role_id) VALUES (?,?,?,?,now(),2)");
 
+		$data["uti_mdp"] = password_hash($data["uti_mdp"], PASSWORD_DEFAULT);
+
 		$stmt->bind_param(
 			"ssss",
 			$data["uti_nom"],
 			$data["uti_prenom"],
 			$data["uti_courriel"],
-			password_hash($data["uti_mdp"], PASSWORD_DEFAULT)
+			$data["uti_mdp"]
 		);
 
 		$res = $stmt->execute();
