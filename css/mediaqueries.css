@@ -116,10 +116,6 @@
 
 @media only screen and (min-width:460px) {
 
-    .showMobileNav {
-        width: 40%;
-    }
-
     /* PAGE CONNEXION/INSCRIPTION */
 
     /* .login-container { */
@@ -150,6 +146,13 @@
         flex-direction: row;
     }
 
+}
+
+@media only screen and (min-width:560px) {
+
+    .showMobileNav {
+        width: 40%;
+    }
 }
 
 @media only screen and (min-width:510px) and (max-width:640px)  {
@@ -245,6 +248,13 @@
         left: 390px;
     }
 
+    .hiddenBurguer{
+        display: block;
+    }
+
+    .menuBurguer{
+        display: none;
+    }
 
 }
 
@@ -331,6 +341,14 @@
         width: 100%;
     }
 
+    .hiddenBurguer{
+        display: block;
+    }
+
+    .menuBurguer{
+        display: none;
+    }
+
 }
 
 
@@ -396,6 +414,14 @@
 
     .showMobileNav {
         width: 20%;
+    }
+
+    .hiddenBurguer{
+        display: block;
+    }
+
+    .menuBurguer{
+        display: none;
     }
     
 }

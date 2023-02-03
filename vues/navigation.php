@@ -28,7 +28,10 @@
         <?php else : ?>
             <h2 class="titre" name="titre"></h2>
         <?php endif ; ?>
-        <svg data-js-menu-btn xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"><path fill="currentColor" d="M228 128a12 12 0 0 1-12 12H40a12 12 0 0 1 0-24h176a12 12 0 0 1 12 12ZM40 76h176a12 12 0 0 0 0-24H40a12 12 0 0 0 0 24Zm176 104H40a12 12 0 0 0 0 24h176a12 12 0 0 0 0-24Z"/></svg>
+        <div class="hiddenBurguer">
+            <a href="?requete=deconnexion">Déconnexion</a>
+        </div>
+        <svg data-js-menu-btn class="menuBurguer" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"><path fill="currentColor" d="M228 128a12 12 0 0 1-12 12H40a12 12 0 0 1 0-24h176a12 12 0 0 1 12 12ZM40 76h176a12 12 0 0 0 0-24H40a12 12 0 0 0 0 24Zm176 104H40a12 12 0 0 0 0 24h176a12 12 0 0 0 0-24Z"/></svg>
     </nav>
 </header>
 <div class="mobile-nav" id="mobile-nav">
