@@ -5,7 +5,7 @@
   /**
    * Ouvrir la boite modale ajouter cellier
    */
-  function ouvrirBoiteModaleAjoutCelliers() {
+  function ouvrirBoitesModalesMesCelliers() {
 
     let btnAjoutCellier = document.querySelector('[name="btnAjoutCellier"]')
     let btnModifierCellier = document.getElementById('btnModifierCellier')
@@ -15,6 +15,7 @@
     let modalContainer = document.getElementById('modal-container')
     let modalContainerModifier = document.getElementById('modal-container-modifier')
     let modalContainerSupprimer = document.getElementById('modal-container-supprimer')
+    let popupFormSupprimer = document.getElementById('popupFormSupprimer')
 
 
     if (btnAjoutCellier) {
@@ -48,35 +49,48 @@
    * Fermer la boite modale ajouter cellier
    */
 
-  function fermerBoiteModaleAjoutCelliers() {
+  function fermerBoitesModalesMesCelliers() {
 
     let modalContainer = document.getElementById('modal-container')
     let modalContainerModifier = document.getElementById('modal-container-modifier')
     let modalContainerSupprimer = document.getElementById('modal-container-supprimer')
-    let btnCloseModale = document.getElementById('closeForm')
+    let btnCloseModaleSupprimer = document.getElementById('closeFormSupprimer')
     let btnCloseX = document.getElementById('closeFormX')
+    let btnCloseXmodifier = document.getElementById('closeFormXmodifier')
+    let btnCloseXsupprimer = document.getElementById('closeFormXsupprimer')
     let popupFormAjouter = document.getElementById('popupFormAjouter')
     let popupFormModifier = document.getElementById('popupFormModifier')
+    let popupFormSupprimer = document.getElementById('popupFormSupprimer')
 
-
-    if (btnCloseModale) {
-        btnCloseModale.addEventListener('click', function (evt) {
-          popupFormAjouter.style.display = 'none'
-          modalContainer.style.display = 'none'
-        })
+    if (btnCloseModaleSupprimer) {
+      btnCloseModaleSupprimer.addEventListener('click', function (evt) {
+        evt.preventDefault();
+        popupFormSupprimer.style.display = 'none'
+        modalContainerSupprimer.style.display = 'none'
+      })
     }
     if (btnCloseX) {
-        btnCloseX.addEventListener('click', function (evt) {
-          evt.preventDefault();
-          popupFormAjouter.style.display = 'none'
-          modalContainer.style.display = 'none'
-          popupFormSupprimer.style.display = 'none'
-          modalContainerSupprimer.style.display = 'none'
-          popupFormModifier.style.display = 'none'
-          modalContainerModifier.style.display = 'none'
-        })
+      btnCloseX.addEventListener('click', function (evt) {
+        evt.preventDefault();
+        popupFormAjouter.style.display = 'none'
+        modalContainer.style.display = 'none'
+      })
+    }
+    if (btnCloseXmodifier) {
+      btnCloseXmodifier.addEventListener('click', function (evt) {
+        evt.preventDefault();
+        popupFormModifier.style.display = 'none'
+        modalContainerModifier.style.display = 'none'
+      })
+    }
+    if (btnCloseXsupprimer) {
+      btnCloseXsupprimer.addEventListener('click', function (evt) {
+        evt.preventDefault();
+        popupFormSupprimer.style.display = 'none'
+        modalContainerSupprimer.style.display = 'none'
+      })
     }
 
   }
 
-export { ouvrirBoiteModaleAjoutCelliers, fermerBoiteModaleAjoutCelliers }
+export { ouvrirBoitesModalesMesCelliers, fermerBoitesModalesMesCelliers }
