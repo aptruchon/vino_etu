@@ -19,9 +19,10 @@ class Controler
 	 */
 	public function gerer()
 	{
-		// ID utilisateur et ID de cellier en attendant de recevoir les vraies informations dynamiquement
-		$userId = 2;
+		// ID utilisateur qui est connecté
+		$userId = $_SESSION['utilisateur']['id'];
 
+	
 		switch ($_GET['requete']) {
 			case 'listeBouteille':
 				$this->listeBouteille($userId, $_SESSION["cellierId"]);
