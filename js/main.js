@@ -78,8 +78,9 @@ window.addEventListener('load', function() {
   if (nomPage == 'ajouterNouvelleBouteilleCellier') {
     afficheResulatRechVin()
     preremplitFormAjout(bouteille)
-    ajoutVinCellier(bouteille)
+    ajoutVinCellier(bouteille, inputsRequired)
     effaceInputsForm(inputsFormAjout)
+    checkRequiredInputContent(inputsRequired)
   }
 
   /**
