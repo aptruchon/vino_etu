@@ -20,6 +20,7 @@ function ouvrirBoiteModaleSupprimer() {
 function fermerBoiteModaleSupprimer() {
     let modalContainer = document.getElementById('modal-container')
     let btnCloseModale = document.getElementById('closeForm')
+    let popupForm = document.getElementById('popupForm');
     let btnCloseX = document.getElementById('closeFormX')
     if (btnCloseModale) {
       btnCloseModale.addEventListener('click', function (evt) {
