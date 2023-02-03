@@ -16,7 +16,7 @@
             </svg>
         </a>
         <?php if (isset($data)) : ?>
-            <h2 class="titre" name="titre">Mon cellier</h2>
+            <h2 class="titre" name="titre"><?php echo $_SESSION["nomCellier"] ?></h2>
         <?php elseif (isset($resultat) | isset($dataTypes)) : ?>
             <h2 class="titre" name="titre">Ajouter vin</h2>
         <?php elseif (isset($dataModifie) | isset($dataTypesModifier)) : ?>
