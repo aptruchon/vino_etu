@@ -353,31 +353,29 @@ class Controler
 			Utilitaires::nouvelleRoute('index.php?requete=mesCelliers');
 		}
 
-		$body = $_POST;
+		$body = json_decode(file_get_contents('php://input'), true);
 
 		if (empty($body)) {
 		include("vues/entete.php");
 		include("vues/connexion.php");
 		include("vues/pied.php");
 		} else {
-			$courriel = $_POST['uti_courriel'];
-			$mdp = $_POST['uti_mdp'];
+			$courriel = $body['uti_courriel'];
+			$mdp = $body['uti_mdp'];
 
 			$uti = new Utilisateur();
 			$resultat = $uti->getUtilisateurParCourriel($courriel);
 			// var_dump($resultat);
 
 			if (!$resultat || !password_verify($mdp, $resultat['mot_de_passe'])) {
-				$_SESSION["message"] = "Combinaison courriel/mot de passe erronée";
+				http_response_code(400);
 
-				// Si la connexion n'a pas bien marché on redirige vers la page de connexion.
-				Utilitaires::nouvelleRoute('index.php?requete=connexion');
 			} else {
+				http_response_code(200);
+
 				// Sauvegarder l'état de connexion
 				$_SESSION['utilisateur'] = $resultat;
 
-				// Si la connexion a bien marché on redirectione vers la page mesCelliers.
-				Utilitaires::nouvelleRoute('index.php?requete=mesCelliers');
 			}
 		}
 	}
@@ -411,28 +409,18 @@ class Controler
 			
 			if($resultat === false){
 				http_response_code(400);
-				// $_SESSION["message"] = "User exist.";
-				// $_SESSION["estVisible"] = true;
+
 			} else {
-				// $_SESSION["message"] = "Utilisateur inscrit.e !";
-				// $_SESSION["estVisible"] = true;
 				http_response_code(200);
-				Utilitaires::nouvelleRoute('index.php?requete=connexion');
+
+				$courriel = $body['uti_courriel'];
+
+				$uti = new Utilisateur();
+				$resultat = $uti->getUtilisateurParCourriel($courriel);
+
+				// Sauvegarder l'état de connexion
+				$_SESSION['utilisateur'] = $resultat;
 			}
-			die();
-			// if ($resultat === false) {
-				
-			// 	// $_SESSION["message"] = $uti->getErrorMessage();
-
-			// 	// Si l'inscription n'a pas bien marché on redirige vers la page d'inscription.
-			// 	//Utilitaires::nouvelleRoute('index.php?requete=inscription');
-			// } else {
-			// 	$_SESSION["message"] = "Utilisateur inscrit.e !";
-
-			// 	// Si l'inscription a bien marché on redirige vers la page de connexion.
-			// 	// Utilitaires::nouvelleRoute('index.php?requete=connexion');
-			// }
-			
 		}
 	}
 }

@@ -101,9 +101,8 @@ function envoiDonneesInscription() {
             if (response.status == 200) {
                 console.log('yes');
                 location.replace(
-                  BaseURL + '?requete=accueil' + cellierId.id
+                  BaseURL + '?requete=mesCelliers'
                 )
-
             } else if (response.status == 400) {
                 console.log('no')
 
