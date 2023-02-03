@@ -41,6 +41,7 @@ class Utilisateur extends Modele
 	 */
 	public function ajouterUtilisateur($data)
 	{
+
 		$data["uti_prenom"] = substr(htmlspecialchars($data["uti_prenom"]), 0, 200);
 		$data["uti_nom"] = substr(htmlspecialchars($data["uti_nom"]), 0, 200);
 		$data["uti_courriel"] = substr(htmlspecialchars($data["uti_courriel"]), 0, 200);
@@ -52,25 +53,21 @@ class Utilisateur extends Modele
 		*/
 		$taille_minimum_8 = preg_match('/[0-9a-zA-Z]{8,}/', $data["uti_mdp"]);
 		if ($taille_minimum_8 !== 1) {
-			$this->$error_message = "Le mot de passe doit avoir au moins 8 caractères";
 			return false;
 		}
 
 		$une_minuscule = preg_match('/[a-z]/', $data["uti_mdp"]);
 		if ($une_minuscule !== 1) {
-			$this->$error_message = "Le mot de passe doit avoir au moins une lettre minuscule";
 			return false;
 		}
 
 		$une_majuscule = preg_match('/[A-Z]/', $data["uti_mdp"]);
 		if ($une_majuscule !== 1) {
-			$this->$error_message = "Le mot de passe doit avoir au moins une lettre majuscule";
 			return false;
 		}
 
 		$un_chiffre = preg_match('/[0-9]/', $data["uti_mdp"]);
 		if ($un_chiffre !== 1) {
-			$this->$error_message = "Le mot de passe doit avoir au moins un chiffre";
 			return false;
 		}
 
@@ -81,7 +78,7 @@ class Utilisateur extends Modele
 		$resultat = $this->_db->query("SELECT courriel from " . self::TABLE . " where courriel = '" . $data["uti_courriel"] . "'");
 
 		if ($resultat->num_rows > 0) {
-			$this->$error_message = "Nous avons déjà un utilisateur avec ce courriel. Veuillez fournir un autre.";
+			// $this->$error_message = "Nous avons déjà un utilisateur avec ce courriel. Veuillez fournir un autre.";
 			return false;
 		}
 

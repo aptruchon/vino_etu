@@ -19,6 +19,7 @@ class Controler
 	 */
 	public function gerer()
 	{
+
 		// ID utilisateur qui est connecté
 		$userId = $_SESSION['utilisateur']['id'];
 		// $userId = 2;
@@ -202,9 +203,7 @@ class Controler
 	private function autocompleteBouteille()
 	{
 		$bte = new Bouteille();
-		//var_dump(file_get_contents('php://input'));
 		$body = json_decode(file_get_contents('php://input'));
-		//var_dump($body);
 		$listeBouteille = $bte->autocomplete($body->nom);
 
 		echo json_encode($listeBouteille);
@@ -235,7 +234,6 @@ class Controler
 			$_SESSION["estVisible"] = true;
 
 			die();
-
 
 		} else {
 			$dataTypesModifier = $types;
@@ -338,7 +336,7 @@ class Controler
 
 		$bte = new Bouteille();
 		$resultat = $bte->modifierQuantiteBouteilleCellier($body->id, 1);
-		// var_dump($resultat);
+
 		echo json_encode($resultat);
 	}
 
@@ -380,7 +378,7 @@ class Controler
 			if (!$resultat || !password_verify($mdp, $resultat['mot_de_passe'])) {
 				$_SESSION["message"] = "Combinaison courriel/mot de passe erronée";
 
-				// Si la connexion n'a pas bien marché on redirectione vers la page de connexion.
+				// Si la connexion n'a pas bien marché on redirige vers la page de connexion.
 				Utilitaires::nouvelleRoute('index.php?requete=connexion');
 			} else {
 				// Sauvegarder l'état de connexion
@@ -406,31 +404,43 @@ class Controler
 	 */
 	private function inscrireUtilisateur()
 	{
+
 		// Redirection si un utilisateur déjà connecté essaie de rendre sur la page inscription
 		if(isset($_SESSION["utilisateur"])){
 			Utilitaires::nouvelleRoute('index.php?requete=mesCelliers');
 		}
-
-		$body = $_POST;
+    
+    $body = json_decode(file_get_contents('php://input'), true);
 
 		if (!empty($body)) {
-			// var_dump($body);
 
 			$uti = new Utilisateur();
 			$resultat = $uti->ajouterUtilisateur($body);
-			// var_dump($resultat);
-
-			if ($resultat === false) {
-				$_SESSION["message"] = $uti->getErrorMessage();
-
-				// Si l'inscription n'a pas bien marché on redirectione vers la page d'inscription.
-				Utilitaires::nouvelleRoute('index.php?requete=inscription');
+			
+			if($resultat === false){
+				http_response_code(400);
+				// $_SESSION["message"] = "User exist.";
+				// $_SESSION["estVisible"] = true;
 			} else {
-				$_SESSION["message"] = "Utilisateur inscrit.e !";
-
-				// Si l'inscription a bien marché on redirectione vers la page de connexion.
+				// $_SESSION["message"] = "Utilisateur inscrit.e !";
+				// $_SESSION["estVisible"] = true;
+				http_response_code(200);
 				Utilitaires::nouvelleRoute('index.php?requete=connexion');
 			}
+			die();
+			// if ($resultat === false) {
+				
+			// 	// $_SESSION["message"] = $uti->getErrorMessage();
+
+			// 	// Si l'inscription n'a pas bien marché on redirige vers la page d'inscription.
+			// 	//Utilitaires::nouvelleRoute('index.php?requete=inscription');
+			// } else {
+			// 	$_SESSION["message"] = "Utilisateur inscrit.e !";
+
+			// 	// Si l'inscription a bien marché on redirige vers la page de connexion.
+			// 	// Utilitaires::nouvelleRoute('index.php?requete=connexion');
+			// }
+			
 		}
 	}
 }

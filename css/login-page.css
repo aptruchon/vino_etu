@@ -50,7 +50,6 @@
 
 .login-container input {
     width: 100%;
-    margin-bottom: 20px;
     font-size: 18px;
     padding: 12px 8px;
     background-color: white;
@@ -119,9 +118,9 @@
 }
 
 
-#uti_mdp {
+/* #uti_mdp {
     margin-bottom: 20px;
-}
+} */
 
 .mdp-infos {
     margin-bottom: 20px;
@@ -154,6 +153,25 @@
 
 .body-container {
     overflow: hidden;
+}
+
+.champ-requis-input {
+    border: 1px solid red !important;
+    background-color: rgb(255 233 233) !important;
+}
+
+.champ-requis-message {
+    color: red;
+    display: block;
+    opacity: 0;
+    background-color: white;
+    width: fit-content;
+    border-radius: 10px;
+    padding-right: 5px;
+}
+
+.show-message-input-requis {
+    opacity: 1 !important;
 }
 
 
