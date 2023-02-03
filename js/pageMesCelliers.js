@@ -30,7 +30,8 @@
           
         btnmodifier.addEventListener('click', function (evt) {
           evt.preventDefault();
-          console.log({evt});
+          let idModif = evt.target.dataset.id
+          console.log(idModif);
           popupFormModifier.style.display = 'block'
           modalContainerModifier.style.display = 'block'
         })
@@ -41,7 +42,10 @@
           
         btnsupprimer.addEventListener('click', function (evt) {
           evt.preventDefault();
-          console.log({evt});
+          // console.log({evt});
+          let idSuprimer = evt.target.dataset.id
+          console.log(idSuprimer);
+
           popupFormSupprimer.style.display = 'block'
           modalContainerSupprimer.style.display = 'block'
   })
