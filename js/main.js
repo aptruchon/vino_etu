@@ -14,7 +14,7 @@ import {
   ajoutVinCellier,
   effaceInputsForm,
 } from './pageAjout.js'
-import { ouvrirBoiteModaleAjoutCelliers, fermerBoiteModaleAjoutCelliers } from './pageMesCelliers.js'
+import { ouvrirBoitesModalesMesCelliers, fermerBoitesModalesMesCelliers } from './pageMesCelliers.js'
 import { openNav, closeNav } from './navigation.js'
 import { oeilPassword } from './inscription.js'
 import { modifieVinCellier, checkRequiredInputContent } from './pageModifie.js'
@@ -84,6 +84,13 @@ window.addEventListener('load', function() {
   }
 
   /**
+   * Fonctionnalités Page Mes Cellier
+   */
+
+  ouvrirBoitesModalesMesCelliers()
+  fermerBoitesModalesMesCelliers()
+
+  /**
    * Fonctionnalité Page Modifier
    */
   //pour ouvrir et fermer la boite modale supprimer
@@ -96,12 +103,6 @@ window.addEventListener('load', function() {
     checkRequiredInputContent(inputsRequired)
   }
 
-  /**
-   * Fonctionnalités Page Mes Cellier
-   */
-
-  ouvrirBoiteModaleAjoutCelliers()
-  fermerBoiteModaleAjoutCelliers()
 
   /**
    * Fonctionnalité pour le password dans Inscription
