@@ -19,8 +19,10 @@ class Controler
 	 */
 	public function gerer()
 	{
-		// ID utilisateur et ID de cellier en attendant de recevoir les vraies informations dynamiquement
-		$userId = 2;
+		// ID utilisateur qui est connecté
+		$userId = $_SESSION['utilisateur']['id'];
+
+	
 
 		switch ($_GET['requete']) {
 			case 'listeBouteille':
@@ -71,9 +73,9 @@ class Controler
 				$this->ficheDetailsBouteille($userId, $_SESSION["cellierId"], $_GET['bte']);
 				break;
 			default:
-				// $this->accueil();
-				// $this->cellier($userId, $_SESSION["cellierId"]);
-				$this->mesCelliers($userId);
+				 $this->accueil();
+			    // $this->cellier($userId, $_SESSION["cellierId"]);
+				//$this->mesCelliers($userId);
 				break;
 		}
 	}
