@@ -33,10 +33,10 @@ function modifieVinCellier(bouteille, inputsRequired) {
     // Assure que les messages d'erreur sont absents
 
     for (let i in inputsRequired) {
-    if (inputsRequired[i].value == '') {
-        inputsRequired[i].classList.remove('champ-obligatoire-input')
-        inputsRequired[i].nextElementSibling.innerHTML = ''
-    }
+      if (inputsRequired[i].value == '') {
+          inputsRequired[i].classList.remove('champ-obligatoire-input')
+          inputsRequired[i].nextElementSibling.innerHTML = ''
+      }
     }
 
     // Si champs requis complétés, fait la requete POST

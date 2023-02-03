@@ -16,7 +16,11 @@ import {
 } from './pageAjout.js'
 import { ouvrirBoitesModalesMesCelliers, fermerBoitesModalesMesCelliers } from './pageMesCelliers.js'
 import { openNav, closeNav } from './navigation.js'
-import { oeilPassword } from './inscription.js'
+import {
+  oeilPassword,
+  envoiDonneesInscription,
+  checkRequiredInputContentLogin,
+} from './inscription.js'
 import { modifieVinCellier, checkRequiredInputContent } from './pageModifie.js'
 
 const BaseURL = window.location.href.split('?')[0];
@@ -105,11 +109,13 @@ window.addEventListener('load', function() {
 
 
   /**
-   * Fonctionnalité pour le password dans Inscription
+   * Fonctionnalités pages Inscription / Connexion
    */
 
   if (nomPage == 'inscription' || nomPage == 'connexion') {
     oeilPassword()
+    envoiDonneesInscription();
+    checkRequiredInputContentLogin()
   }
 
   /**
