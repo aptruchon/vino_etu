@@ -4,6 +4,7 @@ function oeilPassword(){
     const iconEyeOpen = document.getElementById('icon-eye-open');
     const iconEyeClose = document.getElementById('icon-eye-close');
     const inputPassword = document.getElementById("uti_mdp");
+
     /* addEventListener for the close eye */
     iconEyeOpen.addEventListener('click', function(e){
         e.preventDefault;

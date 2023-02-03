@@ -72,29 +72,33 @@ function afficheResulatRechVin() {
             }
           })
           .then((response) => {
-            // console.log(response)
-            let bouteilleChoisi = response
 
+            let bouteilleChoisi = response
+            let inputsARemplir = [
+              bouteille.nom,
+              bouteille.pays,
+              bouteille.format,
+              bouteille.description,
+              bouteille.prix,
+            ]
+            
+            // Remplit les valeurs des inputs
             bouteille.nom.value = bouteilleChoisi.nom
             bouteille.pays.value = bouteilleChoisi.pays
             bouteille.format.value = bouteilleChoisi.format
             bouteille.description.value = bouteilleChoisi.description
             bouteille.prix.value = bouteilleChoisi.prix_saq
 
-            bouteille.nom.setAttribute('readonly', true)
-            bouteille.pays.setAttribute('readonly', true)
-            bouteille.format.setAttribute('readonly', true)
-            bouteille.description.setAttribute('readonly', true)
-            bouteille.prix.setAttribute('readonly', true)
+            // Empeche la modification des inputs et nettoie d'eventuelles classe de message d'erreur
+            for (let i in inputsARemplir) {
+              inputsARemplir[i].setAttribute('readonly', true)
+              inputsARemplir[i].classList.add('readOnly')
+              inputsARemplir[i].classList.remove('champ-obligatoire-input')
+              inputsARemplir[i].nextElementSibling.innerHTML = ''
+            }
+            bouteille.types.classList.add('noEvent') //bloque le select des types de vin
 
-            bouteille.nom.classList.add('readOnly')
-            bouteille.pays.classList.add('readOnly')
-            bouteille.format.classList.add('readOnly')
-            bouteille.description.classList.add('readOnly')
-            bouteille.prix.classList.add('readOnly')
-
-            bouteille.types.classList.add('noEvent')
-
+            // Selectionne l'option du select type de vin 
             for (let i = 0, l = bouteille.types.options.length; i < l; i++) {
               if (
                 bouteille.types.options[i].id == bouteilleChoisi.vino__type_id
@@ -112,8 +116,9 @@ function afficheResulatRechVin() {
             console.error(error)
           })
 
-        liste.innerHTML = ''
-        inputNomBouteille.value = ''
+          // Nettoie le champs de recherche
+          liste.innerHTML = ''
+          inputNomBouteille.value = ''
       }
     })
   }
@@ -122,13 +127,12 @@ function afficheResulatRechVin() {
   /**
    * Fait une requete à la DB pour ajouter une bouteille au cellier de l'usager.
    */
-  function ajoutVinCellier(bouteille) {
-    let cellierId = document.querySelector("[name='cellierId']");
-    let btnAjouter = document.querySelector("[name='ajouterBouteilleCellier']");
-    const BaseURL = window.location.href.split('?')[0];
+  function ajoutVinCellier(bouteille, inputsRequired) {
+    let cellierId = document.querySelector("[name='cellierId']")
+    let btnAjouter = document.querySelector("[name='ajouterBouteilleCellier']")
+    const BaseURL = window.location.href.split('?')[0]
     if (btnAjouter) {
       btnAjouter.addEventListener('click', function (evt) {
-
         for (let i = 0, l = bouteille.types.options.length; i < l; i++) {
           if (bouteille.types.options[i].id == bouteille.types.selectedIndex) {
             bouteille.type = bouteille.types.options[i]
@@ -150,17 +154,14 @@ function afficheResulatRechVin() {
         }
         console.log(param)
 
-        bouteille.nom.classList.remove('champ-obligatoire-input')
-        bouteille.nom.nextElementSibling.innerHTML = ''
+        // Assure que les messages d'erreur sont absents
 
-        bouteille.pays.classList.remove('champ-obligatoire-input')
-        bouteille.pays.nextElementSibling.innerHTML = ''
-
-        bouteille.quantite.classList.remove('champ-obligatoire-input')
-        bouteille.quantite.nextElementSibling.innerHTML = ''
-
-        bouteille.types.classList.remove('champ-obligatoire-input')
-        bouteille.types.nextElementSibling.innerHTML = ''
+        for (let i in inputsRequired) {
+          if (inputsRequired[i].value == '') {
+            inputsRequired[i].classList.remove('champ-obligatoire-input')
+            inputsRequired[i].nextElementSibling.innerHTML = ''
+          }
+        }
 
         if (
           !(
@@ -186,34 +187,27 @@ function afficheResulatRechVin() {
             })
             .then((response) => {
               console.log(response)
-              location.replace(BaseURL + '?requete=cellier&cellierId=' + cellierId.id)
+              location.replace(
+                BaseURL + '?requete=cellier&cellierId=' + cellierId.id
+              )
             })
             .catch((error) => {
               console.error(error)
 
               // Temporaire
-              location.replace(BaseURL + '?requete=cellier&cellierId=' + cellierId.id)
+              location.replace(
+                BaseURL + '?requete=cellier&cellierId=' + cellierId.id
+              )
             })
         } else {
           // Injection des messages d'erreurs
-          console.log('bon chemin')
-
-          if (param.nom === '') {
-            bouteille.nom.classList.add('champ-obligatoire-input')
-            bouteille.nom.nextElementSibling.innerHTML = 'Champs obligatoire'
-          }
-          if (param.pays === '') {
-            bouteille.pays.classList.add('champ-obligatoire-input')
-            bouteille.pays.nextElementSibling.innerHTML = 'Champs obligatoire'
-          }
-          if (param.quantite === '') {
-            bouteille.quantite.classList.add('champ-obligatoire-input')
-            bouteille.quantite.nextElementSibling.innerHTML =
-              'Champs obligatoire'
-          }
-          if (param.id_type === '') {
-            bouteille.types.classList.add('champ-obligatoire-input')
-            bouteille.types.nextElementSibling.innerHTML = 'Champs obligatoire'
+          // Si un champs requis est vide, injection des messages d'erreurs
+          for (let i in inputsRequired) {
+            if (inputsRequired[i].value == '') {
+              inputsRequired[i].classList.add('champ-obligatoire-input')
+              inputsRequired[i].nextElementSibling.innerHTML =
+                'Champs obligatoire'
+            }
           }
         }
       })
@@ -221,7 +215,7 @@ function afficheResulatRechVin() {
   }
   
   /**
-   *  Efface les inputs et le style 'read only' du form ajout au click du bouton efface
+   *  Efface les inputs, le style 'read only' et les messages d'erreur du form ajout au click du bouton efface
    * @param Object formInputs - les inputs du form
    * */  
   function effaceInputsForm(formInputs) {
@@ -230,11 +224,18 @@ function afficheResulatRechVin() {
     const elOptions = document.querySelectorAll('option')
 
     elBtnRefresh.addEventListener('click', () => {
+      // Supprime evenutel id de bouteille creer avec la rechecher de la SAQ
+      delete document.querySelector("[name='nom']").dataset.id
+
       for (let i in formInputs) {
         formInputs[i].value = '';
         formInputs[i].removeAttribute('readOnly');
         formInputs[i].classList.remove('readOnly');
-
+        if (formInputs[i].classList.contains('champ-obligatoire-input')) {
+          formInputs[i].classList.remove('champ-obligatoire-input')
+          formInputs[i].nextElementSibling.innerHTML = ''
+        }
+          
         if (formInputs[i].name == 'types') {
           formInputs[i].classList.remove('noEvent');
 
@@ -243,8 +244,6 @@ function afficheResulatRechVin() {
             elOptions[i].removeAttribute('disabled')
           }
         }
-      
-      
       }
     })
   }

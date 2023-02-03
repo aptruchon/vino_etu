@@ -13,10 +13,10 @@
     let popupFormAjouter = document.getElementById('popupFormAjouter')
     let popupFormModifier = document.getElementById('popupFormModifier')
     let modalContainer = document.getElementById('modal-container')
+
     let modalContainerModifier = document.getElementById('modal-container-modifier')
     let modalContainerSupprimer = document.getElementById('modal-container-supprimer')
     let popupFormSupprimer = document.getElementById('popupFormSupprimer')
-
 
     if (btnAjoutCellier) {
       btnAjoutCellier.addEventListener('click', function (evt) {

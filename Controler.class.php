@@ -25,7 +25,7 @@ class Controler
 
 		switch ($_GET['requete']) {
 			case 'listeBouteille':
-				$this->listeBouteille($userId, $_SESSION["cellierId"]);
+				$this->listeBouteille($_SESSION['utilisateur']['id'], $_SESSION["cellierId"]);
 				break;
 			case 'informationBouteilleParId':
 				$this->informationBouteilleParId();
@@ -37,7 +37,7 @@ class Controler
 				$this->ajouterNouvelleBouteilleCellier();
 				break;
 			case 'modifierBouteilleCellier':
-				$this->modifierBouteilleCellier($userId, $_SESSION["cellierId"], $_GET['bte']);
+				$this->modifierBouteilleCellier($_SESSION['utilisateur']['id'], $_SESSION["cellierId"], $_GET['bte']);
 				break;
 			case 'ajouterBouteilleCellier':
 				$this->ajouterBouteilleCellier();
@@ -60,21 +60,21 @@ class Controler
 				$this->deconnexion();
 				break;
 			case 'mesCelliers':
-				$this->mesCelliers($userId, $_SESSION["cellierId"]);
+				$this->mesCelliers($_SESSION['utilisateur']['id'], $_SESSION["cellierId"]);
 				break;
 			case 'cellier':
-				$this->cellier($userId);
+				$this->cellier($_SESSION['utilisateur']['id']);
 				break;
 			case 'ajouterCellier':
-				$this->mesCelliers($userId);
+				$this->mesCelliers($_SESSION['utilisateur']['id']);
 				break;
 			case 'ficheDetailsBouteille':
-				$this->ficheDetailsBouteille($userId, $_SESSION["cellierId"], $_GET['bte']);
+				$this->ficheDetailsBouteille($_SESSION['utilisateur']['id'], $_SESSION["cellierId"], $_GET['bte']);
 				break;
 			default:
-				 $this->accueil();
-			    // $this->cellier($userId, $_SESSION["cellierId"]);
-				//$this->mesCelliers($userId);
+				//  $this->accueil();
+			    // $this->cellier($_SESSION['utilisateur']['id'], $_SESSION["cellierId"]);
+				$this->mesCelliers($_SESSION['utilisateur']['id']);
 				break;
 		}
 	}
