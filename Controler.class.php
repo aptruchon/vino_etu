@@ -98,6 +98,12 @@ class Controler
 	 */
 	private function cellier($userId)
 	{
+		// Redirection si un utilisateur non-connecté essaie d'aller sur une page qui requiert une authentification
+		if(!isset($_SESSION["utilisateur"])){
+			Utilitaires::nouvelleRoute('index.php?requete=connexion');
+			die();
+		}
+
 		$_SESSION["cellierId"] = $_GET["cellierId"];
 
 		$bte = new Bouteille();
@@ -118,11 +124,20 @@ class Controler
 	 */
 	private function mesCelliers($userId)
 	{
+		// Redirection si un utilisateur non-connecté essaie d'aller sur une page qui requiert une authentification
+		if(!isset($_SESSION["utilisateur"])){
+			Utilitaires::nouvelleRoute('index.php?requete=connexion');
+			die();
+		}
+		
 		$cellier = new Cellier();
 		$body = $_POST;
 
 		if(!empty($body)){
 			$resultatCelliers = $cellier->ajouterCellier($userId, $body["nomCellier"]);
+			Utilitaires::nouvelleRoute('index.php?requete=mesCelliers');
+			die();
+
 		}
 
 		if(isset($resultat) && $resultat === true) {
@@ -147,6 +162,12 @@ class Controler
 	 */
 	private function ficheDetailsBouteille($userId, $cellierId, $idBouteille, $showMessage=false)
 	{
+		// Redirection si un utilisateur non-connecté essaie d'aller sur une page qui requiert une authentification
+		if(!isset($_SESSION["utilisateur"])){
+			Utilitaires::nouvelleRoute('index.php?requete=connexion');
+			die();
+		}
+		
 		$bte = new Bouteille();
 		$dataFiche = $bte->getListeBouteilleCellier($userId, $cellierId, $idBouteille);
 		// var_dump($dataFiche);
@@ -194,6 +215,12 @@ class Controler
 	 */
 	private function modifierBouteilleCellier($userId, $cellierId, $idBouteille)
 	{
+		// Redirection si un utilisateur non-connecté essaie d'aller sur une page qui requiert une authentification
+		if(!isset($_SESSION["utilisateur"])){
+			Utilitaires::nouvelleRoute('index.php?requete=connexion');
+			die();
+		}
+		
 		$type = new Type();
 		$types = $type->getTypes();
 
@@ -228,6 +255,12 @@ class Controler
 	 */
 	private function effacerBouteilleCellier($idBouteilleCellier)
 	{
+		// Redirection si un utilisateur non-connecté essaie d'aller sur une page qui requiert une authentification
+		if(!isset($_SESSION["utilisateur"])){
+			Utilitaires::nouvelleRoute('index.php?requete=connexion');
+			die();
+		}
+		
 		$bte = new Bouteille();
 		$effacer = $bte->effacerBouteilleCellier($idBouteilleCellier);
 		// Message pop-up confirmation bouteille supprimée
@@ -253,6 +286,12 @@ class Controler
 	 */
 	private function ajouterNouvelleBouteilleCellier()
 	{
+		// Redirection si un utilisateur non-connecté essaie d'aller sur une page qui requiert une authentification
+		if(!isset($_SESSION["utilisateur"])){
+			Utilitaires::nouvelleRoute('index.php?requete=connexion');
+			die();
+		}
+		
 		$type = new Type();
 		$types = $type->getTypes();
 
