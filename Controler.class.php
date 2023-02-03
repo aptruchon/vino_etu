@@ -19,7 +19,11 @@ class Controler
 	 */
 	public function gerer()
 	{
-	
+
+		// ID utilisateur qui est connecté
+		$userId = $_SESSION['utilisateur']['id'];
+		// $userId = 2;
+
 		switch ($_GET['requete']) {
 			case 'listeBouteille':
 				$this->listeBouteille($_SESSION['utilisateur']['id'], $_SESSION["cellierId"]);
@@ -57,7 +61,7 @@ class Controler
 				$this->deconnexion();
 				break;
 			case 'mesCelliers':
-				$this->mesCelliers($_SESSION['utilisateur']['id'], $_SESSION["cellierId"]);
+				$this->mesCelliers($_SESSION['utilisateur']['id']);
 				break;
 			case 'cellier':
 				$this->cellier($_SESSION['utilisateur']['id']);
@@ -69,9 +73,9 @@ class Controler
 				$this->ficheDetailsBouteille($_SESSION['utilisateur']['id'], $_SESSION["cellierId"], $_GET['bte']);
 				break;
 			default:
-				//  $this->accueil();
+				 $this->accueil();
 			    // $this->cellier($_SESSION['utilisateur']['id'], $_SESSION["cellierId"]);
-				$this->mesCelliers($_SESSION['utilisateur']['id']);
+				// $this->mesCelliers($_SESSION['utilisateur']['id']);
 				break;
 		}
 	}
@@ -81,8 +85,13 @@ class Controler
 	 */
 	private function accueil()
 	{
-		include("vues/entete.php");
-		include("vues/accueil.php");
+		// Redirection si un utilisateur déjà connecté essaie de rendre sur la page connexion
+		if(isset($_SESSION["utilisateur"])){
+			Utilitaires::nouvelleRoute('index.php?requete=mesCelliers');
+		} else {
+			include("vues/entete.php");
+			include("vues/accueil.php");
+		}
 	}
 
 	/**
@@ -90,9 +99,21 @@ class Controler
 	 */
 	private function cellier($userId)
 	{
+		// Redirection si un utilisateur non-connecté essaie d'aller sur une page qui requiert une authentification
+		if(!isset($_SESSION["utilisateur"])){
+			Utilitaires::nouvelleRoute('index.php?requete=connexion');
+			die();
+		}
+
 		$_SESSION["cellierId"] = $_GET["cellierId"];
+
 		$bte = new Bouteille();
 		$data = $bte->getListeBouteilleCellier($userId, $_SESSION["cellierId"]);
+
+		$cellier = new Cellier();
+		$nomCellier = $cellier->getNomCellier($_SESSION["cellierId"]);
+		$_SESSION["nomCellier"] = $nomCellier["nom"];
+
 		include("vues/entete.php");
 		include("vues/navigation.php");
 		include("vues/cellier.php");
@@ -104,17 +125,29 @@ class Controler
 	 */
 	private function mesCelliers($userId)
 	{
+		// Redirection si un utilisateur non-connecté essaie d'aller sur une page qui requiert une authentification
+		if(!isset($_SESSION["utilisateur"])){
+			Utilitaires::nouvelleRoute('index.php?requete=connexion');
+			die();
+		}
+		
 		$cellier = new Cellier();
 		$body = $_POST;
 
 		if(!empty($body)){
-			$resultat = $cellier->ajouterCellier($userId, $body["nomCellier"]);
+			$resultatCelliers = $cellier->ajouterCellier($userId, $body["nomCellier"]);
+			Utilitaires::nouvelleRoute('index.php?requete=mesCelliers');
+			die();
+
 		}
 
 		if(isset($resultat) && $resultat === true) {
 			$_SESSION["message"] = "Cellier ajoutée !";
 			$_SESSION["estVisible"] = true;
 		}
+
+		$nomMesCelliers = $cellier->getNomCellier($_SESSION["cellierId"]);
+		$_SESSION["nomMesCelliers"] = $nomMesCelliers["nom"];
 
 		$mesCelliers = $cellier->getCelliers($userId);
 
@@ -130,6 +163,12 @@ class Controler
 	 */
 	private function ficheDetailsBouteille($userId, $cellierId, $idBouteille, $showMessage=false)
 	{
+		// Redirection si un utilisateur non-connecté essaie d'aller sur une page qui requiert une authentification
+		if(!isset($_SESSION["utilisateur"])){
+			Utilitaires::nouvelleRoute('index.php?requete=connexion');
+			die();
+		}
+		
 		$bte = new Bouteille();
 		$dataFiche = $bte->getListeBouteilleCellier($userId, $cellierId, $idBouteille);
 		// var_dump($dataFiche);
@@ -175,6 +214,12 @@ class Controler
 	 */
 	private function modifierBouteilleCellier($userId, $cellierId, $idBouteille)
 	{
+		// Redirection si un utilisateur non-connecté essaie d'aller sur une page qui requiert une authentification
+		if(!isset($_SESSION["utilisateur"])){
+			Utilitaires::nouvelleRoute('index.php?requete=connexion');
+			die();
+		}
+		
 		$type = new Type();
 		$types = $type->getTypes();
 
@@ -208,6 +253,12 @@ class Controler
 	 */
 	private function effacerBouteilleCellier($idBouteilleCellier)
 	{
+		// Redirection si un utilisateur non-connecté essaie d'aller sur une page qui requiert une authentification
+		if(!isset($_SESSION["utilisateur"])){
+			Utilitaires::nouvelleRoute('index.php?requete=connexion');
+			die();
+		}
+		
 		$bte = new Bouteille();
 		$effacer = $bte->effacerBouteilleCellier($idBouteilleCellier);
 		// Message pop-up confirmation bouteille supprimée
@@ -233,6 +284,12 @@ class Controler
 	 */
 	private function ajouterNouvelleBouteilleCellier()
 	{
+		// Redirection si un utilisateur non-connecté essaie d'aller sur une page qui requiert une authentification
+		if(!isset($_SESSION["utilisateur"])){
+			Utilitaires::nouvelleRoute('index.php?requete=connexion');
+			die();
+		}
+		
 		$type = new Type();
 		$types = $type->getTypes();
 
@@ -299,6 +356,11 @@ class Controler
 	 */
 	private function connexion()
 	{
+		// Redirection si un utilisateur déjà connecté essaie de rendre sur la page connexion
+		if(isset($_SESSION["utilisateur"])){
+			Utilitaires::nouvelleRoute('index.php?requete=mesCelliers');
+		}
+
 		$body = $_POST;
 
 		if (empty($body)) {
@@ -322,8 +384,8 @@ class Controler
 				// Sauvegarder l'état de connexion
 				$_SESSION['utilisateur'] = $resultat;
 
-				// Si la connexion a pas bien marché on redirectione vers la page d'accueil.
-				Utilitaires::nouvelleRoute('index.php?requete=accueil');
+				// Si la connexion a bien marché on redirectione vers la page mesCelliers.
+				Utilitaires::nouvelleRoute('index.php?requete=mesCelliers');
 			}
 		}
 	}
@@ -342,7 +404,13 @@ class Controler
 	 */
 	private function inscrireUtilisateur()
 	{
-		$body = json_decode(file_get_contents('php://input'), true);
+
+		// Redirection si un utilisateur déjà connecté essaie de rendre sur la page inscription
+		if(isset($_SESSION["utilisateur"])){
+			Utilitaires::nouvelleRoute('index.php?requete=mesCelliers');
+		}
+    
+    $body = json_decode(file_get_contents('php://input'), true);
 
 		if (!empty($body)) {
 

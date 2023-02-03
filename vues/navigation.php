@@ -1,6 +1,10 @@
 <header class="nav-header">
     <nav>
+    <?php if (isset($_SESSION["utilisateur"])) { ?>
+      <a href="?requete=mesCelliers">
+    <?php } else { ?>
         <a href="?requete=accueil">
+    <?php } ?>
             <svg  class="logo" version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 480">
                 <title>Logo blanc</title>
                 <defs>
@@ -12,24 +16,29 @@
             </svg>
         </a>
         <?php if (isset($data)) : ?>
-            <h2 class="titre" name="titre">Mon cellier</h2>
+            <h2 class="titre" name="titre"><?php echo $_SESSION["nomCellier"] ?></h2>
         <?php elseif (isset($resultat) | isset($dataTypes)) : ?>
             <h2 class="titre" name="titre">Ajouter vin</h2>
         <?php elseif (isset($dataModifie) | isset($dataTypesModifier)) : ?>
             <h2 class="titre" name="titre">Modifier vin</h2>
         <?php elseif (isset($dataFiche)) : ?>
             <h2 class="titre" name="titre">Fiche du vin</h2>
-        <?php elseif (isset($mesCelliers)) : ?>
+        <?php elseif (isset($mesCelliers) || isset($resultatCellier)) : ?>
             <h2 class="titre" name="titre">Mes Celliers</h2>
         <?php else : ?>
             <h2 class="titre" name="titre"></h2>
         <?php endif ; ?>
-        <svg data-js-menu-btn xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"><path fill="currentColor" d="M228 128a12 12 0 0 1-12 12H40a12 12 0 0 1 0-24h176a12 12 0 0 1 12 12ZM40 76h176a12 12 0 0 0 0-24H40a12 12 0 0 0 0 24Zm176 104H40a12 12 0 0 0 0 24h176a12 12 0 0 0 0-24Z"/></svg>
+        <div class="hiddenBurguer">
+            <a href="?requete=deconnexion">Déconnexion</a>
+        </div>
+        <svg data-js-menu-btn class="menuBurguer" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"><path fill="currentColor" d="M228 128a12 12 0 0 1-12 12H40a12 12 0 0 1 0-24h176a12 12 0 0 1 12 12ZM40 76h176a12 12 0 0 0 0-24H40a12 12 0 0 0 0 24Zm176 104H40a12 12 0 0 0 0 24h176a12 12 0 0 0 0-24Z"/></svg>
     </nav>
 </header>
 <div class="mobile-nav" id="mobile-nav">
     <svg class="closebtn" data-js-menu-btn-close xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"><path fill="currentColor" d="M208.5 191.5a12 12 0 0 1 0 17a12.1 12.1 0 0 1-17 0L128 145l-63.5 63.5a12.1 12.1 0 0 1-17 0a12 12 0 0 1 0-17L111 128L47.5 64.5a12 12 0 0 1 17-17L128 111l63.5-63.5a12 12 0 0 1 17 17L145 128Z"/></svg>
-    <div class="first-div">Déconnexion</div>
+    <div class="first-div">
+        <a href="?requete=deconnexion">Déconnexion</a>
+    </div>
     <div>
         <a href="?requete=mesCelliers">Mes celliers</a>
     </div>

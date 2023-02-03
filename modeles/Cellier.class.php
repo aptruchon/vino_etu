@@ -39,6 +39,13 @@ class Cellier extends Modele {
 
         return $resultat;
     }
+
+    public function getNomCellier($cellierId) {
+        $requete = "SELECT nom from vino__cellier where id = " .$cellierId;
+        $resultat = $this->_db->query($requete)->fetch_assoc();
+
+        return $resultat;
+    }
 }
 
 ?>
