@@ -60,6 +60,7 @@
 
 .login-container  button {
     background-color: var(--black-light);
+    margin-bottom: 20px;
 }
 
 .login-container  button:hover {
@@ -172,6 +173,15 @@
 
 .show-message-input-requis {
     opacity: 1 !important;
+}
+
+#message {
+    font-weight: bold;
+    text-align: center;
+    display: block;
+    margin-top: 10px;
+    font-size: 18px;
+    color: var(--red);
 }
 
 
