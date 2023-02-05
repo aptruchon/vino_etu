@@ -26,7 +26,7 @@
                     
                     <label for="description">Description</label>
 
-                    <textarea name="description" id="description"><?php echo utf8_decode($bouteille['description']) ?></textarea>
+                    <textarea name="description" id="description"><?php echo mb_convert_encoding($bouteille['description'], "UTF-8") ?></textarea>
 
                     <label for="quantite">Quantite</label>
                     <input type="number" name="quantite" id="quantite" min="0" value="<?php echo $bouteille['quantite'] ?>">
@@ -44,10 +44,10 @@
                     
                     <label for="garde_jusqua">A garder jusqu'au</label>
 
-                    <input type="text" name="garde_jusqua" id="garde_jusqua" value="<?php echo utf8_decode($bouteille['garde_jusqua']) ?>">
+                    <input type="text" name="garde_jusqua" id="garde_jusqua" value="<?php echo mb_convert_encoding($bouteille['garde_jusqua'], "UTF-8") ?>">
                     
                     <label for="notes">Notes</label>
-                    <input type="text" name="notes" id="notes" value="<?php echo utf8_decode($bouteille['notes']) ?>">     
+                    <input type="text" name="notes" id="notes" value="<?php echo mb_convert_encoding($bouteille['notes'], "UTF-8") ?>">     
 
                 </div>
                 <div class="buttons-wrapper">
