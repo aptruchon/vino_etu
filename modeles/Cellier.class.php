@@ -58,6 +58,22 @@ class Cellier extends Modele {
 
         return $resultat;
     }
+
+    public function supprimerCellier($body){
+        $id = intval($body["idCellier"]);
+
+        // Suppression des vins du cellier qu'on veut supprimer
+        $stmt = $this->_db->prepare("DELETE FROM vino__cellier_contient WHERE vino__cellier_id = ?");
+        $stmt->bind_param("i", $id);
+        $resultat = $stmt->execute();
+
+        // Suppression du cellier
+        $stmt = $this->_db->prepare("DELETE FROM vino__cellier WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $resultat = $stmt->execute();
+
+        return $resultat;
+    }
 }
 
 ?>

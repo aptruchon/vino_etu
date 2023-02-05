@@ -18,11 +18,7 @@ class Controler
 	 * @return void
 	 */
 	public function gerer()
-	{
-		if(isset($_SESSION["utilisateur"])){
-			$userId = $_SESSION['utilisateur']['id'];
-		}
-    
+	{    
 		switch ($_GET['requete']) {
 			case 'listeBouteille':
 				$this->listeBouteille($_SESSION['utilisateur']['id'], $_SESSION["cellierId"]);
@@ -179,6 +175,15 @@ class Controler
 	private function supprimerCellier($userId) {
 		$cellier = new Cellier();
 
+		$cellierParId = $cellier->getCellierParId($_POST["idCellier"]);
+
+		if($cellierParId["vino__utilisateur_id"] !== $userId){
+			Utilitaires::nouvelleRoute('index.php?requete=mesCelliers');
+			die();
+		}
+
+		$cellier->supprimerCellier($_POST);
+		Utilitaires::nouvelleRoute('index.php?requete=mesCelliers');
 	}
 
 	/**
@@ -194,10 +199,7 @@ class Controler
 		
 		$bte = new Bouteille();
 		$dataFiche = $bte->getListeBouteilleCellier($userId, $cellierId, $idBouteille);
-		// var_dump($dataFiche);
-		// var_dump('$userId', $userId);
-		// var_dump('$cellierId', $cellierId);
-		// var_dump('$idBouteille', $idBouteille);
+		
 		// Afficher message confirmation si modifications
 		if ($showMessage) {
 				$_SESSION["message"] = "Modifications enregistrées !";
