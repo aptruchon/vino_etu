@@ -28,6 +28,13 @@ class Cellier extends Modele {
         return $arrayCelliers;
     }
 
+    public function getCellierParId($cellierId) {
+        $requete = "SELECT id, nom, vino__utilisateur_id from vino__cellier where id = " .$cellierId;
+        $resultat = $this->_db->query($requete)->fetch_assoc();
+
+        return $resultat;
+    }
+
     public function ajouterCellier($userId, $nom) {
         $nom = htmlspecialchars($nom);
 
@@ -40,9 +47,14 @@ class Cellier extends Modele {
         return $resultat;
     }
 
-    public function getNomCellier($cellierId) {
-        $requete = "SELECT nom from vino__cellier where id = " .$cellierId;
-        $resultat = $this->_db->query($requete)->fetch_assoc();
+    public function modifierCellier($body){
+        $id = intval($body["idCellier"]);
+        $nom = htmlspecialchars($body["nomCellier"]);
+
+        $stmt = $this->_db->prepare("UPDATE vino__cellier SET nom = ? WHERE id = ?");
+        $stmt->bind_param("si", $nom, $id);
+
+        $resultat = $stmt->execute();
 
         return $resultat;
     }

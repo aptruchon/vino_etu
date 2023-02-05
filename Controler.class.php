@@ -68,6 +68,12 @@ class Controler
 			case 'ajouterCellier':
 				$this->mesCelliers($_SESSION['utilisateur']['id']);
 				break;
+			case 'modifierCellier':
+				$this->modifierCellier($_SESSION['utilisateur']['id']);
+				break;
+			case 'supprimerCellier':
+				$this->supprimerCellier($_SESSION['utilisateur']['id']);
+				break;
 			case 'ficheDetailsBouteille':
 				$this->ficheDetailsBouteille($_SESSION['utilisateur']['id'], $_SESSION["cellierId"], $_GET['bte']);
 				break;
@@ -110,8 +116,8 @@ class Controler
 		$data = $bte->getListeBouteilleCellier($userId, $_SESSION["cellierId"]);
 
 		$cellier = new Cellier();
-		$nomCellier = $cellier->getNomCellier($_SESSION["cellierId"]);
-		$_SESSION["nomCellier"] = $nomCellier["nom"];
+		$cellierParId = $cellier->getCellierParId($_SESSION["cellierId"]);
+		$_SESSION["nomCellier"] = $cellierParId["nom"];
 
 		include("vues/entete.php");
 		include("vues/navigation.php");
@@ -153,6 +159,26 @@ class Controler
 		include("vues/navigation.php");
 		include("vues/mesCelliers.php");
 		include("vues/pied.php");
+	}
+
+	private function modifierCellier($userId) {
+		$cellier = new Cellier();
+
+		$cellierParId = $cellier->getCellierParId($_POST["idCellier"]);
+
+		if($cellierParId["vino__utilisateur_id"] !== $userId){
+			Utilitaires::nouvelleRoute('index.php?requete=mesCelliers');
+			die();
+		}
+
+		$cellier->modifierCellier($_POST);
+		Utilitaires::nouvelleRoute('index.php?requete=mesCelliers');
+
+	}
+
+	private function supprimerCellier($userId) {
+		$cellier = new Cellier();
+
 	}
 
 	/**

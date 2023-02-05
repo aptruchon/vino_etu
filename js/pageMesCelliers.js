@@ -29,16 +29,15 @@
       [...btnModifierCellier].forEach(function(btnmodifier) {
         btnmodifier.addEventListener('click', function (evt) {
           evt.preventDefault();
-          
+
           // Récupère l'id et le nom du cellier duquel on veut modifier les informations
           let idModif = evt.currentTarget.dataset.id
           let nomModif = evt.currentTarget.dataset.nom
-          
+
           // Insère les valeurs dans la fenêtre modale
           popupFormModifier.querySelector('[name="nomCellier"]').value = nomModif;
           popupFormModifier.querySelector('[name="idCellier"]').value = idModif;
 
-          
           popupFormModifier.style.display = 'block'
           modalContainerModifier.style.display = 'block'
         })
@@ -56,7 +55,7 @@
           // Insère les valeurs dans la fenêtre modale
           popupFormSupprimer.querySelector('[name="confirmation"]').innerText = "Voulez-vous vraiment supprimer '" + nomSupprimer +"' ?";
           popupFormSupprimer.querySelector('[name="idCellier"]').value = idSupprimer;
-          
+
           popupFormSupprimer.style.display = 'block'
           modalContainerSupprimer.style.display = 'block'
         })
