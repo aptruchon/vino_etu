@@ -18,11 +18,7 @@ class Controler
 	 * @return void
 	 */
 	public function gerer()
-	{
-		if(isset($_SESSION["utilisateur"])){
-			$userId = $_SESSION['utilisateur']['id'];
-		}
-    
+	{    
 		switch ($_GET['requete']) {
 			case 'listeBouteille':
 				$this->listeBouteille($_SESSION['utilisateur']['id'], $_SESSION["cellierId"]);
@@ -68,6 +64,12 @@ class Controler
 			case 'ajouterCellier':
 				$this->mesCelliers($_SESSION['utilisateur']['id']);
 				break;
+			case 'modifierCellier':
+				$this->modifierCellier($_SESSION['utilisateur']['id']);
+				break;
+			case 'supprimerCellier':
+				$this->supprimerCellier($_SESSION['utilisateur']['id']);
+				break;
 			case 'ficheDetailsBouteille':
 				$this->ficheDetailsBouteille($_SESSION['utilisateur']['id'], $_SESSION["cellierId"], $_GET['bte']);
 				break;
@@ -110,8 +112,8 @@ class Controler
 		$data = $bte->getListeBouteilleCellier($userId, $_SESSION["cellierId"]);
 
 		$cellier = new Cellier();
-		$nomCellier = $cellier->getNomCellier($_SESSION["cellierId"]);
-		$_SESSION["nomCellier"] = $nomCellier["nom"];
+		$cellierParId = $cellier->getCellierParId($_SESSION["cellierId"]);
+		$_SESSION["nomCellier"] = $cellierParId["nom"];
 
 		include("vues/entete.php");
 		include("vues/navigation.php");
@@ -155,6 +157,35 @@ class Controler
 		include("vues/pied.php");
 	}
 
+	private function modifierCellier($userId) {
+		$cellier = new Cellier();
+
+		$cellierParId = $cellier->getCellierParId($_POST["idCellier"]);
+
+		if($cellierParId["vino__utilisateur_id"] !== $userId){
+			Utilitaires::nouvelleRoute('index.php?requete=mesCelliers');
+			die();
+		}
+
+		$cellier->modifierCellier($_POST);
+		Utilitaires::nouvelleRoute('index.php?requete=mesCelliers');
+
+	}
+
+	private function supprimerCellier($userId) {
+		$cellier = new Cellier();
+
+		$cellierParId = $cellier->getCellierParId($_POST["idCellier"]);
+
+		if($cellierParId["vino__utilisateur_id"] !== $userId){
+			Utilitaires::nouvelleRoute('index.php?requete=mesCelliers');
+			die();
+		}
+
+		$cellier->supprimerCellier($_POST);
+		Utilitaires::nouvelleRoute('index.php?requete=mesCelliers');
+	}
+
 	/**
 	 * Affiche la vue de la page Fiche d'un vin
 	 */
@@ -168,10 +199,7 @@ class Controler
 		
 		$bte = new Bouteille();
 		$dataFiche = $bte->getListeBouteilleCellier($userId, $cellierId, $idBouteille);
-		// var_dump($dataFiche);
-		// var_dump('$userId', $userId);
-		// var_dump('$cellierId', $cellierId);
-		// var_dump('$idBouteille', $idBouteille);
+		
 		// Afficher message confirmation si modifications
 		if ($showMessage) {
 				$_SESSION["message"] = "Modifications enregistrées !";
