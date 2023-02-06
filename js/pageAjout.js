@@ -88,18 +88,6 @@ function afficheResulatRechVin() {
             bouteille.description.value = bouteilleChoisi.description
             bouteille.prix.value = bouteilleChoisi.prix_saq
 
-            // Empeche la modification des inputs et nettoie d'eventuelles classe de message d'erreur
-            for (let i in inputsARemplir) {
-              inputsARemplir[i].setAttribute('readonly', true)
-              inputsARemplir[i].classList.add('readOnly')
-              inputsARemplir[i].classList.remove('champ-obligatoire-input')
-              inputsARemplir[i].nextElementSibling.innerHTML = ''
-            }
-            // Empeche la modification du select et nettoie d'eventuelles classe de message d'erreur
-            bouteille.types.classList.remove('champ-obligatoire-input')
-            bouteille.types.nextElementSibling.innerHTML = ''
-            bouteille.types.classList.add('noEvent') 
-
             // Selectionne l'option du select type de vin
             for (let i = 0, l = bouteille.types.options.length; i < l; i++) {
               if (
@@ -113,6 +101,18 @@ function afficheResulatRechVin() {
                 bouteille.types.options[i].setAttribute('disabled', true)
               }
             }
+            
+            // Empeche la modification des inputs et nettoie d'eventuelles classe de message d'erreur
+            for (let i in inputsARemplir) {
+              inputsARemplir[i].setAttribute('readonly', true)
+              inputsARemplir[i].classList.add('readOnly')
+              inputsARemplir[i].classList.remove('champ-obligatoire-input')
+              inputsARemplir[i].nextElementSibling.innerHTML = ''
+            }
+            // Empeche la modification du select et nettoie d'eventuelles classe de message d'erreur
+            bouteille.types.classList.remove('champ-obligatoire-input')
+            bouteille.types.nextElementSibling.innerHTML = ''
+            bouteille.types.classList.add('noEvent') 
           })
           .catch((error) => {
             console.error(error)
