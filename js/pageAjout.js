@@ -72,7 +72,6 @@ function afficheResulatRechVin() {
             }
           })
           .then((response) => {
-
             let bouteilleChoisi = response
             let inputsARemplir = [
               bouteille.nom,
@@ -81,7 +80,7 @@ function afficheResulatRechVin() {
               bouteille.description,
               bouteille.prix,
             ]
-            
+
             // Remplit les valeurs des inputs
             bouteille.nom.value = bouteilleChoisi.nom
             bouteille.pays.value = bouteilleChoisi.pays
@@ -96,9 +95,12 @@ function afficheResulatRechVin() {
               inputsARemplir[i].classList.remove('champ-obligatoire-input')
               inputsARemplir[i].nextElementSibling.innerHTML = ''
             }
-            bouteille.types.classList.add('noEvent') //bloque le select des types de vin
+            // Empeche la modification du select et nettoie d'eventuelles classe de message d'erreur
+            bouteille.types.classList.remove('champ-obligatoire-input')
+            bouteille.types.nextElementSibling.innerHTML = ''
+            bouteille.types.classList.add('noEvent') 
 
-            // Selectionne l'option du select type de vin 
+            // Selectionne l'option du select type de vin
             for (let i = 0, l = bouteille.types.options.length; i < l; i++) {
               if (
                 bouteille.types.options[i].id == bouteilleChoisi.vino__type_id
