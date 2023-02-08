@@ -93,12 +93,13 @@ function afficheResulatRechVin() {
               if (
                 bouteille.types.options[i].id == bouteilleChoisi.vino__type_id
               ) {
-                bouteille.types.options[i].removeAttribute('disabled')
-                bouteille.types.options[i].setAttribute('selected', '')
+                console.log(bouteille.types.options[i])
+                bouteille.types.options[i].disabled = false;
+                bouteille.types.options[i].selected = true;
                 bouteille.type = bouteille.types.options[i]
               } else {
-                bouteille.types.options[i].removeAttribute('selected')
-                bouteille.types.options[i].setAttribute('disabled', true)
+                bouteille.types.options[i].selected = false;
+                bouteille.types.options[i].disabled = true;
               }
             }
             
@@ -242,8 +243,8 @@ function afficheResulatRechVin() {
           formInputs[i].classList.remove('noEvent');
 
           for (let i = 0; i < elOptions.length; i++) {
-            elOptions[i].removeAttribute('selected')
-            elOptions[i].removeAttribute('disabled')
+            elOptions[i].selected = false;
+            elOptions[i].disabled = false;
           }
         }
       }
