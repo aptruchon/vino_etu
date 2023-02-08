@@ -37,10 +37,10 @@
 <div class="mobile-nav" id="mobile-nav">
     <svg class="closebtn" data-js-menu-btn-close xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"><path fill="currentColor" d="M208.5 191.5a12 12 0 0 1 0 17a12.1 12.1 0 0 1-17 0L128 145l-63.5 63.5a12.1 12.1 0 0 1-17 0a12 12 0 0 1 0-17L111 128L47.5 64.5a12 12 0 0 1 17-17L128 111l63.5-63.5a12 12 0 0 1 17 17L145 128Z"/></svg>
     <div class="first-div">
-        <a href="?requete=deconnexion">Déconnexion</a>
+        <a href="?requete=mesCelliers">Mes celliers</a>
     </div>
     <div>
-        <a href="?requete=mesCelliers">Mes celliers</a>
+        <a href="?requete=deconnexion">Déconnexion</a>
     </div>
 </div>
 <main>
