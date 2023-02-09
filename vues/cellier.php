@@ -21,7 +21,7 @@
                         <p class="nom"><?php echo mb_convert_encoding($bouteille['nom'], "UTF-8") ?></p>
                         <p class="pays"><?php echo mb_convert_encoding($bouteille['pays'], "UTF-8") ?></p>
                         <?php if ($bouteille['millesime'] != 0) : ?>
-                            <p class="millesime">Millesime <?php echo $bouteille['millesime'] ?></p>
+                            <p class="millesime">Millésime <?php echo $bouteille['millesime'] ?></p>
                         <?php endif; ?>
                     </a>
                     <div class="quantity-wrapper">

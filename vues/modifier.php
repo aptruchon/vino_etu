@@ -21,14 +21,14 @@
                     <label for="format">Format</label>
                     <input type="text" name="format" data-id="" id="format" value="<?php echo $bouteille['format'] ?>">
                     
-                    <label for="millesime">Millesime</label>
+                    <label for="millesime">Millésime</label>
                     <input type="text" name="millesime" id="millesime" value="<?php echo $bouteille['millesime'] ?>">
                     
                     <label for="description">Description</label>
 
                     <textarea name="description" id="description"><?php echo mb_convert_encoding($bouteille['description'], "UTF-8") ?></textarea>
 
-                    <label for="quantite">Quantite</label>
+                    <label for="quantite">Quantité</label>
                     <input type="number" name="quantite" id="quantite" min="0" value="<?php echo $bouteille['quantite'] ?>">
                     <span class="champ-obligatoire-message"></span>
 
