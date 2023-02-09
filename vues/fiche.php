@@ -34,14 +34,10 @@
                 <div class="bloc-description">
                     <?php if ($bouteille['pays']) : ?>
                         <p><?php echo mb_convert_encoding($bouteille['pays'], "UTF-8") ?></p>
-                    <?php else : ?>
-                        <p></p>
                     <?php endif; ?>
                     <!--  -->
                     <?php if ($bouteille['format']) : ?>
                         <p><?php echo mb_convert_encoding($bouteille['format'], "UTF-8") ?></p>
-                    <?php else : ?>
-                        <p></p>
                     <?php endif; ?>
                     <!--  -->
                     <?php if ($bouteille['millesime']) : ?>
