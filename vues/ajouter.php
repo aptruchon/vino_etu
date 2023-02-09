@@ -26,7 +26,7 @@
             <input type="text" name="format" data-id="" id="format">
             <span class="champ-obligatoire-message"></span>
 
-            <label for="millesime">Millesime</label>
+            <label for="millesime">Millésime</label>
             <input type="number" name="millesime" id="millesime">
             <span class="champ-obligatoire-message"></span>
             
