@@ -10,6 +10,6 @@ Démo / Code de départ : https://jmartel.webdev.cmaisonneuve.qc.ca/n61/vino/
 * Recherche d'une bouteille dans notre catalogue (clone du catalogue de vin de la SAQ) pour l'ajouter à un cellier
 * Responsivité pour tablette et mobile
 
-**Des images stocks sont utilisés car la SAQ a bloqué l'accès aux urls de ses images pour le serveur de notre collège pendant que nous étions en développement.**
+**Des images stocks sont utilisés pour les vins car la SAQ a bloqué l'accès aux urls de ses images pour le serveur de notre collège pendant que nous étions en développement.**
 
 ![Demo vino mobile geekClub](./AnimationVinoMobile.gif)
