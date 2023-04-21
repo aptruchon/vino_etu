@@ -11,7 +11,7 @@ session_start();
  * 
  */
 
-class Controler
+class Controller
 {
 	/**
 	 * Traite la requête
