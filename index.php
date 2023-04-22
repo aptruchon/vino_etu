@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Fichier de lancement du MVC, Il appel le var.init et le gabarit HTML 
  * @author Jonathan Martel
@@ -27,6 +26,5 @@
     /** Démarrage du controleur **/
     /***************************************************/
 	$oCtl = new Controller();
-	$oCtl->gerer();
+	$oCtl->router();
 
-?>
