@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Class MonSQL
- * Classe qui génère ma connection à MySQL à travers un singleton
+ * Class SAQ
+ * Classe qui racle les pages de la saq
  *
  *
  * @author Jonathan Martel
