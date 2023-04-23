@@ -53,19 +53,19 @@ class Bouteille extends Modele
 						cc.id AS id_bouteille_cellier, 
 						cc.vino__bouteille_id, 
 						cc.vino__cellier_id, 
+						cc.nom, 
+						cc.pays, 
+						cc.description, 
+						cc.format, 
 						cc.date_ajout, 
 						cc.garde_jusqua, 
 						cc.notes, 
 						cc.prix AS prix_paye, 
 						cc.quantite, 
 						cc.millesime, 
-						cc.nom, 
 						b.image, 
 						b.code_saq, 
 						b.url_saq, 
-						cc.pays, 
-						cc.description, 
-						cc.format, 
 						b.prix_saq, 
 						t.type, 
 						ce.vino__utilisateur_id 
@@ -91,7 +91,7 @@ class Bouteille extends Modele
 			}
 		} else {
 			throw new Exception("Erreur de requête sur la base de donnée", 1);
-			//$this->_db->error;
+
 		}
 
 

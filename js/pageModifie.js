@@ -48,11 +48,11 @@ function modifieVinCellier(bouteille, inputsRequired) {
         param.quantite == ''
     )
     ) {
-    let requete = new Request(
-      BaseURL + '?requete=modifierBouteilleCellier&bte=' + param.id_bouteille,
-      { method: 'POST', body: JSON.stringify(param) }
-    )
-    fetch(requete)
+      let requete = new Request(
+        BaseURL + '?requete=modifierBouteilleCellier&bte=' + param.id_bouteille,
+        { method: 'POST', body: JSON.stringify(param) }
+      )
+      fetch(requete)
         .then((response) => {
         if (response.status === 200) {
             console.log(response)

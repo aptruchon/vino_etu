@@ -1,9 +1,21 @@
 <?php
+
 /**
  * Gestion des bouteilles
  */
 class BouteilleController extends Controller
 {
+	/**
+	 * Affiche les vins d'un cellier
+	 */
+	protected function listeBouteille($userId, $cellierId)
+	{
+		$bte = new Bouteille();
+		$cellier = $bte->getListeBouteilleCellier($userId, $cellierId);
+
+		echo json_encode($cellier);
+	}
+
 	/**
 	 * Affiche la vue de la page Fiche d'un vin
 	 */
@@ -29,28 +41,6 @@ class BouteilleController extends Controller
 		include("vues/pied.php");
 	}
 
-	/**
-	 * 
-	 */
-	protected function listeBouteille($userId, $cellierId)
-	{
-		$bte = new Bouteille();
-		$cellier = $bte->getListeBouteilleCellier($userId, $cellierId);
-
-		echo json_encode($cellier);
-	}
-
-	/**
-	 * 
-	 */
-	protected function autocompleteBouteille()
-	{
-		$bte = new Bouteille();
-		$body = json_decode(file_get_contents('php://input'));
-		$listeBouteille = $bte->autocomplete($body->nom);
-
-		echo json_encode($listeBouteille);
-	}
 
 	/**
 	 * Modifie les informations d'un vin dans un cellier
@@ -62,9 +52,6 @@ class BouteilleController extends Controller
 			Utilitaires::nouvelleRoute('index.php?requete=connexion');
 			die();
 		}
-		
-		$type = new Type();
-		$types = $type->getTypes();
 
 		$body = json_decode(file_get_contents('php://input'), true);
 
@@ -79,7 +66,8 @@ class BouteilleController extends Controller
 			die();
 
 		} else {
-			$dataTypesModifier = $types;
+			$type = new Type();
+			$dataTypesModifier = $type->getTypes();
 
 			$bte = new Bouteille();
 			$dataModifie = $bte->getListeBouteilleCellier($userId, $cellierId, $idBouteille);
@@ -87,6 +75,40 @@ class BouteilleController extends Controller
 			include("vues/entete.php");
 			include("vues/navigation.php");
 			include("vues/modifier.php");
+			include("vues/pied.php");
+		}
+	}
+
+	/**
+	 * Ajoute un nouveau vin dans un cellier
+	 */
+	protected function ajouterNouvelleBouteilleCellier()
+	{
+		// Redirection si un utilisateur non-connecté essaie d'aller sur une page qui requiert une authentification
+		if(!isset($_SESSION["utilisateur"])){
+			Utilitaires::nouvelleRoute('index.php?requete=connexion');
+			die();
+		}
+
+		$body = json_decode(file_get_contents('php://input'), true);
+		if (!empty($body)) {
+			$bte = new Bouteille();
+			$resultat = $bte->ajouterBouteilleCellier($body);
+			if($resultat === false){
+				$_SESSION["message"] = "Bouteille déjà créée.";
+				$_SESSION["estVisible"] = true;
+			} else {
+				$_SESSION["message"] = "Bouteille ajoutée !";
+				$_SESSION["estVisible"] = true;
+			}
+			die();
+		} else {
+			$type = new Type();
+			$dataTypes = $type->getTypes();
+
+			include("vues/entete.php");
+			include("vues/navigation.php");
+			include("vues/ajouter.php");
 			include("vues/pied.php");
 		}
 	}
@@ -111,53 +133,9 @@ class BouteilleController extends Controller
 		Utilitaires::nouvelleRoute('index.php?requete=cellier&cellierId=' . $_SESSION["cellierId"] . '');
 	}
 
-	/**
-	 * 
-	 */
-	protected function informationBouteilleParId()
-	{
-		$bte = new Bouteille();
-		$id = $_GET["id"];
-		$bouteille = $bte->getBouteilleParId($id);
-		echo json_encode($bouteille);
-	}
 
-	/**
-	 * Ajoute un nouveau vin dans un cellier
-	 */
-	protected function ajouterNouvelleBouteilleCellier()
-	{
-		// Redirection si un utilisateur non-connecté essaie d'aller sur une page qui requiert une authentification
-		if(!isset($_SESSION["utilisateur"])){
-			Utilitaires::nouvelleRoute('index.php?requete=connexion');
-			die();
-		}
-		
-		$type = new Type();
-		$types = $type->getTypes();
 
-		$body = json_decode(file_get_contents('php://input'), true);
-		if (!empty($body)) {
-			$bte = new Bouteille();
-			$resultat = $bte->ajouterBouteilleCellier($body);
-			if($resultat === false){
-				$_SESSION["message"] = "Bouteille déjà créée.";
-				$_SESSION["estVisible"] = true;
-			} else {
-				$_SESSION["message"] = "Bouteille ajoutée !";
-				$_SESSION["estVisible"] = true;
-			}
-			die();
-		} else {
-			$dataTypes = $types;
-
-			include("vues/entete.php");
-			include("vues/navigation.php");
-			include("vues/ajouter.php");
-			include("vues/pied.php");
-		}
-	}
-
+	/* QUANTITÉS --------------------------------------------------*/
 	/**
 	 * Diminue la quantite de bouteilles d'un vin dans un cellier
 	 */
@@ -181,5 +159,31 @@ class BouteilleController extends Controller
 		$resultat = $bte->modifierQuantiteBouteilleCellier($body->id, 1);
 
 		echo json_encode($resultat);
+	}
+
+
+
+/* RECHERCHE + INFOS FORMULAIRES AJOUT-----------------------------*/
+	/**
+	 * Autocompletion de la liste de recherche
+	 */
+	protected function autocompleteBouteille()
+	{
+		$bte = new Bouteille();
+		$body = json_decode(file_get_contents('php://input'));
+		$listeBouteille = $bte->autocomplete($body->nom);
+
+		echo json_encode($listeBouteille);
+	}
+
+	/**
+	 * Va chercher les infos d'une bouteille pour préremplir les champs du formulaire d'ajout
+	 */
+	protected function informationBouteilleParId()
+	{
+		$bte = new Bouteille();
+		$id = $_GET["id"];
+		$bouteille = $bte->getBouteilleParId($id);
+		echo json_encode($bouteille);
 	}
 }
