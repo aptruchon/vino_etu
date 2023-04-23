@@ -17,8 +17,8 @@ class Controller
 	const BOUTEILLE_AUTOCOMPLETE = "autocompleteBouteille";
 	const BOUTEILLE_AJOUTER = "ajouterNouvelleBouteilleCellier";
 	const BOUTEILLE_MODIFIER = "modifierBouteilleCellier";
-	const BOUTEILLE_AUGMENTER_QTE = "ajouterBouteilleCellier";
-	const BOUTEILLE_REDUIRE_QTE = "boireBouteilleCellier";
+	const BOUTEILLE_AUGMENTER_QTE = "augmenterBouteilleCellier";
+	const BOUTEILLE_REDUIRE_QTE = "reduireBouteilleCellier";
 	const BOUTEILLE_SUPPRIMER = "effacerBouteilleCellier";
 	const BOUTEILLE_DETAILS = "ficheDetailsBouteille";
 
@@ -65,10 +65,10 @@ class Controller
 				$bouteilleController->modifierBouteilleCellier($_SESSION['utilisateur']['id'], $_SESSION["cellierId"], $_GET['bte']);
 				break;
 			case self::BOUTEILLE_AUGMENTER_QTE:
-				$bouteilleController->ajouterBouteilleCellier();
+				$bouteilleController->augmenterBouteillecellier();
 				break;
 			case self::BOUTEILLE_REDUIRE_QTE:
-				$bouteilleController->boireBouteilleCellier();
+				$bouteilleController->reduireBouteillecellier();
 				break;
 			case self::BOUTEILLE_SUPPRIMER:
 				$bouteilleController->effacerBouteilleCellier($_GET['bteCellier']);

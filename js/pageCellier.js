@@ -9,7 +9,7 @@ function reduitQuantBouteille() {
       // Empêche la propagation de l'evt sur parent ou enfant
       evt.stopPropagation()
       let id = evt.target.dataset.id
-      let requete = new Request(BaseURL + '?requete=boireBouteilleCellier', {
+      let requete = new Request(BaseURL + '?requete=reduireBouteilleCellier', {
         method: 'POST',
         body: '{"id": ' + id + '}',
       })
@@ -53,7 +53,7 @@ function reduitQuantBouteille() {
         evt.stopPropagation()
         let id = evt.target.dataset.id
         let requete = new Request(
-          BaseURL + '?requete=ajouterBouteilleCellier',
+          BaseURL + '?requete=augmenterBouteilleCellier',
           {
             method: 'POST',
             body: '{"id": ' + id + '}',

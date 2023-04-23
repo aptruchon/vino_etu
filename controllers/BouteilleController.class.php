@@ -161,7 +161,7 @@ class BouteilleController extends Controller
 	/**
 	 * Diminue la quantite de bouteilles d'un vin dans un cellier
 	 */
-	protected function boireBouteilleCellier()
+	protected function reduireBouteilleCellier()
 	{
 		$body = json_decode(file_get_contents('php://input'));
 
@@ -173,7 +173,7 @@ class BouteilleController extends Controller
 	/**
 	 * Augmente la quantite de bouteilles d'un vin dans un cellier
 	 */
-	protected function ajouterBouteilleCellier()
+	protected function augmenterBouteillecellier()
 	{
 		$body = json_decode(file_get_contents('php://input'));
 
