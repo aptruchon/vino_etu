@@ -85,7 +85,7 @@ class Controller
 				$cellierController->cellier($_SESSION['utilisateur']['id']);
 				break;
 			case self::CELLIER_AJOUTER:
-				$cellierController->mesCelliers($_SESSION['utilisateur']['id']);
+				$cellierController->ajouterCellier($_SESSION['utilisateur']['id']);
 				break;
 			case self::CELLIER_MODIFIER:
 				$cellierController->modifierCellier($_SESSION['utilisateur']['id']);

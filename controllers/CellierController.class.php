@@ -42,21 +42,6 @@ class CellierController extends Controller
 		}
 		
 		$cellier = new Cellier();
-		$body = $_POST;
-
-		if(!empty($body)){
-			$resultatCelliers = $cellier->ajouterCellier($userId, $body["nomCellier"]);
-			Utilitaires::nouvelleRoute('index.php?requete=mesCelliers');
-			die();
-
-		}
-
-		if(isset($resultat) && $resultat === true) {
-			$_SESSION["message"] = "Cellier ajoutée !";
-			$_SESSION["estVisible"] = true;
-		}
-
-
 		$mesCelliers = $cellier->getCelliers($userId);
 
 		json_encode($mesCelliers);
@@ -64,6 +49,17 @@ class CellierController extends Controller
 		include("vues/navigation.php");
 		include("vues/mesCelliers.php");
 		include("vues/pied.php");
+	}
+
+	protected function ajouterCellier($userId) {
+		$cellier = new Cellier();
+		$body = $_POST;
+
+		if(!empty($body)){
+			$resultatCelliers = $cellier->ajouterCellier($userId, $body["nomCellier"]);
+			Utilitaires::nouvelleRoute('index.php?requete=mesCelliers');
+			die();
+		}
 	}
 
 	protected function modifierCellier($userId) {
