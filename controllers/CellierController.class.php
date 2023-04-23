@@ -17,11 +17,21 @@ class CellierController extends Controller
 
 		$_SESSION["cellierId"] = $_GET["cellierId"];
 
+		// Récupère le bon cellier		
+		$cellier = new Cellier();
+		$cellierParId = $cellier->getCellierParId($_SESSION["cellierId"]);
+
+		// Valider si le cellier appartient à l'utilisateur
+		if($cellierParId["vino__utilisateur_id"] !== $_SESSION["utilisateur"]["id"]){
+			Utilitaires::nouvelleRoute('index.php?requete=mesCelliers');
+			die();
+		}
+
+		// Liste des bouteilles d'un cellier
 		$bte = new Bouteille();
 		$data = $bte->getListeBouteilleCellier($userId, $_SESSION["cellierId"]);
 
-		$cellier = new Cellier();
-		$cellierParId = $cellier->getCellierParId($_SESSION["cellierId"]);
+		// Pour le titre de la page
 		$_SESSION["nomCellier"] = $cellierParId["nom"];
 
 		include("vues/entete.php");
