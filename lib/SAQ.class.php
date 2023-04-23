@@ -5,7 +5,7 @@
  * Classe qui racle les pages de la saq
  *
  *
- * @author Jonathan Martel
+ * 
  * @version 1.0
  *
  *

@@ -2,7 +2,7 @@
 /**
  * Fichier de configuration. Il est appelé par index.php et par test/index.php
  * Il contient notamment l'autoloader
- * @author Jonathan Martel
+ * 
  * @version 1.1
  * @update 2013-03-11
  * @update 2014-09-23 Modification de la fonction autoload, utilisation des path + appel à la fonction native.

@@ -5,7 +5,7 @@
  * Classe qui génère ma connection à MySQL à travers un singleton
  *
  *
- * @author Jonathan Martel
+ * 
  * @version 1.0
  * @see : http://www.apprendre-php.com/tutoriels/tutoriel-45-singleton-instance-unique-d-une-classe.html
  *
