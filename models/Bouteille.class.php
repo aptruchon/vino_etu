@@ -3,32 +3,20 @@
 /**
  * Class Bouteille
  * Cette classe possède les fonctions de gestion des bouteilles dans le cellier et des bouteilles dans le catalogue complet.
- * 
- * 
- * @version 1.0
- * @update 2019-01-21
- * @license Creative Commons BY-NC 3.0 (Licence Creative Commons Attribution - Pas d’utilisation commerciale 3.0 non transposé)
- * @license http://creativecommons.org/licenses/by-nc/3.0/deed.fr
- * 
  */
 class Bouteille extends Modele
 {
 	const TABLE = 'vino__bouteille';
 
-	public function getListeBouteille()
-	{
-		$rows = array();
-		$res = $this->_db->query('Select * from ' . self::TABLE);
-		if ($res->num_rows) {
-			while ($row = $res->fetch_assoc()) {
-				$rows[] = $row;
-			}
-		}
-
-		return $rows;
-	}
-
-
+	/**
+	 * Function qui récupère une bouteille par son ID
+	 * 
+	 * @param integer $id
+	 * 
+	 * @throws Exception Erreur de requête sur la base de données 
+	 * 
+	 * @return array $res
+	 */
 	public function getBouteilleParId($id)
 	{
 		$requete = "SELECT * FROM vino__bouteille WHERE id =" . $id;
@@ -39,13 +27,22 @@ class Bouteille extends Modele
 			}
 		} else {
 			throw new Exception("Erreur de requête sur la base de donnée", 1);
-			//$this->_db->error;
 		}
 
 		return $res;
 	}
 
-
+	/**
+	 * Function qui récupère une liste OU une des bouteilles d'un cellier par son ID
+	 * 
+	 * @param integer $userId
+	 * @param integer $cellierId
+	 * @param integer $idBouteille
+	 * 
+	 * @throws Exception Erreur de requête sur la base de données 
+	 * 
+	 * @return array $res
+	 */
 	public function getListeBouteilleCellier($userId, $cellierId, $idBouteille = -1)
 	{
 		$rows = array();
@@ -75,12 +72,12 @@ class Bouteille extends Modele
 						INNER JOIN vino__cellier ce ON ce.id = cc.vino__cellier_id 
 						WHERE ce.vino__utilisateur_id =' . $userId . '
 						AND cc.vino__cellier_id =' . $cellierId;
-						
+
 		if ($idBouteille != -1) {
 			$requete = $requete . ' AND cc.vino__bouteille_id = ' . $idBouteille;
 		}
 
-		$requete = $requete .' ORDER BY id_bouteille_cellier DESC';
+		$requete = $requete . ' ORDER BY id_bouteille_cellier DESC';
 
 		if (($res = $this->_db->query($requete)) ==	 true) {
 			if ($res->num_rows) {
@@ -90,18 +87,15 @@ class Bouteille extends Modele
 				}
 			}
 		} else {
+
 			throw new Exception("Erreur de requête sur la base de donnée", 1);
-
 		}
-
-
 
 		return $rows;
 	}
 
-
 	/**
-	 * Cette méthode permet de retourner les résultats de recherche pour la fonction d'autocomplete de l'ajout des bouteilles dans le cellier
+	 * Cette fonction permet de retourner les résultats de recherche pour la fonction d'autocomplete de l'ajout des bouteilles dans le cellier
 	 * 
 	 * @param string $nom La chaine de caractère à rechercher
 	 * @param integer $nb_resultat Le nombre de résultat maximal à retourner.
@@ -117,9 +111,8 @@ class Bouteille extends Modele
 		$nom = $this->_db->real_escape_string($nom);
 		$nom = preg_replace("/\*/", "%", $nom);
 
-		//echo $nom;
 		$requete = 'SELECT id, nom FROM vino__bouteille where vino__catalogue_id = 1 AND LOWER(nom) like LOWER("%' . $nom . '%") LIMIT 0,' . $nb_resultat;
-		//var_dump($requete);
+
 		if (($res = $this->_db->query($requete)) ==	 true) {
 			if ($res->num_rows) {
 				while ($row = $res->fetch_assoc()) {
@@ -131,14 +124,11 @@ class Bouteille extends Modele
 			throw new Exception("Erreur de requête sur la base de données", 1);
 		}
 
-
-		//var_dump($rows);
 		return $rows;
 	}
 
-
 	/**
-	 * Cette méthode ajoute une ou des bouteilles au cellier
+	 * Cette fonction ajoute une ou des bouteilles au cellier
 	 * 
 	 * @param Array $data Tableau des données représentants la bouteille.
 	 * 
@@ -159,7 +149,6 @@ class Bouteille extends Modele
 		$data["quantite"] = intval($data["quantite"]);
 		$data["millesime"] = intval($data["millesime"]);
 
-
 		if ($data["id_bouteille"] == "") {
 			$stmtAjoutVinoBouteille = $this->_db->prepare("INSERT INTO vino__bouteille(vino__type_id, nom, pays, description, format, vino__catalogue_id) VALUES (?, ?, ?, ?, ?, ?)");
 
@@ -175,11 +164,11 @@ class Bouteille extends Modele
 
 		$cellierId = $_SESSION["cellierId"];
 
-		$resultat = $this->_db->query("SELECT id from vino__cellier_contient where vino__cellier_id = " .$cellierId. " AND vino__bouteille_id =" .$data["id_bouteille"]);
-		
-		if(!$resultat->num_rows > 0){
+		$resultat = $this->_db->query("SELECT id from vino__cellier_contient where vino__cellier_id = " . $cellierId . " AND vino__bouteille_id =" . $data["id_bouteille"]);
+
+		if (!$resultat->num_rows > 0) {
 			$stmtAjoutCellier = $this->_db->prepare("INSERT INTO vino__cellier_contient (vino__cellier_id, vino__bouteille_id, vino__type_id, nom, pays, description, date_ajout, garde_jusqua , notes, prix, format, quantite, millesime) VALUES (?,?,?,?,?,?,now(),?,?,?,?,?,?)");
-	
+
 			$stmtAjoutCellier->bind_param(
 				"iiisssssdsii",
 				$cellierId,
@@ -195,9 +184,8 @@ class Bouteille extends Modele
 				$data["quantite"],
 				$data["millesime"]
 			);
-	
-			$res = $stmtAjoutCellier->execute();
 
+			$res = $stmtAjoutCellier->execute();
 		} else {
 			$res = false;
 		}
@@ -205,9 +193,8 @@ class Bouteille extends Modele
 		return $res;
 	}
 
-
 	/**
-	 * Cette méthode modifie une bouteille au cellier
+	 * Cette fonction modifie une bouteille au cellier
 	 * 
 	 * @param Array $data Tableau des données représentants la bouteille.
 	 * 
@@ -247,15 +234,14 @@ class Bouteille extends Modele
 			$data["id_type"],
 			$data["id_bouteille"]
 		);
-	
+
 		$res = $stmt->execute();
 
 		return $res;
 	}
 
-
 	/**
-	 * Cette méthode efface une bouteille du cellier
+	 * Cette fonction efface une bouteille du cellier
 	 * 
 	 * @param Integer $idBouteilleCellier Id de la table vino__cellier_contient.
 	 * 
@@ -275,9 +261,8 @@ class Bouteille extends Modele
 		return $res;
 	}
 
-
 	/**
-	 * Cette méthode change la quantité d'une bouteille en particulier dans le cellier
+	 * Cette fonction change la quantité d'une bouteille en particulier dans le cellier
 	 * 
 	 * @param int $id id de la bouteille
 	 * @param int $nombre Nombre de bouteille a ajouter ou retirer
