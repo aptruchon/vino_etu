@@ -6,9 +6,6 @@ session_start();
  * Gère les requêtes HTTP
  * 
  * @author Alana Fulvia Bezerra De Moraes, Alex Poulin Truchon, Claudia Lisboa, Pauline Huby
- * @version 2.0
- * @update 2023-02-05
- * 
  */
 class Controller
 {
@@ -27,7 +24,7 @@ class Controller
 	const CELLIER_AJOUTER = "ajouterCellier";
 	const CELLIER_MODIFIER = "modifierCellier";
 	const CELLIER_SUPPRIMER = "supprimerCellier";
-	
+
 	const UTILISATEUR_PAGE_INSCRIPTION = "inscription";
 	const UTILISATEUR_INSCRIPTION = "inscrireUtilisateur";
 	const UTILISATEUR_CONNEXION = "connexion";
@@ -39,7 +36,7 @@ class Controller
 	 * @return void
 	 */
 	public function router()
-	{    
+	{
 		$requestType = $_GET['requete'];
 
 		$accueilController = new AccueilController();
@@ -48,7 +45,7 @@ class Controller
 		$utilisateurController = new UtilisateurController();
 
 		switch ($requestType) {
-			// Bouteilles
+				// Bouteilles
 			case self::BOUTEILLE_LISTE:
 				$bouteilleController->listeBouteille($_SESSION['utilisateur']['id'], $_SESSION["cellierId"]);
 				break;
@@ -77,7 +74,7 @@ class Controller
 				$bouteilleController->ficheDetailsBouteille($_SESSION['utilisateur']['id'], $_SESSION["cellierId"], $_GET['bte']);
 				break;
 
-			// Celliers
+				// Celliers
 			case self::CELLIERS_UTILISATEUR:
 				$cellierController->mesCelliers($_SESSION['utilisateur']['id']);
 				break;
@@ -93,8 +90,8 @@ class Controller
 			case self::CELLIER_SUPPRIMER:
 				$cellierController->supprimerCellier($_SESSION['utilisateur']['id']);
 				break;
-			
-			// Utilisateurs
+
+				// Utilisateurs
 			case self::UTILISATEUR_PAGE_INSCRIPTION:
 				$utilisateurController->inscription();
 			case self::UTILISATEUR_INSCRIPTION:
@@ -107,7 +104,7 @@ class Controller
 				$utilisateurController->deconnexion();
 				break;
 
-			// Accueil
+				// Accueil
 			default:
 				$accueilController->accueil();
 				break;
