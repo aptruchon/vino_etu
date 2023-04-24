@@ -2,6 +2,7 @@
 
 /**
  * Gestion des bouteilles
+ * 
  */
 class BouteilleController extends Controller
 {
@@ -19,28 +20,27 @@ class BouteilleController extends Controller
 	/**
 	 * Affiche la vue de la page Fiche d'un vin
 	 */
-	protected function ficheDetailsBouteille($userId, $cellierId, $idBouteille, $showMessage=false)
+	protected function ficheDetailsBouteille($userId, $cellierId, $idBouteille, $showMessage = false)
 	{
 		// Redirection si un utilisateur non-connecté essaie d'aller sur une page qui requiert une authentification
-		if(!isset($_SESSION["utilisateur"])){
+		if (!isset($_SESSION["utilisateur"])) {
 			Utilitaires::nouvelleRoute('index.php?requete=connexion');
 			die();
 		}
-		
+
 		$bte = new Bouteille();
 		$dataFiche = $bte->getListeBouteilleCellier($userId, $cellierId, $idBouteille);
-		
+
 		// Afficher message confirmation si modifications
 		if ($showMessage) {
-				$_SESSION["message"] = "Modifications enregistrées !";
-				$_SESSION["estVisible"] = true;
-		} 
+			$_SESSION["message"] = "Modifications enregistrées !";
+			$_SESSION["estVisible"] = true;
+		}
 		include("vues/entete.php");
 		include("vues/navigation.php");
 		include("vues/fiche.php");
 		include("vues/pied.php");
 	}
-
 
 	/**
 	 * Modifie les informations d'un vin dans un cellier
@@ -48,7 +48,7 @@ class BouteilleController extends Controller
 	protected function modifierBouteilleCellier($userId, $cellierId, $idBouteille)
 	{
 		// Redirection si un utilisateur non-connecté essaie d'aller sur une page qui requiert une authentification
-		if(!isset($_SESSION["utilisateur"])){
+		if (!isset($_SESSION["utilisateur"])) {
 			Utilitaires::nouvelleRoute('index.php?requete=connexion');
 			die();
 		}
@@ -64,7 +64,6 @@ class BouteilleController extends Controller
 			$_SESSION["estVisible"] = true;
 
 			die();
-
 		} else {
 			$type = new Type();
 			$dataTypesModifier = $type->getTypes();
@@ -85,7 +84,7 @@ class BouteilleController extends Controller
 	protected function ajouterNouvelleBouteilleCellier()
 	{
 		// Redirection si un utilisateur non-connecté essaie d'aller sur une page qui requiert une authentification
-		if(!isset($_SESSION["utilisateur"])){
+		if (!isset($_SESSION["utilisateur"])) {
 			Utilitaires::nouvelleRoute('index.php?requete=connexion');
 			die();
 		}
@@ -94,7 +93,7 @@ class BouteilleController extends Controller
 		if (!empty($body)) {
 			$bte = new Bouteille();
 			$resultat = $bte->ajouterBouteilleCellier($body);
-			if($resultat === false){
+			if ($resultat === false) {
 				$_SESSION["message"] = "Bouteille déjà créée.";
 				$_SESSION["estVisible"] = true;
 			} else {
@@ -119,11 +118,11 @@ class BouteilleController extends Controller
 	protected function effacerBouteilleCellier($idBouteilleCellier)
 	{
 		// Redirection si un utilisateur non-connecté essaie d'aller sur une page qui requiert une authentification
-		if(!isset($_SESSION["utilisateur"])){
+		if (!isset($_SESSION["utilisateur"])) {
 			Utilitaires::nouvelleRoute('index.php?requete=connexion');
 			die();
 		}
-		
+
 		$bte = new Bouteille();
 		$effacer = $bte->effacerBouteilleCellier($idBouteilleCellier);
 		// Message pop-up confirmation bouteille supprimée
@@ -132,8 +131,6 @@ class BouteilleController extends Controller
 		// Redirection page cellier
 		Utilitaires::nouvelleRoute('index.php?requete=cellier&cellierId=' . $_SESSION["cellierId"] . '');
 	}
-
-
 
 	/* QUANTITÉS --------------------------------------------------*/
 	/**
@@ -161,9 +158,7 @@ class BouteilleController extends Controller
 		echo json_encode($resultat);
 	}
 
-
-
-/* RECHERCHE + INFOS FORMULAIRES AJOUT-----------------------------*/
+	/* RECHERCHE + INFOS FORMULAIRES AJOUT-----------------------------*/
 	/**
 	 * Autocompletion de la liste de recherche
 	 */

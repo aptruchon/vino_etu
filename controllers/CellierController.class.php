@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Gestion des celliers
  */
@@ -10,7 +11,7 @@ class CellierController extends Controller
 	protected function cellier($userId)
 	{
 		// Redirection si un utilisateur non-connecté essaie d'aller sur une page qui requiert une authentification
-		if(!isset($_SESSION["utilisateur"])){
+		if (!isset($_SESSION["utilisateur"])) {
 			Utilitaires::nouvelleRoute('index.php?requete=connexion');
 			die();
 		}
@@ -22,7 +23,7 @@ class CellierController extends Controller
 		$cellierParId = $cellier->getCellierParId($_SESSION["cellierId"]);
 
 		// Valider si le cellier appartient à l'utilisateur
-		if($cellierParId["vino__utilisateur_id"] !== $_SESSION["utilisateur"]["id"]){
+		if ($cellierParId["vino__utilisateur_id"] !== $_SESSION["utilisateur"]["id"]) {
 			Utilitaires::nouvelleRoute('index.php?requete=mesCelliers');
 			die();
 		}
@@ -46,11 +47,11 @@ class CellierController extends Controller
 	protected function mesCelliers($userId)
 	{
 		// Redirection si un utilisateur non-connecté essaie d'aller sur une page qui requiert une authentification
-		if(!isset($_SESSION["utilisateur"])){
+		if (!isset($_SESSION["utilisateur"])) {
 			Utilitaires::nouvelleRoute('index.php?requete=connexion');
 			die();
 		}
-		
+
 		$cellier = new Cellier();
 		$mesCelliers = $cellier->getCelliers($userId);
 
@@ -61,38 +62,49 @@ class CellierController extends Controller
 		include("vues/pied.php");
 	}
 
-	protected function ajouterCellier($userId) {
+	/**
+	 * Appele le modèle qui ajoute un cellier
+	 */
+	protected function ajouterCellier($userId)
+	{
 		$cellier = new Cellier();
 		$body = $_POST;
 
-		if(!empty($body)){
+		if (!empty($body)) {
 			$resultatCelliers = $cellier->ajouterCellier($userId, $body["nomCellier"]);
 			Utilitaires::nouvelleRoute('index.php?requete=mesCelliers');
 			die();
 		}
 	}
 
-	protected function modifierCellier($userId) {
+	/**
+	 * Appele le modèle qui modifie le nom d'un cellier
+	 */
+	protected function modifierCellier($userId)
+	{
 		$cellier = new Cellier();
 
 		$cellierParId = $cellier->getCellierParId($_POST["idCellier"]);
 
-		if($cellierParId["vino__utilisateur_id"] !== $userId){
+		if ($cellierParId["vino__utilisateur_id"] !== $userId) {
 			Utilitaires::nouvelleRoute('index.php?requete=mesCelliers');
 			die();
 		}
 
 		$cellier->modifierCellier($_POST);
 		Utilitaires::nouvelleRoute('index.php?requete=mesCelliers');
-
 	}
 
-	protected function supprimerCellier($userId) {
+	/**
+	 * Appele le modèle qui supprime un cellier
+	 */
+	protected function supprimerCellier($userId)
+	{
 		$cellier = new Cellier();
 
 		$cellierParId = $cellier->getCellierParId($_POST["idCellier"]);
 
-		if($cellierParId["vino__utilisateur_id"] !== $userId){
+		if ($cellierParId["vino__utilisateur_id"] !== $userId) {
 			Utilitaires::nouvelleRoute('index.php?requete=mesCelliers');
 			die();
 		}
