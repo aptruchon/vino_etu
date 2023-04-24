@@ -6,8 +6,6 @@
  */
 class Bouteille extends Modele
 {
-	const TABLE = 'vino__bouteille';
-
 	/**
 	 * Function qui récupère une bouteille par son ID
 	 * 

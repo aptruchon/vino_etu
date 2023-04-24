@@ -6,16 +6,6 @@
  */
 class Cellier extends Modele
 {
-    const TABLE = 'vino__Cellier';
-
-    /**
-     * Constructeur pour hériter du parent
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
     /**
      * Function qui récupère les celliers d'un utilisateur
      * 
